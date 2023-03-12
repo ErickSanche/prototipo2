@@ -10,7 +10,7 @@ class GerenteController extends Controller
         return view('gerente.agregarusuario');
     }
     public function agregarservicios(){
-        return view('gerente.agregarservicio');
+        return view('gerente.agregarservicios');
     }
     public function verusuario(){
         return view('gerente.verusuario');
