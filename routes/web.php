@@ -37,4 +37,5 @@ Route::put('actualizar/{cual?}',[PaqueteController::class, 'update'])->name('paq
 Route::delete('paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paquetes.destroy');
 Route::delete('/paquetes/clear', [PaqueteController::class, 'clear'])->name('paquetes.clear');
 
+Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquetes');
 //comentarios xxxxxxxxx

@@ -13,7 +13,7 @@
             <div class="row align-items-stretch justify-content-between">
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
                     <a class="navbar-brand" href="#">BIENVENIDO</a>
-                    <a class="navbar-brand" style="left:80%" href="login">Iniciar Sesion</a>
+                    <a class="navbar-brand" href="{{ route('salida') }}">Cerrar Sesion</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,8 @@
         <h5 class='card-title'>Paquete $i</h5>
         <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <p class='card-text'>$5000.</p>
+        <a href='#'' class='btn btn-primary'>Registrar</a>
+        <a href='#'' class='btn btn-primary'>Reseña</a>
     </div>
     </div>";
     }
