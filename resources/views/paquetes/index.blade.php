@@ -24,6 +24,7 @@
                             <a href="{{ route('gerente.agregarusuario') }}">Agregar usuario</a>
                             <a href="{{ route('gerente.verservicios') }}">Ver servicios</a>
                             <a href="{{ route('gerente.agregarservicios') }}">Agregar servicio</a>
+                            <a href="{{ route('salida') }}">Cerrar Sesion</a>
                         </div>
                     </div>
 
