@@ -4,6 +4,7 @@ use App\Http\Controllers\GerenteController;
 use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\UsuarioController;
 use App\Models\Paquete;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -39,6 +40,9 @@ Route::delete('paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paq
 Route::delete('/paquetes/clear', [PaqueteController::class, 'clear'])->name('paquetes.clear');
 
 Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquetes');
+Route::get('review',[UsuarioController::class, 'review'])->name('usuario.review');
+Route::get('registro',[UsuarioController::class, 'registro'])->name('usuario.registro');
+Route::get('añadir',[UsuarioController::class, 'añadir'])->name('usuario.añadir');
 
 
 Route::get('agregarusuario',[GerenteController::class, 'agregarusuario'])->name('gerente.agregarusuario');
