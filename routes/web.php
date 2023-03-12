@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GerenteController;
 use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
@@ -38,4 +39,12 @@ Route::delete('paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paq
 Route::delete('/paquetes/clear', [PaqueteController::class, 'clear'])->name('paquetes.clear');
 
 Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquetes');
+
+
+Route::get('agregarusuario',[GerenteController::class, 'agregarusuario'])->name('gerente.agregarusuario');
+Route::get('agregarservicios',[GerenteController::class, 'agregarservicios'])->name('gerente.agregarservicios');
+Route::get('verusuario',[GerenteController::class, 'verusuario'])->name('gerente.verusuario');
+Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('gerente.verservicios');
+
+
 //comentarios xxxxxxxxx

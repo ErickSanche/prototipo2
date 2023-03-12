@@ -20,10 +20,10 @@
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
                     <div class="navbar-brand" style="left:80%" >
                         <div class="opciones">
-                            <a>Ver usuarios</a>
-                            <a>Agregar usuario</a>
-                            <a>Ver servicios</a>
-                            <a>Agregar servicio</a>
+                            <a href="{{ route('gerente.verusuario') }}">Ver usuarios</a>
+                            <a href="{{ route('gerente.agregarusuario') }}">Agregar usuario</a>
+                            <a href="{{ route('gerente.verservicios') }}">Ver servicios</a>
+                            <a href="{{ route('gerente.agregarservicios') }}">Agregar servicio</a>
                         </div>
                     </div>
 
