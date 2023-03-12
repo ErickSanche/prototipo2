@@ -9,7 +9,15 @@
 
 <body>
 
-<h1>Paquetes</h1>
+<div class="banner">
+    <h1>Paquetes</h1>
+    <div class="opciones">
+        <a>Ver usuarios</a>
+        <a>Agregar usuario</a>
+        <a>Ver servicios</a>
+        <a>Agregar servicio</a>
+    </div>
+</div>
 
 <table border="1">
     <thead>
