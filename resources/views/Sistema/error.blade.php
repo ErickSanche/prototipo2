@@ -1,4 +1,7 @@
-@extends('plantillas.principal')
-@section('contenido')
-<H1>NO PUEDES ENTRAR</H1>
-@endsection
+<!DOCTYPE html>
+<html>
+
+<body style="background-image: url({{ asset('img/malpass.png') }}); margin: 20px;">
+  </body>
+
+</html>
