@@ -23,7 +23,7 @@
     </header>
 
     <div class="container">
-        <h1 class="my-4">Pagar/Abonar servicio</h1>
+        <h1 class="my-4">Pagar servicio</h1>
         <form action="" method="" id="formulario">
             @csrf
 
