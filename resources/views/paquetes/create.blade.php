@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
 
+<center>
+    <h1>AGREGAR UN PAQUETE</h1>
+</center>
+
 <section class="form-contact">
     <header>
       <span>
