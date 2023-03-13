@@ -13,8 +13,9 @@
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
                 <nav class="navegacion">
-                    <a class="navbar-brand" href="#">BIENVENIDO</a>
+                    
                     <ul>
+                        <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
                         <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>

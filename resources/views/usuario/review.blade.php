@@ -14,7 +14,7 @@
             <div class="interior">
                 <nav class="navegacion">
                     <ul>
-                        <a class="navbar-brand">BIENVENIDO</a>
+                      <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>
                 </nav>
