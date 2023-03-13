@@ -10,35 +10,44 @@
 <body>
 
     <header>
-        <div class="container">
-            <div class="row align-items-stretch justify-content-between">
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
-                    <a class="navbar-brand" href="{{ route('usuario.paquetes') }}">Inicio</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+            <div class="interior">
+                <nav class="navegacion">
+                    <ul>
+                        <a class="navbar-brand">BIENVENIDO</a>
+                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                    </ul>
                 </nav>
-            </div>
-        </div>
+            </div>    
     </header>
 
+    <style>
+        #miElemento {
+          margin-top: 10px;
+          margin-right: 50px;
+          margin-bottom: 60px;
+          margin-left: 50px;
+        }
+      </style>
+        <div id="miElemento">
 
-    <form>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Correo</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Correo</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Comentario</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Subir Archivo</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+                  <a href='#' class='btn btn-primary'>Guardar</a>
+              </form>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Comentario</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlFile1">Subir Archivo</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-          </div>
-          <a href='#' class='btn btn-primary'>Guardar</a>
-      </form>
+   
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

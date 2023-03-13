@@ -6,12 +6,12 @@
 	font-family: "Open Sans", sans-serif;
 }
 body{
-	background: #1F2739;
+	background: #ffffff;
 }
 header{
 	width: 100%;
 	height: 90px;
-	background-color: #0b132b;
+	background-color: #0fa6e2;
 }
 .interior{
 	max-width: 100%;
@@ -49,7 +49,7 @@ header{
 	transform: scale(1.1);
 }
 .navegacion ul li a{
-	color: #ffffff;
+	color: #030000;
 	text-align: center;
 	text-transform: uppercase;
 	font-size: 14px;
@@ -58,7 +58,7 @@ header{
 	transition: .3s linear;
 }
 .navegacion ul li a:hover{
-	color: #00c9bd;
+	color: #eb3459;
 	transform: scale(1.1);
 }
 .navegacion ul li:hover .hijos{
