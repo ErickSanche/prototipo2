@@ -6,7 +6,7 @@
 	font-family: "Open Sans", sans-serif;
 }
 body{
-	background: #bdc5d7;
+	background: #ffffff;
 }
 header{
 	width: 100%;
@@ -58,7 +58,7 @@ header{
 	transition: .3s linear;
 }
 .navegacion ul li a:hover{
-	color: #00c9bd;
+	color: #4c8aed;
 	transform: scale(1.1);
 }
 .navegacion ul li:hover .hijos{
