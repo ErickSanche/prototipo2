@@ -10,18 +10,19 @@
 <body>
 
     <header>
-        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
-            <div class="interior">
-                <nav class="navegacion">
-                    
-                    <ul>
-                        <a class="navbar-brand" href="#">BIENVENIDO</a>
-                        <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
-                    </ul>
+        <div class="container">
+            <div class="row align-items-stretch justify-content-between">
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
+                    <a class="navbar-brand" href="{{ route('usuario.paquetes') }}">Inicio</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </nav>
-            </div>    
+            </div>
+        </div>
     </header>
+
 
 
     <div class="container" >
