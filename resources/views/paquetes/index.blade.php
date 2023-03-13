@@ -63,15 +63,7 @@
             </table>
     
         
-        <center>
-            <head>
-                <h1><span class="blue"></span>ESP32<span class="blue"></span> <span class="yellow">Temperatura</span></h1>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-                <title>Botones</title>
-                <link rel="stylesheet" href="{{ asset('css/estilosboton.css') }}">  
-            </head>
-        </center>
+      
 
     </center>
     <head>

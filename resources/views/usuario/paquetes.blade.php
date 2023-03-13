@@ -4,31 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Salon de eventos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
-<body>
+<body >
     <header>
-        <div class="container">
-            <div class="row align-items-stretch justify-content-between">
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
-                    <a class="navbar-brand" href="#">BIENVENIDO</a>
-                    <a class="navbar-brand" href="{{ route('usuario.registro') }}">Registro</a>
-                    <a class="navbar-brand" href="{{ route('salida') }}">Cerrar Sesion</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+            <div class="interior">
+                <nav class="navegacion">
+                    
+                    <ul>
+                        <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
+                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a></li>
+                    </ul>
                 </nav>
-            </div>
-        </div>
+            </div>    
     </header>
 
-
+</body>
+<body background="white">
 
 
     <div class="container" >
         <div class="row">
+            <table class="table table-dark table-hover">
+
     <?php
     for ($i=1; $i <= 9 ; $i++) {
         echo "<div class='card' style='width: 18rem;'>

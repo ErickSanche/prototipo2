@@ -7,19 +7,19 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
+    <!DOCTYPE html>
+<html lang="en">
     <header>
-        <div class="container">
-            <div class="row align-items-stretch justify-content-between">
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
+        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+            <div class="interior">
+                <nav class="navegacion">
                     <a class="navbar-brand" href="#">BIENVENIDO</a>
-                    <a class="navbar-brand" style="left:80%" href="login">Iniciar Sesion</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <ul>
+                        <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
+                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                    </ul>
                 </nav>
-            </div>
-        </div>
+            </div>    
     </header>
 
 <center>
