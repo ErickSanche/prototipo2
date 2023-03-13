@@ -38,7 +38,7 @@
         <h5 class='card-title'>Paquete $i</h5>
         <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <p class='card-text'>$5000.</p>
-        <a href='añadir' class='btn btn-primary'>Añadir</a>
+        <a href='añadir' class='btn btn-primary'>Agregar</a>
         <a href='review' class='btn btn-primary'>Reseña</a>
     </div>
     </div>";
