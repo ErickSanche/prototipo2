@@ -18,6 +18,11 @@ class UsuarioController extends Controller
         return view('usuario.añadir');
     }
 
+    public function abonar(){
+        return view('empleado.abonar');
+    }
+
+
 
 
 }

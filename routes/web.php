@@ -52,5 +52,7 @@ Route::get('agregarservicios',[GerenteController::class, 'agregarservicios'])->n
 Route::get('verusuario',[GerenteController::class, 'verusuario'])->name('gerente.verusuario');
 Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('gerente.verservicios');
 
+Route::get('empleado',[UsuarioController::class, 'abonar'])->name('empleado.abonar');
+
 
 //comentarios xxxxxxxxx
