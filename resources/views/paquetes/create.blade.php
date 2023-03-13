@@ -1,7 +1,21 @@
-@extends('plantillas.principal')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Contacto Minimalista</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
 
-@section('contenido')
-<form action="{{route('paquetes.store')}}" method="post">
+<section class="form-contact">
+    <header>
+      <span>
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </span>
+    </header>
+
+<form action="{{route('paquetes.store')}}"  class="contact" method="post">
     @csrf
     <label for='id'>ID</label>
     <input type='text' name='id' id='id'>
@@ -24,4 +38,6 @@
     </div>
 @endif
 
-@endsection
+  
+</body>
+</html>
