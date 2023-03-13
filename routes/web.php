@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\GerenteController;
 use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\SistemaController;
@@ -52,7 +53,8 @@ Route::get('agregarservicios',[GerenteController::class, 'agregarservicios'])->n
 Route::get('verusuario',[GerenteController::class, 'verusuario'])->name('gerente.verusuario');
 Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('gerente.verservicios');
 
-Route::get('empleado',[UsuarioController::class, 'abonar'])->name('empleado.abonar');
+Route::get('abonar',[EmpleadoController::class, 'abonar'])->name('empleado.abonar');
+Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.eventos');
 
 
 //comentarios xxxxxxxxx
