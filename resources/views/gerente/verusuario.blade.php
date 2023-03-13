@@ -9,28 +9,22 @@
 
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row align-items-stretch justify-content-between">
-                <nav class="navbar navbar-expand-md navbar-dark fixed-top "style="background-color: #FFB6C1;">
-                    <div class="navbar-brand" style="left:80%" >
-                        <div class="opciones">
-                            <a>Regresar </a>
-                            <a>Cerrar Sesion </a>
-
-                        </div>
-                    </div>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </nav>
-            </div>
-        </div>
-    </header>
+      <header>
+          <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+              <div class="interior">
+                  <nav class="navegacion">
+                      <ul>
+                          <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
+                          <li><a href="{{ route('gerente.agregarusuario') }}">Agregar usuario</a></li>
+                          <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
+                          <li><a href="{{ route('gerente.agregarservicios') }}">Agregar servicio</a></li>
+                          <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                      </ul>
+                  </nav>
+              </div>    
+      </header>
 <body>
-        <table class="table table-dark table-hover">
+        <table class="table table-light table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>

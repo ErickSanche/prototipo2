@@ -21,6 +21,17 @@ class SistemaController extends Controller
             return view("Sistema.error");
         }
     }
+    public function validar2(Request $solicitud){
+        //        dump($solicitud->all());
+                $usuario = $solicitud->input('usuario');
+                $password = $solicitud->input('password');
+                if($usuario==$password){
+                    return redirect(route("paquetes.index"));
+        //            echo "si puede entrar";
+                } else {
+                    return view("Sistema.error");
+                }
+            }
     public function index(){
         return view("usuario.paquetes");
     }

@@ -23,42 +23,51 @@
 									<div class="center-wrap">
 										<div class="section text-center">
 											<h4 class="mb-4 pb-3">Log In</h4>
+
                                             <form action="{{ route('validar') }}" method="post">
-											<div class="form-group">
-												<input type="email" class="form-style" placeholder="Email">
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Login</a>
-                      <p class="mb-0 mt-4 text-center"><a href="https://www.web-leb.com/code" class="link">Forgot your password?</a></p>
-                                            </form>
+												@csrf
+												<div class="cabeceraS">
+													<div class="titulo">
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="usuario" type="text" placeholder="Usuario">
+														<i class="input-icon uil uil-at"></i>
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="password" type="password" placeholder="Contraseña">
+														<i class="input-icon uil uil-lock-alt"></i>
+													</div>
+													<div class="items">
+														<input class="boton btn mt-4" type="submit" value="Validar">
+													</div>
+												</div>
+											</form>
+
 				      					</div>
 			      					</div>
 			      				</div>
 								<div class="card-back">
 									<div class="center-wrap">
 										<div class="section text-center">
-											<h4 class="mb-3 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" class="form-style" placeholder="Full Name">
-												<i class="input-icon uil uil-user"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="tel" class="form-style" placeholder="Phone Number">
-												<i class="input-icon uil uil-phone"></i>
-											</div>	
-                      <div class="form-group mt-2">
-												<input type="email" class="form-style" placeholder="Email">
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Register</a>
+											<h4 class="mb-3 pb-3">ADMINISTRADOR</h4>
+											<form action="{{ route('validar2') }}" method="post">
+												@csrf
+												<div class="cabeceraS">
+													<div class="titulo">
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="usuario" type="text" placeholder="Usuario">
+														<i class="input-icon uil uil-at"></i>
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="password" type="password" placeholder="Contraseña">
+														<i class="input-icon uil uil-lock-alt"></i>
+													</div>
+													<div class="items">
+														<input class="boton btn mt-4" type="submit" value="Validar">
+													</div>
+												</div>
+											</form>
 				      					</div>
 			      					</div>
 			      				</div>
