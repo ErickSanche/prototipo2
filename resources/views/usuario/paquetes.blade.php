@@ -12,13 +12,14 @@
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
                 <nav class="navegacion">
-                    
+
                     <ul>
                         <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a></li>
+                        <li><a href="{{ route('usuario.registro') }}">Registro</a></li>
                     </ul>
                 </nav>
-            </div>    
+            </div>
     </header>
 
 </body>
@@ -37,7 +38,7 @@
         <h5 class='card-title'>Paquete $i</h5>
         <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <p class='card-text'>$5000.</p>
-        <a href='añadir' class='btn btn-primary'>Añadir</a>
+        <a href='añadir' class='btn btn-primary'>Agregar</a>
         <a href='review' class='btn btn-primary'>Reseña</a>
     </div>
     </div>";
