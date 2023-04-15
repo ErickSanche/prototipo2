@@ -26,6 +26,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('login', [SistemaController::class, 'entrada'])->name("login");
+Route::get('registrar', [SistemaController::class, 'registrar'])->name('registrar');
+Route::post('registrar', [SistemaController::class, 'registrar2'])->name('registrar2');
 Route::post('validar', [SistemaController::class, 'validar'])->name('validar');
 Route::post('validar2', [SistemaController::class, 'validar2'])->name('validar2');
 

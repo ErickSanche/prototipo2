@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Usuario;
 
 class SistemaController extends Controller
 {
@@ -11,39 +14,63 @@ class SistemaController extends Controller
         return view('Sistema.entrada');
     }
     public function validar(Request $solicitud){
-//        dump($solicitud->all());
+        //        dump($solicitud->all());
+
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
+        $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
+        if( is_null($encontrado) ){
+            return view("Sistema.error");
+        }else{
+            $password_bd = $encontrado->clave;
+            $conincide = Hash::check($password,$password_bd);
 
-        if ($usuario == "cliente" && $password == "cliente") {
+        if($conincide){
+            Auth::login( $encontrado );
             return redirect(route("usuario.paquetes"));
-        }
-        else {
+        }else{
             return view("Sistema.error");
         }
-
+        }
     }
     public function validar2(Request $solicitud){
 
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
+        $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
 
-        if ($usuario == "gerente" && $password == "gerente") {
-            return redirect(route("paquetes.index"));
-        }
-        if ($usuario == "empleado" && $password == "empleado") {
-            return redirect(route("empleado.eventos"));
-        }  else {
+        if( is_null($encontrado) ){
             return view("Sistema.error");
-        }
-    }
+        }else{
+            $password_bd = $encontrado->clave;
+            $conincide = Hash::check($password,$password_bd);
 
+            if($conincide){
+                Auth::login( $encontrado );
+                return redirect(route("paquetes.index"));
+            }else{
+                return view("Sistema.error");
+            }
+    }
+}
     public function index(){
         return view("usuario.paquetes");
     }
 
-    public function saludar(){
+    public function registrar(){
+        return view('Sistema.registrar');
+    }
+    public function registrar2(Request $solicitud){
+        $nombre = $solicitud->input('nombre');
+        $usuario = $solicitud->input('usuario');
+        $password = $solicitud->input('password');
 
+        $nuevo = new Usuario();
+        $nuevo->nombre = $nombre;
+        $nuevo->nombre_de_usuario = $usuario;
+        $nuevo->clave = Hash::make($password); // password
+        $nuevo->save();
+        return redirect("registrar");
     }
     public function salir(Request $solicitud){
         return redirect("/");
