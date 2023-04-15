@@ -14,39 +14,45 @@ class SistemaController extends Controller
         return view('Sistema.entrada');
     }
     public function validar(Request $solicitud){
-//        dump($solicitud->all());
-$usuario = $solicitud->input('usuario');
-$password = $solicitud->input('password');
-$encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
-if( is_null($encontrado) ){
-    return view("Sistema.error");
-}else{
-    $password_bd = $encontrado->clave;
-    $conincide = Hash::check($password,$password_bd);
+        //        dump($solicitud->all());
 
-    if($conincide){
-        Auth::login( $encontrado );
-        return redirect(route("usuario.paquetes"));
-    }else{
-        return view("Sistema.error");
-    }
-}
+        $usuario = $solicitud->input('usuario');
+        $password = $solicitud->input('password');
+        $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
+        if( is_null($encontrado) ){
+            return view("Sistema.error");
+        }else{
+            $password_bd = $encontrado->clave;
+            $conincide = Hash::check($password,$password_bd);
+
+        if($conincide){
+            Auth::login( $encontrado );
+            return redirect(route("usuario.paquetes"));
+        }else{
+            return view("Sistema.error");
+        }
+        }
     }
     public function validar2(Request $solicitud){
 
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
+        $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
 
-        if ($usuario == "gerente" && $password == "gerente") {
-            return redirect(route("paquetes.index"));
-        }
-        if ($usuario == "empleado" && $password == "empleado") {
-            return redirect(route("empleado.eventos"));
-        }  else {
+        if( is_null($encontrado) ){
             return view("Sistema.error");
-        }
-    }
+        }else{
+            $password_bd = $encontrado->clave;
+            $conincide = Hash::check($password,$password_bd);
 
+            if($conincide){
+                Auth::login( $encontrado );
+                return redirect(route("paquetes.index"));
+            }else{
+                return view("Sistema.error");
+            }
+    }
+}
     public function index(){
         return view("usuario.paquetes");
     }
