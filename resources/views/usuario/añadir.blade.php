@@ -70,7 +70,7 @@
                           </div>
 
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" class="btn btn-primary btn-lg" >Añadir</button>
+                          <button type="button" class="btn btn-primary btn-lg" >Eventos</button>
                           <button  type="button" class="btn btn-primary btn-lg"style="margin-left: 10px" >Cancelar</button>
                         </div>
 
