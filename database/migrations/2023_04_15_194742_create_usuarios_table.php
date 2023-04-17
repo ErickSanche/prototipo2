@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('nombre_de_usuario');
             //$table->enum('rol',['Gerente','Empleado','Cliente'])->default('Cliente');
+            $table->string('cargo');
             $table->string('clave');
             $table->timestamps();
         });

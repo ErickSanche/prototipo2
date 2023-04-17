@@ -26,6 +26,10 @@
                         <label class="label">Usuario</label>
                     </div>
                     <div class="inputContainer">
+                        <input class="input" name="cargo" type="text" placeholder="Usuario">
+                        <label class="label">Cargo</label>
+                    </div>
+                    <div class="inputContainer">
                         <input class="input" name="password" type="password" placeholder="Contraseña">
                         <label class="label">Ingrese contraseña</label>
                     </div>
@@ -36,6 +40,7 @@
                     <div class="items">
                         <input class="submitBtn" type="submit" value="Registrar">
                     </div>   
+                   
             </form>
         </div>
     </div> 

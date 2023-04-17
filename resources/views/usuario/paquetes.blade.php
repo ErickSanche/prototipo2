@@ -17,7 +17,7 @@
                     <ul>
                         <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a></li>
-                        <li><a href="{{ route('usuario.registro') }}">Registro</a></li>
+                        <li><a href="{{ route('registrar') }}">Registro</a></li>
                     </ul>
                 </nav>
             </div>

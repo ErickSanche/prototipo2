@@ -33,37 +33,26 @@
                   </nav>
               </div>    
       </header>
-<body>
-  <table class="table table-dark table-hover">
-    <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Servicios</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto@gmail.com</td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thorntonq@gmail.com</td>
-                <td>2</td>
-              </tr>
-              <th scope="row">3</th>
-              <td>pablo</td>
-              <td>pablo@gmail.com</td>
-              <td>1</td>
-              </tr>
-            </tbody>
-          </table>
-</body>
+
+<?php
+$db = new PDO('sqlite:D:\erick\Documents\GitHub\prototipo2\database.sqlite');
+    $result = $db->query("SELECT * FROM eventos");
+
+    // Mostrar los datos en una tabla HTML
+      echo '<table>';
+      echo '<tr><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th></tr>';
+
+      while ($row = $results->fetchArray()) {
+        echo '<tr>';
+        echo '<td>' . $row['columna1'] . '</td>';
+        echo '<td>' . $row['columna2'] . '</td>';
+        echo '<td>' . $row['columna3'] . '</td>';
+        echo '</tr>';
+      }
+
+      echo '</table>';
+        
+?>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </html>

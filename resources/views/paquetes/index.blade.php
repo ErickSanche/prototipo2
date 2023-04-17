@@ -6,7 +6,7 @@
                 <nav class="navegacion">
                     <ul>
                         <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
-                        <li><a href="{{ route('gerente.agregarusuario') }}">Agregar usuario</a></li>
+                        <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
                         <li><a href="{{ route('gerente.agregarservicios') }}">Agregar servicio</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>

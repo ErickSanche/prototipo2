@@ -20,7 +20,9 @@ class SistemaController extends Controller
         $password = $solicitud->input('password');
         $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
         if( is_null($encontrado) ){
-            return view("Sistema.error");
+            echo '<script>alert("Contraseña incorrecta. Por favor, inténtalo de nuevo.");</script>';
+            return  redirect(route("login"));
+
         }else{
             $password_bd = $encontrado->clave;
             $conincide = Hash::check($password,$password_bd);
@@ -64,11 +66,13 @@ class SistemaController extends Controller
         $nombre = $solicitud->input('nombre');
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
+        $cargo = $solicitud->input('cargo');
 
         $nuevo = new Usuario();
         $nuevo->nombre = $nombre;
         $nuevo->nombre_de_usuario = $usuario;
         $nuevo->clave = Hash::make($password); // password
+        $nuevo->cargo = $cargo;
         $nuevo->save();
         return redirect("registrar");
     }
