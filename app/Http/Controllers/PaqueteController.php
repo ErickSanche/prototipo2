@@ -17,7 +17,6 @@ class PaqueteController extends Controller
         $paquetes = Paquete::all();
 
         return view('paquetes.index', compact('paquetes'));
-        // return view('paquetes.index', ['paquetes'=>$paquetes]);
     }
 
     /**
@@ -37,22 +36,23 @@ class PaqueteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'id' => 'required',
-        'nombre' => 'required',
-        'precio' => 'required',
-        'descripcion' => 'required'
-    ]);
+    {
+        $request->validate([
+            'id' => 'required',
+            'nombre' => 'required',
+            'precio' => 'required',
+            'descripcion' => 'required'
+        ]);
 
-    $nuevo = new Paquete();
-    $nuevo->id = $request->input('id');
-    $nuevo->nombre = $request->input('nombre');
-    $nuevo->precio = $request->input('precio');
-    $nuevo->descripcion = $request->input('descripcion');
-    $nuevo->save();
-    return redirect(route('paquetes.index'));
-}
+        $paquete = new Paquete();
+        $paquete->id = $request->input('id');
+        $paquete->nombre = $request->input('nombre');
+        $paquete->precio = $request->input('precio');
+        $paquete->descripcion = $request->input('descripcion');
+        $paquete->save();
+        return redirect(route('paquetes.index'));
+    }
+
     /**
      * Display the specified resource.
      *
