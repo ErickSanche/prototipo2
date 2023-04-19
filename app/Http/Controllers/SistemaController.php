@@ -22,7 +22,6 @@ class SistemaController extends Controller
         if( is_null($encontrado) ){
             echo '<script>alert("Contraseña incorrecta. Por favor, inténtalo de nuevo.");</script>';
             return  redirect(route("login"));
-
         }else{
             $password_bd = $encontrado->clave;
             $conincide = Hash::check($password,$password_bd);
@@ -72,7 +71,7 @@ class SistemaController extends Controller
         $nuevo->nombre = $nombre;
         $nuevo->nombre_de_usuario = $usuario;
         $nuevo->clave = Hash::make($password); // password
-        $nuevo->cargo = $cargo;
+        $cargo = $solicitud->input('cargo');
         $nuevo->save();
         return redirect("registrar");
     }
