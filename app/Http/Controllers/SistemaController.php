@@ -40,7 +40,7 @@ class SistemaController extends Controller
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
         $encontrado = Usuario::where('nombre_de_usuario',$usuario)->first();
-
+        
         if( is_null($encontrado) ){
             return view("Sistema.error");
         }else{
