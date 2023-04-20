@@ -65,7 +65,7 @@ class SistemaController extends Controller
         $nombre = $solicitud->input('nombre');
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
-        //$cargo = $solicitud->input('cargo');
+        $cargo = $solicitud->input('cargo');
 
         $nuevo = new Usuario();
         $nuevo->nombre = $nombre;
