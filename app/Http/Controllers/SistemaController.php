@@ -39,9 +39,11 @@ class SistemaController extends Controller
                 return view("Sistema.error");
             }
         }
-    }
-    
+    }    
     public function index(){
+
+        $usuario = usuarios::all();
+
         return view("usuario.paquetes");
     }
 
