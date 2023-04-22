@@ -18,16 +18,20 @@
         <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-       <!-- DATATABLES -->
-       <!--  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
-       <!-- BOOTSTRAP -->
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+       <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Custom CSS
+        <link rel="stylesheet" href="{{ asset('css/f1.css') }}">  -->
+        <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
+
 
    </head>
     <center>
-
-        <table>
+    <div class="container mt-5">
+                <table id="example" class="table table-striped" style="width:100%">
+                
             <thead>
                 <tr>
                     <th>ID</th>
@@ -44,20 +48,29 @@
                     <td>{{ $paquete->nombre }}</td>
                     <td>{{ $paquete->precio }}</td>
                     <td>{{ $paquete->descripcion }}</td>
-                    <td>
-                        <a href="{{ route('paquetes.edit', $paquete->id) }}">Editar</a>
-                        <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
+                    <td class="buttons">
+                        <a href="{{ route('paquetes.destroy', $paquete->id) }}" class=" fa fa-trash" method="post"></a>
+                        <a href="{{ route('paquetes.edit', $paquete->id) }}" class="fa fa-pencil"></a>
+
+                       
                         </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
+
         </table>
 
-
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            $(document).ready(function () {
+    $('#example').DataTable();
+});
+        </script>
+    </body>
+</body>
     </center>
     <head>
         <link rel="stylesheet" href="{{ asset('css/estilosboton.css') }}">
@@ -67,12 +80,11 @@
         <div class="btn">
 
         <span><a href="{{ route('paquetes.create') }}">Crear nuevo paquete</a></span>
-        <li><a href="{{ route('salida') }}">Salir..</a></li>
         <div class="dot"></div>
 
         </div>
     </div>
 </center>
-</body>
+
 
 </html>
