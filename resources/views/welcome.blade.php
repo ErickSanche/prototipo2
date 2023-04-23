@@ -16,7 +16,6 @@
                     <ul>
                         <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
                         <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-                        <li><a href="{{ route('registrar') }}">Registrar</a></li>
                     </ul>
                 </nav>
             </div>

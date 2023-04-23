@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('grupopaquetes', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('nombre');
             $table->string('precio');
             $table->string('descripcion');

@@ -42,23 +42,21 @@ class PaqueteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'id' => 'required',
-        'nombre' => 'required',
-        'precio' => 'required',
-        'descripcion' => 'required'
-    ]);
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'precio' => 'required',
+            'descripcion' => 'required'
+        ]);
 
-    $paquete = new Paquete();
-    $paquete->id = $request->input('id');
-    $paquete->nombre = $request->input('nombre');
-    $paquete->precio = $request->input('precio');
-    $paquete->descripcion = $request->input('descripcion');
-    $paquete->estado = $request->has('estado') ? 1 : 0; // new boolean variable with default value 0
-    $paquete->save();
-    return redirect(route('paquetes.index'));
-}
+        $paquete = new Paquete();
+        $paquete->nombre = $request->input('nombre');
+        $paquete->precio = $request->input('precio');
+        $paquete->descripcion = $request->input('descripcion');
+        $paquete->estado = $request->has('estado') ? 1 : 0; // new boolean variable with default value 0
+        $paquete->save();
+        return redirect(route('paquetes.index'));
+    }
 
 
     /**
@@ -94,8 +92,13 @@ class PaqueteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'precio' => 'required',
+            'descripcion' => 'required'
+        ]);
+
         $paquete_encontrado = Paquete::find($id);
-        $paquete_encontrado->id = $request->input('id');
         $paquete_encontrado->nombre = $request->input('nombre');
         $paquete_encontrado->precio = $request->input('precio');
         $paquete_encontrado->descripcion = $request->input('descripcion');
