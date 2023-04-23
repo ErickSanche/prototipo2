@@ -24,7 +24,6 @@
 
         <!-- Custom CSS
         <link rel="stylesheet" href="{{ asset('css/f1.css') }}">  -->
-        <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
 
 
    </head>
@@ -48,12 +47,20 @@
                     <td>{{ $paquete->nombre }}</td>
                     <td>{{ $paquete->precio }}</td>
                     <td>{{ $paquete->descripcion }}</td>
-                    <td class="buttons">
-                        <a href="{{ route('paquetes.destroy', $paquete->id) }}" class=" fa fa-trash" method="post"></a>
-                        <a href="{{ route('paquetes.edit', $paquete->id) }}" class="fa fa-pencil"></a>
+                    <td >
+                    <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-delete">
+                        <i class="fa fa-trash"></i> Eliminar
+                    </button>
+                    </form>
 
-                       
-                        </form>
+                    <button type="button" class="btn-edit">
+                    <a href="{{ route('paquetes.edit', $paquete->id) }}">
+                        <i class="fa fa-pencil"></i> Editar
+                    </a>
+                    </button>
                     </td>
                 </tr>
                 @endforeach
@@ -68,6 +75,7 @@
             $(document).ready(function () {
     $('#example').DataTable();
 });
+
         </script>
     </body>
 </body>

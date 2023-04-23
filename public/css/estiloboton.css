@@ -1,48 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: #53afff;
-  }
-  
-  .buttons {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .buttons a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 2em;
-    background-color: tomato;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 60px;
-    border-radius: 50%;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .buttons a:nth-child(2) {
-    background-color: #3bb88a;
-  }
-  
-  .buttons a:nth-child(3) {
-    background-color: #222831;
-  }
-  
-  .buttons a:nth-child(4) {
-    background-color: #ffc300;
-  }
-  
-  .buttons a:hover {
-    /* transform: scale(1.2); */
-    box-shadow: 0 0 30px #cddc39;
-    color: #cddc39;
-  }
+.red-button {
+  background-color: rgba(221, 15, 15, 0.795);
+  display: inline-block;
+  color: azure;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
