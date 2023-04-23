@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('precio');
             $table->string('descripcion');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }

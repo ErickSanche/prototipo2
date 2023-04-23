@@ -58,5 +58,6 @@ Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('ger
 Route::get('abonar',[EmpleadoController::class, 'abonar'])->name('empleado.abonar');
 Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.eventos');
 
+Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
 //comentarios xxxxxxxxx

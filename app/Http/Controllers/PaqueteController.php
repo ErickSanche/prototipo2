@@ -19,6 +19,12 @@ class PaqueteController extends Controller
         return view('paquetes.index', compact('paquetes'));
     }
 
+    public function welcome()
+    {
+        $paquetes = Paquete::all();
+        return view('welcome', compact('paquetes'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -36,22 +42,24 @@ class PaqueteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'id' => 'required',
-            'nombre' => 'required',
-            'precio' => 'required',
-            'descripcion' => 'required'
-        ]);
+{
+    $request->validate([
+        'id' => 'required',
+        'nombre' => 'required',
+        'precio' => 'required',
+        'descripcion' => 'required'
+    ]);
 
-        $paquete = new Paquete();
-        $paquete->id = $request->input('id');
-        $paquete->nombre = $request->input('nombre');
-        $paquete->precio = $request->input('precio');
-        $paquete->descripcion = $request->input('descripcion');
-        $paquete->save();
-        return redirect(route('paquetes.index'));
-    }
+    $paquete = new Paquete();
+    $paquete->id = $request->input('id');
+    $paquete->nombre = $request->input('nombre');
+    $paquete->precio = $request->input('precio');
+    $paquete->descripcion = $request->input('descripcion');
+    $paquete->estado = $request->has('estado') ? 1 : 0; // new boolean variable with default value 0
+    $paquete->save();
+    return redirect(route('paquetes.index'));
+}
+
 
     /**
      * Display the specified resource.
