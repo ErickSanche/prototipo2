@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -11,8 +12,12 @@ use App\Models\Usuario;
 class SistemaController extends Controller
 {
     public function entrada(){
+
+        $paquetes = Paquete::all();
+        return view('Sistema.entrada', compact ('paquetes'));
         return view('Sistema.entrada');
     }
+
     public function validar(Request $solicitud){
 
         $usuario = $solicitud->input('usuario');
@@ -41,9 +46,9 @@ class SistemaController extends Controller
         }
     }
     public function index(){
-
+        $paquetes = Paquete::all();
+        return view('usuario.paquetes', compact ('paquetes'));
         $usuario = Usuario::all();
-
         return view("usuario.paquetes");
     }
 
