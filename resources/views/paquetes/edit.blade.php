@@ -31,6 +31,9 @@
       <label for='descripcion'>Descripción</label>
       <input type='text' name='descripcion' id='descripcion' value="{{ $paquete_encontrado->descripcion }}">
       <br>
+      <label for='estado'>Estado</label>
+      <input type='checkbox' name='estado' id='estado' value='1' {{ $paquete_encontrado->estado ? 'checked' : '' }}>
+      <br>
       <input type="hidden" name="id" value="{{ $paquete_encontrado->id }}">
       <input type="submit" value="GUARDAR">
     </form>

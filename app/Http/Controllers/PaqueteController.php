@@ -91,20 +91,23 @@ class PaqueteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nombre' => 'required',
-            'precio' => 'required',
-            'descripcion' => 'required'
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required',
+        'precio' => 'required',
+        'descripcion' => 'required',
+        'estado' => 'required|boolean' // agregar validación para el campo estado
+    ]);
 
-        $paquete_encontrado = Paquete::find($id);
-        $paquete_encontrado->nombre = $request->input('nombre');
-        $paquete_encontrado->precio = $request->input('precio');
-        $paquete_encontrado->descripcion = $request->input('descripcion');
-        $paquete_encontrado->save();
-        return redirect(route('paquetes.index'));
-    }
+    $paquete_encontrado = Paquete::find($id);
+    $paquete_encontrado->nombre = $request->input('nombre');
+    $paquete_encontrado->precio = $request->input('precio');
+    $paquete_encontrado->descripcion = $request->input('descripcion');
+    $paquete_encontrado->estado = $request->input('estado'); // asignar valor del campo estado
+    $paquete_encontrado->save();
+    return redirect(route('paquetes.index'));
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -115,6 +118,11 @@ class PaqueteController extends Controller
     public function destroy($id)
     {
         $paquete_encontrado = Paquete::find($id);
+
+        if($paquete_encontrado->estado == 1){
+            return redirect(route('paquetes.index'))->with('error', 'No se puede borrar el paquete porque su estado es activo.');
+        }
+
         $paquete_encontrado->delete();
         return redirect(route('paquetes.index'));
     }
