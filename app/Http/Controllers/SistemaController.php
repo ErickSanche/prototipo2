@@ -12,9 +12,6 @@ use App\Models\Usuario;
 class SistemaController extends Controller
 {
     public function entrada(){
-
-        $paquetes = Paquete::all();
-        return view('Sistema.entrada', compact ('paquetes'));
         return view('Sistema.entrada');
     }
 
@@ -45,6 +42,7 @@ class SistemaController extends Controller
             }
         }
     }
+
     public function index(){
         $paquetes = Paquete::all();
         return view('usuario.paquetes', compact ('paquetes'));
