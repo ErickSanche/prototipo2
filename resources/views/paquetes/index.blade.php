@@ -30,7 +30,7 @@
     <center>
     <div class="container mt-5">
                 <table id="example" class="table table-striped" style="width:100%">
-
+                
             <thead>
                 <tr>
                     <th>ID</th>

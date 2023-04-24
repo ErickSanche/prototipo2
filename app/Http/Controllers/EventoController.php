@@ -8,50 +8,47 @@ use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $grupopaquetes = Paquete::all();
-        return view('eventos.create', compact('grupopaquetes'));
         $eventos = Evento::all();
+
         return view('eventos.index', compact('eventos'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $grupopaquetes = \App\Models\Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
-
+        $grupopaquetes = Paquete::all();
         return view('eventos.create', compact('grupopaquetes'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // Obtener los datos del formulario
-        $datosEvento = $request->only(['nombre', 'fecha', 'hora_inicio', 'hora_fin', 'numero_invitados']);
+        $request->validate([
+            'nombre' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_fin' => 'required',
+            'numero_invitados' => 'required',
+            'grupopaquete_id' => 'required'
+        ]);
 
-        // Crear un nuevo evento
-        $evento = new Evento($datosEvento);
-
-        // Obtener el paquete seleccionado desde el formulario
-        $paqueteSeleccionado = Paquete::find($request->input('paquete_id'));
-
-        // Asignar el paquete al evento
-        $evento->grupopaquete_id = $paqueteSeleccionado->id;
-
-        // Guardar el evento
-        $evento->save();
-
-        // Redirigir al usuario a la página de detalles del evento recién creado
-        return redirect()->route('eventos.index', ['id' => $evento->id]);
-    }
-    public function edit($id)
-    {
-        $evento = Evento::find($id);
-        return view('eventos.edit', compact('evento'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $evento = Evento::find($id);
+        $evento = new Evento();
         $evento->nombre = $request->input('nombre');
         $evento->fecha = $request->input('fecha');
         $evento->hora_inicio = $request->input('hora_inicio');
@@ -63,18 +60,74 @@ class EventoController extends Controller
         return redirect()->route('eventos.index');
     }
 
-    public function destroy($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         $evento = Evento::find($id);
-        $evento->delete();
 
-        return redirect()->route('eventos.index');
+        return view('eventos.show', compact('evento'));
     }
 
-    public function clear()
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
-        Evento::truncate();
+        $evento = Evento::find($id);
 
-        return redirect()->route('eventos.index');
+        return view('eventos.edit', compact('evento'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required|date_format:H:i',
+            'hora_fin' => 'required|date_format:H:i|after:hora_inicio',
+            'numero_invitados' => 'required|integer',
+            'grupopaquete_id' => 'required|exists:grupopaquetes,id',
+        ]);
+
+        $evento = Evento::find($id);
+        $evento->nombre = $request->input('nombre');
+        $evento->fecha = $request->input('fecha');
+        $evento->hora_inicio = $request->input('hora_inicio');
+        $evento->hora_fin = $request->input('hora_fin');
+        $evento->numero_invitados = $request->input('numero_invitados');
+        $evento->grupopaquete_id = $request->input('grupopaquete_id');
+        $evento->save();
+
+        return redirect(route('eventos.index'))->with('success', 'Evento actualizado exitosamente.');
+    }
+
+    /**
+ * Remove the specified resource from storage.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function destroy($id)
+{
+    $evento = Evento::find($id);
+    $evento->delete();
+
+    return redirect(route('eventos.index'))->with('success', 'Evento eliminado exitosamente.');
+}
 }
