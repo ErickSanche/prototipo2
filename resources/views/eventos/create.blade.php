@@ -6,40 +6,43 @@
 <body>
 	<h1>Crear evento</h1>
 
-	@if ($errors->any())
-		<div>
-			@foreach ($errors->all() as $error)
-				<p>{{ $error }}</p>
-			@endforeach
-		</div>
-	@endif
+php
 
-	<form method="POST" action="{{ route('eventos.store') }}">
-		@csrf
+@if ($errors->any())
+	<div>
+		@foreach ($errors->all() as $error)
+			<p>{{ $error }}</p>
+		@endforeach
+	</div>
+@endif
 
-		<label for="titulo">Título:</label>
-		<input type="text" id="titulo" name="titulo"><br>
+<form method="POST" action="{{ route('eventos.store') }}">
+	@csrf
 
-		<label for="descripcion">Descripción:</label>
-		<textarea id="descripcion" name="descripcion"></textarea><br>
+	<label for="nombre">Nombre:</label>
+	<input type="text" id="nombre" name="nombre"><br>
 
-		<label for="fecha">Fecha:</label>
-		<input type="date" id="fecha" name="fecha"><br>
+	<label for="fecha">Fecha:</label>
+	<input type="date" id="fecha" name="fecha"><br>
 
-		<label for="hora">Hora:</label>
-		<input type="time" id="hora" name="hora"><br>
+	<label for="hora_inicio">Hora de inicio:</label>
+	<input type="time" id="hora_inicio" name="hora_inicio"><br>
 
-		<label for="lugar">Lugar:</label>
-		<input type="text" id="lugar" name="lugar"><br>
+	<label for="hora_fin">Hora de fin:</label>
+	<input type="time" id="hora_fin" name="hora_fin"><br>
 
-		<label for="grupo">Grupo/Paquete:</label>
-		<select id="grupo" name="grupo">
-			@foreach ($grupopaquetes as $gp)
-				<option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
-			@endforeach
-		</select><br>
+	<label for="numero_invitados">Número de invitados:</label>
+	<input type="number" id="numero_invitados" name="numero_invitados"><br>
 
-		<button type="submit">Crear evento</button>
-	</form>
+        <label for="grupo">Grupo/Paquete:</label>
+        <select id="grupo" name="grupopaquete_id">
+        @foreach ($grupopaquetes as $gp)
+            <option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
+        @endforeach
+    </select><br>
+
+	<button type="submit">Crear evento</button>
+</form>
+
 </body>
 </html>

@@ -13,7 +13,7 @@ class EventoController extends Controller
         $grupopaquetes = Paquete::all();
         return view('eventos.create', compact('grupopaquetes'));
         $eventos = Evento::all();
-        return view('eventos.index', compact('eventos'));
+        return view('eventos.create', compact('eventos'));
     }
 
     public function create()
@@ -32,10 +32,10 @@ class EventoController extends Controller
         $evento = new Evento($datosEvento);
 
         // Obtener el paquete seleccionado desde el formulario
-        $paqueteSeleccionado = Paquete::find($request->input('paquete_id'));
+        $paqueteSeleccionado = Paquete::find($request->input('grupopaquete_id'));
 
         // Asignar el paquete al evento
-        $evento->grupopaquete_id = $paqueteSeleccionado->id;
+        $evento->grupopaquete()->associate($paqueteSeleccionado);
 
         // Guardar el evento
         $evento->save();
