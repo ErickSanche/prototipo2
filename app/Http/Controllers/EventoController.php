@@ -66,7 +66,7 @@ class EventoController extends Controller
         $evento->grupopaquete_id = $request->input('grupopaquete_id');
         $evento->save();
 
-        return redirect()->route('eventos.index');
+        return redirect()->route('eventos.mostrar');
     }
 
     public function destroy($id)
@@ -74,14 +74,14 @@ class EventoController extends Controller
         $evento = Evento::find($id);
         $evento->delete();
 
-        return redirect()->route('eventos.index');
+        return redirect()->route('eventos.mostrar');
     }
 
     public function clear()
     {
         Evento::truncate();
 
-        return redirect()->route('eventos.index');
+        return redirect()->route('eventos.mostrar');
     }
     public function show($id)
     {
