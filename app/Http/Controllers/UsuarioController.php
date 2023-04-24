@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
     public function index(){
-        $usuarios = Usuarios::al();
+        $usuarios = Usuario::al();
         return view('usuarios.index', compact ('eventos'));
     }
 
@@ -23,13 +24,13 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
-        $evento = usuarios::find($id);
+        $evento = Usuario::find($id);
         return view('usuarios.edit', compact('evento'));
     }
 
     public function update(Request $request, $id)
     {
-        $usuarios = Usuarios::find($id);
+        $usuarios = Usuario::find($id);
         $usuarios->nombre = $request->input('nombre');
         $usuarios->nombre_de_usario = $request->input('nombre_de_usario');
         $usuarios->clave = $request->input('clave');
@@ -41,7 +42,7 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        $usuarios = Usuarios::find($id);
+        $usuarios = Usuario::find($id);
         $usuarios->delete();
 
         return redirect()->route('usuarios.index');
@@ -49,7 +50,7 @@ class UsuarioController extends Controller
 
     public function clear()
     {
-        Usuarios::truncate();
+        Usuario::truncate();
 
         return redirect()->route('usuarios.index');
     }

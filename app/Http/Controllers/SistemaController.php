@@ -17,19 +17,19 @@ class SistemaController extends Controller
 
         $usuario = $solicitud->input('usuario');
         $password = $solicitud->input('password');
-    
+
         $encontrado = Usuario::where('nombre_de_usuario', $usuario)->first();
-    
+
         if (is_null($encontrado)) {
             echo '<script>alert("Contraseña incorrecta. Por favor, inténtalo de nuevo.");</script>';
             return redirect(route("login"));
         } else {
             $password_bd = $encontrado->clave;
             $conincide = Hash::check($password, $password_bd);
-    
+
             if ($conincide) {
                 Auth::login($encontrado);
-    
+
                 if ($encontrado->cargo == "gerente") {
                     return redirect(route("paquetes.index"));
                 } else {
@@ -39,10 +39,10 @@ class SistemaController extends Controller
                 return view("Sistema.error");
             }
         }
-    }    
+    }
     public function index(){
 
-        $usuario = usuarios::all();
+        $usuario = Usuario::all();
 
         return view("usuario.paquetes");
     }
@@ -63,7 +63,7 @@ class SistemaController extends Controller
          $nuevo->cargo = $cargo;
          $nuevo->save();
          return redirect("registrar");
-        
+
         }
     public function salir(Request $solicitud){
         return redirect("/");
