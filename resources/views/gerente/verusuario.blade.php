@@ -23,7 +23,7 @@
                         <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
                         <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
-                        <li><a href="{{ route('Eventos.store') }}">Agregar servicio</a></li>
+                        <li><a href="{{ route('eventos.store') }}">Agregar servicio</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>
                 </nav>
@@ -44,7 +44,7 @@
                     $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
 
                     // Ejecutar una consulta SQL
-                
+
                     $resultado = $db->query('SELECT * FROM usuarios');
 
                     // Mostrar los resultados en una tabla HTML
