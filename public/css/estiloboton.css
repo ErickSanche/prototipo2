@@ -1,11 +1,33 @@
-.red-button {
-  background-color: rgba(221, 15, 15, 0.795);
-  display: inline-block;
-  color: azure;
-  text-decoration: none;
-  padding: 10px 20px;
+.btn-green {
+  background-color: #4CAF50;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn-green:hover {
+  background-color: #3E8E41;
+}
+
+.btn-red {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn-red:hover {
+  background-color: #c62828;
 }
