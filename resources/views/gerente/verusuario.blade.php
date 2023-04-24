@@ -50,6 +50,7 @@
 
 <<<<<<< HEAD
                         // Ejecutar una consulta SQL
+                        $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
                     
                         $resultado = $db->query('SELECT * FROM usuarios');
 =======
