@@ -20,6 +20,6 @@ class Evento extends Model
 
     public function grupopaquete()
     {
-        return $this->belongsTo(Grupopaquete::class);
+        return $this->belongsTo(grupopaquuetes::class);
     }
 }
