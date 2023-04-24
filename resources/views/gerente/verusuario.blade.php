@@ -29,7 +29,7 @@
                 </tr>
                     <?php
                     // Crear una conexión a la base de datos
-                    $db = new PDO('sqlite:C:\Users\erick\Documentos\proyectoFrame\database\database.sqlite');
+                    $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
 
                     // Ejecutar una consulta SQL
                 
