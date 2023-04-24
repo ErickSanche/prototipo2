@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <header>
+<header>
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
                 <nav class="navegacion">
                     <ul>
-                        <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
-                        <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
-                        <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
-                        <li><a href="">Agregar servicios</a></li>
-                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                        <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
+                        <li><a href="eventos/create">Agregar Evento</a></li>
+                        <li><a href="eventos/mostrar">Ver Eventos</a></li
                     </ul>
                 </nav>
             </div>
