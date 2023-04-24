@@ -28,13 +28,11 @@ php
     <label for="numero_invitados">Número de invitados:</label>
     <input type="number" id="numero_invitados" name="numero_invitados" required>
 
-    <label for="paquete_id">Paquete:</label>
-    <select id="paquete_id" name="paquete_id" required>
-        <option value="">Seleccionar</option>
-        @foreach($grupopaquetes as $paquete)
-            <option value="{{ $paquete->id }}">{{ $paquete->nombre }}</option>
+    <label for="grupo">Grupo/Paquete:</label>
+    <select id="grupo" name="grupopaquete_id">
+        @foreach ($grupopaquetes as $gp)
+            <option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
         @endforeach
-    </select>
-
+    </select><br>
     <button type="submit">Crear evento</button>
 </form>
