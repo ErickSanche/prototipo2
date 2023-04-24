@@ -12,7 +12,7 @@ class EventoController extends Controller
     public function create()
     {
         $grupopaquetes = Paquete::all();
-        return view('Eventos.create', compact('grupopaquetes'));
+        return view('eventos.create', compact('grupopaquetes'));
     }
 
     public function store(Request $request)
