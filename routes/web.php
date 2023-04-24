@@ -3,14 +3,10 @@
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GerenteController;
-use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
-use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Paquete;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 
 /*
@@ -62,10 +58,10 @@ Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.ev
 
 Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
-Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
-Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
-Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
-Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
-Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
-Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
-Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
+Route::get('eventos',[EventoController::class, 'index'])->name('eventos.index');
+Route::get('crearevento',[EventoController::class, 'create'])->name('eventos.create');
+Route::post('guardar',[EventoController::class, 'store'])->name('eventos.store');
+Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('eventos.edit');
+Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('eventos.update');
+Route::delete('evento/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
+Route::delete('/eve ntos/clear', [EventoController::class, 'clear'])->name('eventos.clear');
