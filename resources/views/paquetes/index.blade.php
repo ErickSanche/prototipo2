@@ -22,8 +22,8 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!-- Custom CSS
-        <link rel="stylesheet" href="{{ asset('css/f1.css') }}">  -->
+        
+        <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}"
 
 
    </head>
@@ -51,12 +51,12 @@
                     <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn-delete">
+                    <button type="submit" class="btn-red">
                         <i class="fa fa-trash"></i> Eliminar
                     </button>
                     </form>
 
-                    <button type="button" class="btn-edit">
+                    <button type="button" class="btn-green">
                     <a href="{{ route('paquetes.edit', $paquete->id) }}">
                         <i class="fa fa-pencil"></i> Editar
                     </a>
