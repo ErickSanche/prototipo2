@@ -14,7 +14,7 @@ class UsuarioController extends Controller
     }
 
     public function create(){
-        return view('usuario.registro');
+        return view('usuario.create');
     }
 
     public function añadir(){

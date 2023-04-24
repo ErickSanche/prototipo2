@@ -45,12 +45,12 @@
     </tr>
 </thead>
 <tbody>
-    @foreach ($usuario as $usuarios)
+    @foreach ($usuarios as $usuario)
     <tr>
-        <td>{{ $usuarios->id }}</td>
-        <td>{{ $usuarios->nombre }}</td>
-        <td>{{ $usuarios->nombre_de_usario }}</td>
-        <td>{{ $usuarios->cargo }}</td>
+        <td>{{ $usuario->id }}</td>
+        <td>{{ $usuario->nombre }}</td>
+        <td>{{ $usuario->nombre_de_usario }}</td>
+        <td>{{ $usuario->cargo }}</td>
         <td >
         <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
         @csrf
