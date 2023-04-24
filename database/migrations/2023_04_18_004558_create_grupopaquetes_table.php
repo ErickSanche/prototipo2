@@ -18,7 +18,7 @@ class CreateGrupopaquetesTable extends Migration
             $table->string('nombre');
             $table->decimal('precio', 8, 2);
             $table->text('descripcion');
-            $table->boolean('estado')->default(true);
+            $table->boolean('estado')->default(false);
             $table->timestamps();
         });
     }
