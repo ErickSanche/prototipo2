@@ -1,28 +1,45 @@
-<form method="POST" action="{{ route('eventos.store') }}">
-    @csrf
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crear evento</title>
+</head>
+<body>
+	<h1>Crear evento</h1>
 
-    <label for="nombre">Nombre del evento:</label>
-    <input type="text" id="nombre" name="nombre" required>
+	@if ($errors->any())
+		<div>
+			@foreach ($errors->all() as $error)
+				<p>{{ $error }}</p>
+			@endforeach
+		</div>
+	@endif
 
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="fecha" required>
+	<form method="POST" action="{{ route('eventos.store') }}">
+		@csrf
 
-    <label for="hora_inicio">Hora de inicio:</label>
-    <input type="time" id="hora_inicio" name="hora_inicio" required>
+		<label for="titulo">Título:</label>
+		<input type="text" id="titulo" name="titulo"><br>
 
-    <label for="hora_fin">Hora de fin:</label>
-    <input type="time" id="hora_fin" name="hora_fin" required>
+		<label for="descripcion">Descripción:</label>
+		<textarea id="descripcion" name="descripcion"></textarea><br>
 
-    <label for="numero_invitados">Número de invitados:</label>
-    <input type="number" id="numero_invitados" name="numero_invitados" required>
+		<label for="fecha">Fecha:</label>
+		<input type="date" id="fecha" name="fecha"><br>
 
-    <label for="paquete_id">Paquete:</label>
-    <select id="paquete_id" name="paquete_id" required>
-        <option value="">Seleccionar</option>
-        @foreach($grupopaquetes as $paquete)
-            <option value="{{ $paquete->id }}">{{ $paquete->nombre }}</option>
-        @endforeach
-    </select>
+		<label for="hora">Hora:</label>
+		<input type="time" id="hora" name="hora"><br>
 
-    <button type="submit">Crear evento</button>
-</form>
+		<label for="lugar">Lugar:</label>
+		<input type="text" id="lugar" name="lugar"><br>
+
+		<label for="grupo">Grupo/Paquete:</label>
+		<select id="grupo" name="grupo">
+			@foreach ($grupopaquetes as $gp)
+				<option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
+			@endforeach
+		</select><br>
+
+		<button type="submit">Crear evento</button>
+	</form>
+</body>
+</html>
