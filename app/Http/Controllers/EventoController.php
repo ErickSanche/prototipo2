@@ -16,6 +16,11 @@ class EventoController extends Controller
         return view('eventos.create', compact('eventos'));
     }
 
+    public function mostrareventos()
+    {
+        $eventos = Evento::all();
+        return view('eventos.index', ['eventos' => $eventos]);
+    }
     public function create()
     {
         $grupopaquetes = \App\Models\Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
@@ -76,5 +81,10 @@ class EventoController extends Controller
         Evento::truncate();
 
         return redirect()->route('eventos.index');
+    }
+    public function show($id)
+    {
+        $evento = Evento::find($id);
+        return view('show', ['evento' => $evento]);
     }
 }
