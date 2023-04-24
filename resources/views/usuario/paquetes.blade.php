@@ -15,7 +15,7 @@
                 <nav class="navegacion">
                     <ul>
                         <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
-                        <li><a href="eventos.create">Agregar Evento</a></li>
+                        <li><a href="eventos/create">Agregar Evento</a></li>
                         <li><a href="eventos.show">Ver Eventos</a></li
                     </ul>
                 </nav>
