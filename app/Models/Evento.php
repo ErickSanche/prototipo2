@@ -9,16 +9,15 @@ class Evento extends Model
 {
     use HasFactory;
 
+    protected $table = 'eventos'; // especifica el nombre de la tabla
+
     protected $fillable = [
         'nombre',
         'fecha',
-        'confirmado',
         'hora_inicio',
         'hora_fin',
-        'proposito',
-        'invitados',
-        'mobiliario',
-        'manteleria',
+        'numero_invitados',
+        'descripcion',
         'paquete_id'
     ];
 
@@ -33,10 +32,5 @@ class Evento extends Model
     {
         return $this->belongsToMany(Servicio::class);
     }
-
-    // Relación con la galería de fotos
-    public function fotos()
-    {
-        return $this->hasMany(Foto::class);
-    }
 }
+

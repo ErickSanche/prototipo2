@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateGrupopaquetesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('grupopaquetes', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+            $table->id();
             $table->string('nombre');
-            $table->string('precio');
-            $table->string('descripcion');
-            $table->boolean('estado');
+            $table->decimal('precio', 8, 2);
+            $table->text('descripcion');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
@@ -32,4 +32,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('grupopaquetes');
     }
-};
+}
