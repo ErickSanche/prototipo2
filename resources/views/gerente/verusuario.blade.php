@@ -33,45 +33,47 @@
 
     <center>
     <div class="container mt-5">
-    <table id="example" class="table table-striped" style="width:100%">
+    <table class="table table-striped" style="width:100%">
 
 <thead>
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>nombre de usuario</th>
+        <th>Usuario</th>
         <th>Cargo</th>
-        <th>Acciones</th>
     </tr>
 </thead>
 <tbody>
-    @foreach ($usuarios as $usuario)
-    <tr>
-        <td>{{ $usuario->id }}</td>
-        <td>{{ $usuario->nombre }}</td>
-        <td>{{ $usuario->nombre_de_usario }}</td>
-        <td>{{ $usuario->cargo }}</td>
-        <td >
-        <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn-delete">
-            <i class="fa fa-trash"></i> Eliminar
-        </button>
-        </form>
+   <tr>
+   <?php
+            // Crear una conexión a la base de datos
+            $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
 
-        <button type="button" class="btn-edit">
-        <a href="{{ route('usuarios.edit', $usuario->id) }}">
-            <i class="fa fa-pencil"></i> Editar
-        </a>
-        </button>
-        </td>
-    </tr>
-    @endforeach
+            // Ejecutar una consulta SQL
+        
+            $resultado = $db->query('SELECT * FROM usuarios');
+
+            // Mostrar los resultados en una tabla HTML
+            echo '<table class="table table-striped" style="width:100%">';
+            foreach ($resultado as $fila) {
+                echo '<tr>';
+                echo '<td>' . $fila['id'] . '</td>';
+                echo '<td>' . $fila['nombre'] . '</td>';
+                echo '<td>' . $fila['nombre_de_usuario'] . '</td>';
+                echo '<td>' . $fila['cargo'] . '</td>';
+                echo '</tr>';
+            }
+            echo '</table>';
+
+            // Cerrar la conexión a la base de datos
+            $db = null;
+            ?>
+
+
+   </tr>
 </tbody>
 
 </table>
-
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
