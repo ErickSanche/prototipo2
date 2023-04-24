@@ -31,40 +31,42 @@
     <div class="container mt-5">
                 <table id="example" class="table table-striped" style="width:100%">
 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($paquetes as $paquete)
-                <tr>
-                    <td>{{ $paquete->id }}</td>
-                    <td>{{ $paquete->nombre }}</td>
-                    <td>{{ $paquete->precio }}</td>
-                    <td>{{ $paquete->descripcion }}</td>
-                    <td >
-                    <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-red">
-                        <i class="fa fa-trash"></i> Eliminar
-                    </button>
-                    </form>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($paquetes as $paquete)
+                        <tr>
+                            <td>{{ $paquete->id }}</td>
+                            <td>{{ $paquete->nombre }}</td>
+                            <td>{{ $paquete->precio }}</td>
+                            <td>{{ $paquete->descripcion }}</td>
+                            <td>{{ $paquete->estado }}</td>
+                            <td >
+                                <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-red">
+                                        <i class="fa fa-trash"></i> Eliminar
+                                    </button>
+                                </form>
 
-                    <button type="button" class="btn-green">
-                    <a href="{{ route('paquetes.edit', $paquete->id) }}">
-                        <i class="fa fa-pencil"></i> Editar
-                    </a>
-                    </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
+                                <button type="button" class="btn-green">
+                                    <a href="{{ route('paquetes.edit', $paquete->id) }}">
+                                        <i class="fa fa-pencil"></i> Editar
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
 
         </table>
 
