@@ -12,11 +12,23 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-        
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ asset('css/f1.css') }}">
     </head>
+    <header>
+        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+            <div class="interior">
+                <nav class="navegacion">
+                    <ul>
+                        <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
+                        <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
+                        <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
+                        <li><a href="{{ route('Eventos.store') }}">Agregar servicio</a></li>
+                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                    </ul>
+                </nav>
+            </div>
+    </header>
     <body>
             <div class="container mt-5">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
