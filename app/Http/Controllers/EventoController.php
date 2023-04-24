@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\Paquete;
 use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
     public function index()
     {
+        $grupopaquetes = Paquete::all();
+        return view('eventos.create', compact('grupopaquetes'));
         $eventos = Evento::all();
         return view('eventos.index', compact('eventos'));
     }
@@ -22,18 +25,24 @@ class EventoController extends Controller
 
     public function store(Request $request)
     {
-        $evento = new Evento();
-        $evento->nombre = $request->input('nombre');
-        $evento->fecha = $request->input('fecha');
-        $evento->hora_inicio = $request->input('hora_inicio');
-        $evento->hora_fin = $request->input('hora_fin');
-        $evento->numero_invitados = $request->input('numero_invitados');
-        $evento->grupopaquete_id = $request->input('grupopaquete_id');
+        // Obtener los datos del formulario
+        $datosEvento = $request->only(['nombre', 'fecha', 'hora_inicio', 'hora_fin', 'numero_invitados']);
+
+        // Crear un nuevo evento
+        $evento = new Evento($datosEvento);
+
+        // Obtener el paquete seleccionado desde el formulario
+        $paqueteSeleccionado = Paquete::find($request->input('paquete_id'));
+
+        // Asignar el paquete al evento
+        $evento->grupopaquete_id = $paqueteSeleccionado->id;
+
+        // Guardar el evento
         $evento->save();
 
-        return redirect()->route('eventos.index');
+        // Redirigir al usuario a la página de detalles del evento recién creado
+        return redirect()->route('eventos.index', ['id' => $evento->id]);
     }
-
     public function edit($id)
     {
         $evento = Evento::find($id);
