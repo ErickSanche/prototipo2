@@ -2,79 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Evento;
-use App\Models\Grupopaquete;
-use App\Models\Paquete;
+use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
-    public function create()
-    {
-        $grupopaquetes = Paquete::all();
-        return view('eventos.create', compact('grupopaquetes'));
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|max:255',
-            'fecha' => 'required|date',
-            'hora_inicio' => 'required',
-            'hora_fin' => 'required',
-            'numero_invitados' => 'required|integer',
-            'grupopaquete_id' => 'required|exists:grupopaquetes,id',
-        ]);
-
-        $evento = new Evento;
-        $evento->nombre = $request->nombre;
-        $evento->fecha = $request->fecha;
-        $evento->hora_inicio = $request->hora_inicio;
-        $evento->hora_fin = $request->hora_fin;
-        $evento->numero_invitados = $request->numero_invitados;
-        $evento->grupopaquete_id = $request->grupopaquete_id;
-        $evento->save();
-
-        return redirect()->route('eventos.index')->with('success', 'Evento creado exitosamente.');
-    }
-
     public function index()
     {
         $eventos = Evento::all();
         return view('eventos.index', compact('eventos'));
     }
 
-    public function edit(Evento $evento)
+    public function create()
     {
-        $grupopaquetes = Paquete::all();
-        return view('eventos.edit', compact('evento', 'grupopaquetes'));
+        $grupopaquetes = \App\Models\Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
+
+        return view('eventos.create', compact('grupopaquetes'));
     }
 
-    public function update(Request $request, Evento $evento)
+    public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|max:255',
-            'fecha' => 'required|date',
-            'hora_inicio' => 'required',
-            'hora_fin' => 'required',
-            'numero_invitados' => 'required|integer',
-            'grupopaquete_id' => 'required|exists:grupopaquetes,id',
-        ]);
-
-        $evento->nombre = $request->nombre;
-        $evento->fecha = $request->fecha;
-        $evento->hora_inicio = $request->hora_inicio;
-        $evento->hora_fin = $request->hora_fin;
-        $evento->numero_invitados = $request->numero_invitados;
-        $evento->grupopaquete_id = $request->grupopaquete_id;
+        $evento = new Evento();
+        $evento->nombre = $request->input('nombre');
+        $evento->fecha = $request->input('fecha');
+        $evento->hora_inicio = $request->input('hora_inicio');
+        $evento->hora_fin = $request->input('hora_fin');
+        $evento->numero_invitados = $request->input('numero_invitados');
+        $evento->grupopaquete_id = $request->input('grupopaquete_id');
         $evento->save();
 
-        return redirect()->route('eventos.index')->with('success', 'Evento actualizado exitosamente.');
+        return redirect()->route('eventos.index');
     }
 
-    public function destroy(Evento $evento)
+    public function edit($id)
     {
+        $evento = Evento::find($id);
+        return view('eventos.edit', compact('evento'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $evento = Evento::find($id);
+        $evento->nombre = $request->input('nombre');
+        $evento->fecha = $request->input('fecha');
+        $evento->hora_inicio = $request->input('hora_inicio');
+        $evento->hora_fin = $request->input('hora_fin');
+        $evento->numero_invitados = $request->input('numero_invitados');
+        $evento->grupopaquete_id = $request->input('grupopaquete_id');
+        $evento->save();
+
+        return redirect()->route('eventos.index');
+    }
+
+    public function destroy($id)
+    {
+        $evento = Evento::find($id);
         $evento->delete();
-        return redirect()->route('eventos.index')->with('success', 'Evento eliminado exitosamente.');
+
+        return redirect()->route('eventos.index');
+    }
+
+    public function clear()
+    {
+        Evento::truncate();
+
+        return redirect()->route('eventos.index');
     }
 }
