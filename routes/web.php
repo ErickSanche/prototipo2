@@ -67,4 +67,4 @@ Route::get('/eventos/mostrar', [EventoController::class, 'mostrareventos'])->nam
 Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
 Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
 Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
-Route::get('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
+Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
