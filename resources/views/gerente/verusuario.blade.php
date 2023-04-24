@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('css/f1.css') }}">
     </head>
     <header>
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
@@ -30,6 +29,8 @@
             </div>
     </header>
     <body>
+    <link rel="stylesheet" href="{{ asset('css/f1.css') }}">    
+
     <center>
     <div class="container mt-5">
                 <table class="table table-striped" style="width:100%">

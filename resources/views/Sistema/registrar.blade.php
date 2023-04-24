@@ -1,16 +1,18 @@
- <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Agregar Usuarios</title>
-<link rel="stylesheet" href="{{ asset('css/ingresar.css') }}">
-</head>
 
+<link rel="stylesheet" href="{{ asset('css/ingresar.css') }}">
+
+</head>
 <header>
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
@@ -27,54 +29,59 @@
     </header>
 <body>
 
- <div class="signupFrm">
+    <div class="signupFrm">
 
- <div class="wrapper">
+        <div class="wrapper">
 
-<form action="{{ route('registrar') }}" method="post" class="form">
+            <form action="{{ route('registrar') }}" method="post" class="form">
 
-@csrf
+                @csrf
 
-<h1 class="title">Registro de usuarios</h1>
+                <h1 class="title">Registro de usuarios</h1>
 
+ 
 
-<div class="inputContainer">
+                <div class="inputContainer">
 
-<input class="input" name="nombre" type="text" placeholder="Nombre Completo">
-<label class="label">Nombre completo</label>
+                    <input class="input" name="nombre" type="text" placeholder="Nombre Completo">
 
- </div>
+                    <label class="label">Nombre completo</label>
 
+                </div>
 
-<div class="inputContainer">
+ 
 
-<input class="input" name="usuario" type="text" placeholder="Usuario">
+                <div class="inputContainer">
 
- <label class="label">Usuario</label>
+                    <input class="input" name="usuario" type="text" placeholder="Usuario">
 
-</div>
+                    <label class="label">Usuario</label>
 
+                </div>
 
+ 
 
- <div class="inputContainer">
+                <div class="inputContainer">
 
- <select name="cargo" id="cargo" onchange="mostrarContraseña()">
+                    <select name="cargo" id="cargo" onchange="mostrarContraseña()">
 
- <option value="cliente">Cliente</option>
+                        <option value="cliente">Cliente</option>
 
- <option value="gerente">Gerente</option>
+                        <option value="gerente">Gerente</option>
 
- </select>
+                    </select>
 
- <label class="label">Cargo</label>
- </div>
+                    <label class="label">Cargo</label>
 
+                </div>
 
+ 
 
- <div class="inputContainer" id="contraseña" style="display:none">
- <input class="input" name="contraseña_gerente" type="password" placeholder="Contraseña gerente">
+                <div class="inputContainer" id="contraseña" style="display:none">
 
- <label class="label">Ingrese la contraseña de gerente</label>
+                    <input class="input" name="contraseña_gerente" type="password" placeholder="Contraseña gerente">
+
+                    <label class="label">Ingrese la contraseña de gerente</label>
 
                 </div>
 
