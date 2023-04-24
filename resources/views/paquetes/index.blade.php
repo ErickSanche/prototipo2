@@ -9,6 +9,7 @@
                         <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
                         <li><a href="{{ route('eventos.create') }}">Agregar servicios</a></li>
+                        <li><a href="{{ route('eventos.store') }}">Agregar servicio</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>
                 </nav>
