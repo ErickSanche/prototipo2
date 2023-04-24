@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
                 <nav class="navegacion">
+
                 </nav>
             </div>
     </header>

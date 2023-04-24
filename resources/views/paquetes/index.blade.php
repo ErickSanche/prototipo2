@@ -43,30 +43,32 @@
                     </thead>
                     <tbody>
                         @foreach ($paquetes as $paquete)
-                        <tr>
-                            <td>{{ $paquete->id }}</td>
-                            <td>{{ $paquete->nombre }}</td>
-                            <td>{{ $paquete->precio }}</td>
-                            <td>{{ $paquete->descripcion }}</td>
-                            <td>{{ $paquete->estado }}</td>
-                            <td >
-                                <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-red">
-                                        <i class="fa fa-trash"></i> Eliminar
-                                    </button>
-                                </form>
-
-                                <button type="button" class="btn-green">
-                                    <a href="{{ route('paquetes.edit', $paquete->id) }}">
-                                        <i class="fa fa-pencil"></i> Editar
-                                    </a>
-                                </button>
-                            </td>
-                        </tr>
+                            @if ($paquete->estado != '0')
+                                <tr>
+                                    <td>{{ $paquete->id }}</td>
+                                    <td>{{ $paquete->nombre }}</td>
+                                    <td>{{ $paquete->precio }}</td>
+                                    <td>{{ $paquete->descripcion }}</td>
+                                    <td>{{ $paquete->estado }}</td>
+                                    <td>
+                                        <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-red">
+                                                <i class="fa fa-trash"></i> Eliminar
+                                            </button>
+                                        </form>
+                                        <button type="button" class="btn-green">
+                                            <a href="{{ route('paquetes.edit', $paquete->id) }}">
+                                                <i class="fa fa-pencil"></i> Editar
+                                            </a>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
+
 
         </table>
 
