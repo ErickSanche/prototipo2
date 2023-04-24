@@ -69,7 +69,6 @@ Route::delete('/eve ntos/clear', [EventoController::class, 'clear'])->name('even
 //usuarios
 Route::get('usuarios',[EventoController::class, 'index'])->name('usuarios.index');
 Route::get('crearevento',[EventoController::class, 'create'])->name('usuarios.create');
-Route::post('guardar',[EventoController::class, 'store'])->name('usuarios.store');
 Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('usuarios.edit');
 Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('usuarios.update');
 Route::delete('usuarios/{id}', [EventoController::class, 'destroy'])->name('usuarios.destroy');
