@@ -62,7 +62,6 @@ Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.ev
 
 Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
-<<<<<<< HEAD
 Route::get('eventos',[EventoController::class, 'index'])->name('eventos.index');
 Route::get('crearevento',[EventoController::class, 'create'])->name('eventos.create');
 Route::post('guardar',[EventoController::class, 'store'])->name('eventos.store');
@@ -79,12 +78,3 @@ Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('usuari
 Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('usuarios.update');
 Route::delete('usuarios/{id}', [EventoController::class, 'destroy'])->name('usuarios.destroy');
 Route::delete('/usuarios/clear', [EventoController::class, 'clear'])->name('usuarios.clear');
-=======
-Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
-Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
-Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
-Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
-Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
-Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
-Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
->>>>>>> f9d9bd6e1fd02f687d3cf30a13f51311007c574f
