@@ -40,9 +40,7 @@
 				<td>{{ $evento->nombre }}</td>
 				<td>{{ $evento->fecha }}</td>
 				<td>{{ $evento->lugar }}</td>
-                <td>{{ $evento->lugar }}</td>
-                <td>{{ $evento->lugar }}</td>
-                <td>{{ $evento->lugar }}</td>
+ 
 			</tr>
 			@endforeach
 		</tbody>
