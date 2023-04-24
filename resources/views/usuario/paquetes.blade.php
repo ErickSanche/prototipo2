@@ -30,21 +30,31 @@
     <div class="container" >
         <div class="row">
             <table class="table table-dark table-hover">
+                <center>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($paquetes as $paquete)
+                          <tr>
+                            <td>{{ $paquete->id }}</td>
+                            <td>{{ $paquete->nombre }}</td>
+                            <td>{{ $paquete->precio }}</td>
+                            <td>{{ $paquete->descripcion }}</td>
+                            <td>{{ $paquete->estado }}</td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
 
-    <?php
-    for ($i=1; $i <= 9 ; $i++) {
-        echo "<div class='card' style='width: 18rem;'>
-        <img src='../img/$i.jpg' class='card-img-top' alt=''>
-        <div class='card-body'>
-        <h5 class='card-title'>Paquete $i</h5>
-        <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <p class='card-text'>$5000.</p>
-        <a href='añadir' class='btn btn-primary'>Agregar</a>
-        <a href='review' class='btn btn-primary'>Reseña</a>
-    </div>
-    </div>";
-    }
-    ?>
+                </center>
     </div>
     </div>
 </body>
