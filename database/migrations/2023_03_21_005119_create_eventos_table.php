@@ -20,7 +20,7 @@ class CreateEventosTable extends Migration
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->unsignedInteger('numero_invitados')->nullable(false);
-            $table->foreignId('paquete_id')->constrained('paquetes')->onDelete('cascade');
+            $table->foreignId('grupopaquete_id')->constrained('grupopaquetes')->onDelete('cascade');
             $table->timestamps();
         });
     }
