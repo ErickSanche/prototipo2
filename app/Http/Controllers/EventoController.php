@@ -41,7 +41,7 @@ class EventoController extends Controller
         $evento->save();
 
         // Redirigir al usuario a la página de detalles del evento recién creado
-        return redirect()->route('paquetes.index', ['id' => $evento->id]);
+        return redirect()->route('eventos', ['id' => $evento->id]);
     }
     public function edit($id)
     {
