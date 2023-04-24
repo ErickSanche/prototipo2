@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('Eventos.store') }}">
+<form method="POST" action="{{ route('eventos.store') }}">
     @csrf
 
     <label for="nombre">Nombre del evento:</label>
