@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html>
+<header>
+        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+            <div class="interior">
+                <nav class="navegacion">
+                    <ul>
+                        <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
+                        <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
+                        <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
+                        <li><a href="{{ route('eventos.store') }}">Agregar servicio</a></li>
+                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
+                    </ul>
+                </nav>
+            </div>
+    </header>
 <head>
     <title>Lista de eventos</title>
 </head>
@@ -21,8 +35,8 @@
                     <td>{{ $evento->nombre }}</td>
                     <td>{{ $evento->paquete->nombre }}</td>
                     <td>
-                        <a href="{{ route('Eventos.edit', $evento->id) }}">Editar</a>
-                        <form action="{{ route('Eventos.destroy', $evento->id) }}" method="POST">
+                        <a href="{{ route('eventos.edit', $evento->id) }}">Editar</a>
+                        <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Eliminar</button>
@@ -32,6 +46,6 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('Eventos.create') }}">Crear evento</a>
+    <a href="{{ route('eventos.create') }}">Crear evento</a>
 </body>
 </html>
