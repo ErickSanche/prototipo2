@@ -22,6 +22,8 @@
 
 
 <body>
+<link rel="stylesheet" href="{{ asset('css/eventos.css') }}">
+
 	<h1>Lista de eventos:</h1>
 	<div class="container mt-5">
                 <table id="example" class="table table-striped" style="width:100%">
