@@ -48,7 +48,7 @@ Route::get('registro',[UsuarioController::class, 'registro'])->name('usuario.reg
 Route::get('añadir',[UsuarioController::class, 'añadir'])->name('usuario.añadir');
 
 
-Route::get('agregarusuario',[GerenteControlle::class, 'agregarusuario'])->name('gerente.agregarusuario');
+Route::get('agregarusuario',[GerenteController::class, 'agregarusuario'])->name('gerente.agregarusuario');
 Route::get('agregarservicios',[GerenteController::class, 'agregarservicios'])->name('gerente.agregarservicios');
 Route::get('verusuario',[GerenteController::class, 'verusuario'])->name('gerente.verusuario');
 Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('gerente.verservicios');
@@ -64,4 +64,13 @@ Route::post('guardar',[EventoController::class, 'store'])->name('eventos.store')
 Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('eventos.edit');
 Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('eventos.update');
 Route::delete('evento/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
-Route::delete('/eventos/clear', [EventoController::class, 'clear'])->name('eventos.clear');
+Route::delete('/eve ntos/clear', [EventoController::class, 'clear'])->name('eventos.clear');
+
+//usuarios
+Route::get('usuarios',[EventoController::class, 'index'])->name('usuarios.index');
+Route::get('crearevento',[EventoController::class, 'create'])->name('usuarios.create');
+Route::post('guardar',[EventoController::class, 'store'])->name('usuarios.store');
+Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('usuarios.edit');
+Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('usuarios.update');
+Route::delete('usuarios/{id}', [EventoController::class, 'destroy'])->name('usuarios.destroy');
+Route::delete('/usuarios/clear', [EventoController::class, 'clear'])->name('usuarios.clear');

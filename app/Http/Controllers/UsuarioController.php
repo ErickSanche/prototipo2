@@ -29,16 +29,28 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        $evento = Evento::find($id);
-        $evento->nombre = $request->input('nombre');
-        $evento->fecha = $request->input('fecha');
-        $evento->hora_inicio = $request->input('hora_inicio');
-        $evento->hora_fin = $request->input('hora_fin');
-        $evento->numero_invitados = $request->input('numero_invitados');
-        $evento->grupopaquete_id = $request->input('grupopaquete_id');
-        $evento->save();
+        $usuarios = Usuarios::find($id);
+        $usuarios->nombre = $request->input('nombre');
+        $usuarios->nombre_de_usario = $request->input('nombre_de_usario');
+        $usuarios->clave = $request->input('clave');
+        $usuarios->cargo = $request->input('cargo');
+        $usuarios->save();
 
-        return redirect()->route('eventos.index');
+        return redirect()->route('usuarios.index');
     }
 
+    public function destroy($id)
+    {
+        $usuarios = Usuarios::find($id);
+        $usuarios->delete();
+
+        return redirect()->route('usuarios.index');
+    }
+
+    public function clear()
+    {
+        Usuarios::truncate();
+
+        return redirect()->route('usuarios.index');
+    }
 }
