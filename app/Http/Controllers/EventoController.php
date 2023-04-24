@@ -51,7 +51,8 @@ class EventoController extends Controller
     public function edit($id)
     {
         $evento = Evento::find($id);
-        return view('eventos.edit', compact('evento'));
+        $grupopaquetes = Paquete::all();
+        return view('eventos.edit', compact('evento', 'grupopaquetes'));
     }
 
     public function update(Request $request, $id)

@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Editar Evento</title>
+    <title>Editar evento</title>
 </head>
 <body>
-    <h1>Editar Evento</h1>
-
-    <form method="POST" action="{{ route('Eventos.update', $event->id) }}">
+    <h1>Editar evento</h1>
+    <form action="{{ route('eventos.update', $evento->id) }}" method="POST">
         @csrf
         @method('PUT')
-
-        <label for="nombre">Nombre del evento:</label>
-        <input type="text" id="nombre" name="nombre" value="{{ $event->nombre }}" required><br>
-
-        <label for="fecha">Fecha del evento:</label>
-        <input type="date" id="fecha" name="fecha" value="{{ $event->fecha }}" required><br>
-
-        <label for="paquete_id">Paquete:</label>
-        <select id="paquete_id" name="paquete_id">
-            @foreach($paquetes as $paquete)
-                <option value="{{ $paquete->id }}" @if($event->paquete_id == $paquete->id) selected @endif>{{ $paquete->nombre }}</option>
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{ $evento->nombre }}" required><br><br>
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" value="{{ $evento->fecha }}" required><br><br>
+        <label for="hora_inicio">Hora de inicio:</label>
+        <input type="time" name="hora_inicio" value="{{ $evento->hora_inicio }}" required><br><br>
+        <label for="hora_fin">Hora de fin:</label>
+        <input type="time" name="hora_fin" value="{{ $evento->hora_fin }}" required><br><br>
+        <label for="numero_invitados">Número de invitados:</label>
+        <input type="number" name="numero_invitados" value="{{ $evento->numero_invitados }}" required><br><br>
+        <label for="grupopaquete_id">ID de grupo/paquete:</label>
+        <select name="grupopaquete_id">
+            @foreach ($grupopaquetes as $grupopaquete)
+                <option value="{{ $grupopaquete->id }}" {{ $evento->grupopaquete_id == $grupopaquete->id ? 'selected' : '' }}>
+                    {{ $grupopaquete->nombre }}
+                </option>
             @endforeach
-        </select><br>
-
-        <label for="servicios[]">Servicios:</label><br>
-        @foreach($servicios as $servicio)
-            <input type="checkbox" id="servicio-{{ $servicio->id }}" name="servicios[]" value="{{ $servicio->id }}" @if(in_array($servicio->id, $event->servicios->pluck('id')->toArray())) checked @endif>
-            <label for="servicio-{{ $servicio->id }}">{{ $servicio->nombre }}</label><br>
-        @endforeach
-
-        <button type="submit">Actualizar</button>
+        </select><br><br>
+        <button type="submit">Guardar cambios</button>
     </form>
-
-    <br>
-
-    <a href="{{ route('Eventos.index') }}">Volver al listado de eventos</a>
 </body>
 </html>

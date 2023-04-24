@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmar eliminación</title>
+    <title>Eliminar evento</title>
 </head>
 <body>
-    <h1>Confirmar eliminación</h1>
-    <p>¿Está seguro que desea eliminar el evento "{{ $event->nombre }}"?</p>
-    <form action="{{ route('Eventos.destroy', $event->id) }}" method="POST">
+    <h1>Eliminar evento</h1>
+    <p>¿Está seguro de que desea eliminar el evento "{{ $evento->nombre }}"?</p>
+    <form method="POST" action="{{ route('eventos.destroy', ['id' => $evento->id]) }}">
         @csrf
         @method('DELETE')
-        <button type="submit">Eliminar</button>
+        <input type="submit" value="Eliminar">
     </form>
 </body>
 </html>
