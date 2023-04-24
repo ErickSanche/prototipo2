@@ -54,22 +54,22 @@
                             <td>{{ $evento->created_at }}</td>
                             <td>{{ $evento->updated_at }}</td>
                             <td>
-                                <!-- Formulario para eliminar el evento -->
-                                <form action="{{route('eventos.destroy', $evento->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn-red">
-                                        <i class="fa fa-trash"></i> Eliminar
-                                    </button>
-                                </form>
-                                <!-- Enlace para editar el evento -->
-                                <button type="button" class="btn-green">
-                                    <a href="{{ route('eventos.edit', $evento->id) }}">
-                                    <i class="fa fa-pencil"></i> Editar</a>
+                               <!-- Formulario para eliminar el evento -->
+                            <form action="{{route('eventos.destroy', $evento->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-red">
+                                    <i class="fa fa-trash"></i> Eliminar
                                 </button>
-                            </td>
-                        </tr>
-                        @endforeach
+                            </form>
+
+                            <!-- Enlace para editar el evento -->
+                            <button type="button" class="btn-green">
+                                <a href="{{ route('eventos.edit', $evento->id) }}">
+                                    <i class="fa fa-pencil"></i> Editar
+                                </a>
+                            </button>
+
                     </tbody>
                 </table>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
