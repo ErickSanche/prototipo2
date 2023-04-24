@@ -46,18 +46,11 @@
                <tr>
                <?php
                         // Crear una conexión a la base de datos
-                        
-
-<<<<<<< HEAD
-                        // Ejecutar una consulta SQL
                         $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
+
+                        // Ejecutar una consulta SQL
                     
                         $resultado = $db->query('SELECT * FROM usuarios');
-=======
-                    // Ejecutar una consulta SQL
-
-                    $resultado = $db->query('SELECT * FROM usuarios');
->>>>>>> 9e70d7c2921df73e63c13d4ecc3f2970971d41b3
 
                         // Mostrar los resultados en una tabla HTML
                         echo '<table class="table table-striped" style="width:100%">';
@@ -91,13 +84,9 @@
 
         </script>
     </body>
-<<<<<<< HEAD
 </body>
     </center>
                     |
     
           
 </html>
-=======
-</html>
->>>>>>> 9e70d7c2921df73e63c13d4ecc3f2970971d41b3
