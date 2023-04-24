@@ -62,7 +62,6 @@ Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.ev
 
 Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
-Route::get('/eventos', [EventoController::class, 'index'])->name('eventos.index');
 Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
 Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
 Route::get('/eventos/{evento}', [EventoController::class, 'show'])->name('eventos.show');
