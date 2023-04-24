@@ -27,24 +27,47 @@
 	<h1>Lista de eventos:</h1>
 	<div class="container mt-5">
                 <table id="example" class="table table-striped" style="width:100%">
-		<thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Fecha</th>
-				<th>Lugar</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ($eventos as $evento)
-			<tr>
-				<td>{{ $evento->nombre }}</td>
-				<td>{{ $evento->fecha }}</td>
-				<td>{{ $evento->lugar }}</td>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora de inicio</th>
+                            <th>Hora de fin</th>
+                            <th>Número de invitados</th>
+                            <th>ID de grupo/paquete</th>
+                            <th>Fecha de creación</th>
+                            <th>Fecha de actualización</th>
+                            <th>Acciones</th> <!-- Nueva columna para las acciones -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($eventos as $evento)
+                        <tr>
+                            <td>{{ $evento->id }}</td>
+                            <td>{{ $evento->nombre }}</td>
+                            <td>{{ $evento->fecha }}</td>
+                            <td>{{ $evento->hora_inicio }}</td>
+                            <td>{{ $evento->hora_fin }}</td>
+                            <td>{{ $evento->numero_invitados }}</td>
+                            <td>{{ $evento->grupopaquete_id }}</td>
+                            <td>{{ $evento->created_at }}</td>
+                            <td>{{ $evento->updated_at }}</td>
+                            <td>
+                                <!-- Enlace para editar el evento -->
+                                <a href="{{ route('eventos.edit', $evento->id) }}">Editar</a>
 
-			</tr>
-			@endforeach
-		</tbody>
-	</table>
+                                <!-- Formulario para eliminar el evento -->
+                                <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
