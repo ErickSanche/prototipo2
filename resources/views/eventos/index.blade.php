@@ -55,7 +55,7 @@
                             <td>{{ $evento->updated_at }}</td>
                             <td>
                                 <!-- Formulario para eliminar el evento -->
-                                <form action="{{ route('eventos.destroy', $evento->id) }}">
+                                <form action="{{route('eventos.destroy', $evento->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-red">
