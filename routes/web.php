@@ -33,13 +33,15 @@ Route::post('validar2', [SistemaController::class, 'validar2'])->name('validar2'
 
 Route::get('salir', [SistemaController::class, 'salir'])->name('salida');
 
-Route::get('/paquetes',[PaqueteController::class, 'index'])->name('paquetes.index');
-Route::get('/crearpaquete',[PaqueteController::class, 'create'])->name('paquetes.create');
+
+Route::get('paquetes',[PaqueteController::class, 'index'])->name('paquetes.index');
+Route::get('crearpaquete',[PaqueteController::class, 'create'])->name('paquetes.create');
 Route::post('guardar',[PaqueteController::class, 'store'])->name('paquetes.store');
-Route::get('/actualizar/{cual?}',[PaqueteController::class, 'edit'])->name('paquetes.edit');
-Route::put('(/actualizar/{cual?}',[PaqueteController::class, 'update'])->name('paquetes.update');
-Route::delete('/paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paquetes.destroy');
+Route::get('actualizar/{cual?}',[PaqueteController::class, 'edit'])->name('paquetes.edit');
+Route::put('actualizar/{cual?}',[PaqueteController::class, 'update'])->name('paquetes.update');
+Route::delete('paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paquetes.destroy');
 Route::delete('/paquetes/clear', [PaqueteController::class, 'clear'])->name('paquetes.clear');
+
 
 
 Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquetes');
@@ -64,7 +66,6 @@ Route::post('guardar',[EventoController::class, 'store'])->name('eventos.store')
 Route::get('actualizar/{cual?}',[EventoController::class, 'edit'])->name('eventos.edit');
 Route::put('actualizar/{cual?}',[EventoController::class, 'update'])->name('eventos.update');
 Route::delete('evento/{id}', [EventoController::class, 'destroy'])->name('eventos.destroy');
-Route::delete('/eve ntos/clear', [EventoController::class, 'clear'])->name('eventos.clear');
 
 //usuarios
 Route::get('usuarios',[EventoController::class, 'index'])->name('usuarios.index');
