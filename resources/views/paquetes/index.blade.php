@@ -43,7 +43,6 @@
                     </thead>
                     <tbody>
                         @foreach ($paquetes as $paquete)
-                            @if ($paquete->estado != '0')
                                 <tr>
                                     <td>{{ $paquete->id }}</td>
                                     <td>{{ $paquete->nombre }}</td>
@@ -65,7 +64,6 @@
                                         </button>
                                     </td>
                                 </tr>
-                            @endif
                         @endforeach
                     </tbody>
 

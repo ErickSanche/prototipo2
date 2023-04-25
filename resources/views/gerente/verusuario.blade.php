@@ -29,7 +29,7 @@
             </div>
     </header>
     <body>
-    <link rel="stylesheet" href="{{ asset('css/f1.css') }}">    
+    <link rel="stylesheet" href="{{ asset('css/f1.css') }}">
 
     <center>
     <div class="container mt-5">
@@ -47,10 +47,10 @@
    <tr>
    <?php
             // Crear una conexión a la base de datos
-            $db = new PDO('sqlite:C:\Users\erick\Documentos\Framebueno\database\database.sqlite');
+            $db = new PDO('sqlite:home/eleazarl/Documentos/prototipo2\database\database.sqlite');
 
             // Ejecutar una consulta SQL
-        
+
             $resultado = $db->query('SELECT * FROM usuarios');
 
             // Mostrar los resultados en una tabla HTML
@@ -87,6 +87,6 @@
 </body>
     </center>
                     |
-    
-          
+
+
 </html>
