@@ -45,11 +45,8 @@ class SistemaController extends Controller
 
     public function index(){
         $paquetes = Paquete::all();
-        return view('usuario.paquetes', compact ('paquetes'));
-        $usuario = Usuario::all();
-        return view("usuario.paquetes");
+        return view('usuario.paquetes', compact('paquetes'));
     }
-
     public function registrar(){
         return view('Sistema.registrar');
     }

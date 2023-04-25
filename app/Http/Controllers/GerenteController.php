@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class GerenteController extends Controller
@@ -13,7 +14,9 @@ class GerenteController extends Controller
         return view('gerente.agregarservicios');
     }
     public function verusuario(){
-        return view('gerente.verusuario');
+        $usuarios = Usuario::all();
+        return view('gerente.verusuario', compact('usuarios'));
+
     }
     public function verservicios(){
         return view('gerente.verservicios');

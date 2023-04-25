@@ -3,14 +3,10 @@
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GerenteController;
-use App\Http\Controllers\IdiomaControler;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
-use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
-use App\Models\Paquete;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 
 /*
