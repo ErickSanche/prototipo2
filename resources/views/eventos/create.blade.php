@@ -31,8 +31,11 @@ php
     <label for="grupo">Grupo/Paquete:</label>
     <select id="grupo" name="grupopaquete_id">
         @foreach ($grupopaquetes as $gp)
-            <option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
+            @if ($gp->estado != 0)
+                <option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
+            @endif
         @endforeach
-    </select><br>
+    </select>
+
     <button type="submit">Crear evento</button>
 </form>

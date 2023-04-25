@@ -23,7 +23,7 @@ class EventoController extends Controller
     }
     public function create()
     {
-        $grupopaquetes = \App\Models\Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
+        $grupopaquetes = Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
 
         return view('eventos.create', compact('grupopaquetes'));
     }
