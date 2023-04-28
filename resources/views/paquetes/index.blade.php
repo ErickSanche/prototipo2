@@ -5,9 +5,9 @@
             <div class="interior">
                 <nav class="navegacion">
                     <ul>
-                        <li><a href="{{ route('gerente.verusuario') }}">Ver usuarios</a></li>
+                        <li><a href="">Ver usuarios</a></li>
                         <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
-                        <li><a href="{{ route('gerente.verservicios') }}">Ver servicios</a></li>
+                        <li><a href="">Ver servicios</a></li>
                         <li><a href="">Agregar servicios</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>

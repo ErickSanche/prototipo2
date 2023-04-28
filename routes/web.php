@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::get('login', [SistemaController::class, 'entrada'])->name("login");
 Route::get('registrar', [SistemaController::class, 'registrar'])->name('registrar');
 Route::post('registrar', [SistemaController::class, 'registrar2'])->name('registrar2');
@@ -31,24 +33,14 @@ Route::post('validar2', [SistemaController::class, 'validar2'])->name('validar2'
 Route::get('salir', [SistemaController::class, 'salir'])->name('salida');
 
 
-Route::get('paquetes',[PaqueteController::class, 'index'])->name('paquetes.index');
-Route::get('crearpaquete',[PaqueteController::class, 'create'])->name('paquetes.create');
-Route::post('guardar',[PaqueteController::class, 'store'])->name('paquetes.store');
-Route::get('actualizar/{cual?}',[PaqueteController::class, 'edit'])->name('paquetes.edit');
-Route::put('actualizar/{cual?}',[PaqueteController::class, 'update'])->name('paquetes.update');
-Route::delete('paquetes/{id}', [PaqueteController::class, 'destroy'])->name('paquetes.destroy');
-Route::delete('/paquetes/clear', [PaqueteController::class, 'clear'])->name('paquetes.clear');
-
 Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquetes');
 Route::get('review',[UsuarioController::class, 'review'])->name('usuario.review');
 Route::get('registro',[UsuarioController::class, 'registro'])->name('usuario.registro');
 Route::get('añadir',[UsuarioController::class, 'añadir'])->name('usuario.añadir');
 
+//URL CRUD para paquetes
+Route::resource('paquetes', PaqueteController::class);
 Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
-Route::get('/eventos/create', [EventoController::class, 'create'])->name('eventos.create');
-Route::get('/eventos/mostrar', [EventoController::class, 'mostrareventos'])->name('eventos.mostrar');
-Route::post('/eventos', [EventoController::class, 'store'])->name('eventos.store');
-Route::get('/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('eventos.edit');
-Route::put('/eventos/{evento}', [EventoController::class, 'update'])->name('eventos.update');
-Route::delete('/eventos/{evento}', [EventoController::class, 'destroy'])->name('eventos.destroy');
+//URL CRUD para evento
+Route::resource('eventos', EventoController::class);
