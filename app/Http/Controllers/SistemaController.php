@@ -11,8 +11,8 @@ use App\Models\Usuario;
 
 class SistemaController extends Controller
 {
-    public function entrada(){
-        return view('Sistema.entrada');
+    public function login(){
+        return view('sistemas.login');
     }
 
     public function validar(Request $solicitud){
@@ -35,20 +35,21 @@ class SistemaController extends Controller
                 if ($encontrado->cargo == "gerente") {
                     return redirect(route("paquetes.index"));
                 } else {
-                    return redirect(route("usuario.paquetes"));
+                    return redirect(route("sistemas.index"));
                 }
             } else {
-                return view("Sistema.error");
+                return view("sistemas.error");
             }
         }
     }
 
     public function index(){
         $paquetes = Paquete::all();
-        return view('usuario.paquetes', compact('paquetes'));
+        return view('sistemas.index', compact('paquetes'));
     }
+
     public function registrar(){
-        return view('Sistema.registrar');
+        return view('usuarios.create');
     }
     public function registrar2(Request $solicitud){
          $nombre = $solicitud->input('nombre');
@@ -62,7 +63,7 @@ class SistemaController extends Controller
          $nuevo->clave = Hash::make($password); // password
          $nuevo->cargo = $cargo;
          $nuevo->save();
-         return redirect("registrar");
+         return redirect("usuarios.create");
 
         }
     public function salir(Request $solicitud){

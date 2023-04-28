@@ -11,13 +11,13 @@ class ServicioController extends Controller
     public function index()
     {
         $servicios = Servicio::all();
-        return view('Servicios.index', compact('servicios'));
+        return view('servicios.index', compact('servicios'));
     }
 
     // Formulario de creación de servicios
     public function create()
     {
-        return view('Servicios.create');
+        return view('servicios.create');
     }
 
     // Almacenamiento de un nuevo servicio
@@ -25,14 +25,14 @@ class ServicioController extends Controller
     {
         $servicio = new Servicio($request->all());
         $servicio->save();
-        return redirect()->route('Servicios.index');
+        return redirect()->route('servicios.index');
     }
 
     // Formulario de edición de servicios
     public function edit($id)
     {
         $servicio = Servicio::findOrFail($id);
-        return view('Servicios.edit', compact('servicio'));
+        return view('servicios.edit', compact('servicio'));
     }
 
     // Actualización de los datos de un servicio
@@ -41,7 +41,7 @@ class ServicioController extends Controller
         $servicio = Servicio::findOrFail($id);
         $servicio->fill($request->all());
         $servicio->save();
-        return redirect()->route('Servicios.index');
+        return redirect()->route('servicios.index');
     }
 
     // Eliminación de un servicio
@@ -49,6 +49,6 @@ class ServicioController extends Controller
     {
         $servicio = Servicio::findOrFail($id);
         $servicio->delete();
-        return redirect()->route('Servicios.index');
+        return redirect()->route('servicios.index');
     }
 }
