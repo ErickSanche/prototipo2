@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paquete;
 use App\Models\Usuario;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
@@ -10,8 +11,8 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
     public function index(){
-        $usuarios = Usuario::all();
-        return view('usuarios.index', compact ('usuarios'));
+        $paquetes = Paquete::all();
+        return view('usuarios.index', compact ('paquetes'));
     }
 
     public function create(){

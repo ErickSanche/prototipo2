@@ -8,26 +8,24 @@ use Illuminate\Http\Request;
 
 class EventoController extends Controller
 {
+
     public function index()
     {
-        $grupopaquetes = Paquete::all();
-        return view('eventos.create', compact('grupopaquetes'));
+        // Obtiene todos los eventos
         $eventos = Evento::all();
-        return view('eventos.create', compact('eventos'));
+
+        // Retorna la vista con los eventos
+        return view('eventos.index', compact('eventos'));
     }
 
-    public function mostrareventos()
-    {
-        $eventos = Evento::all();
-        return view('eventos.index', ['eventos' => $eventos]);
-    }
     public function create()
     {
-        $grupopaquetes = Paquete::all(); // Reemplaza \App\Models\Grupopaquete con la ruta de tu modelo Grupopaquete
+        // Obtiene todos los paquetes
+        $grupopaquetes = Paquete::all();
 
+        // Retorna la vista con los paquetes
         return view('eventos.create', compact('grupopaquetes'));
     }
-
     public function store(Request $request)
     {
         // Obtener los datos del formulario
@@ -46,7 +44,7 @@ class EventoController extends Controller
         $evento->save();
 
         // Redirigir al usuario a la página de detalles del evento recién creado
-        return redirect()->route('paquetes.index', ['id' => $evento->id]);
+        return redirect()->route('eventos.index', ['id' => $evento->id]);
     }
     public function edit($id)
     {
