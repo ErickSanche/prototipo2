@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Contacto Minimalista</title>
+  <title>Crear un Paquete</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ asset('css/formulario.css') }}">
 </head>
 <body>
   <center>
-    <h1>EDITAR UN PAQUETE</h1>
+    <h1>Crear un Paquete</h1>
   </center>
   <section class="form-contact">
     <header>
@@ -19,23 +19,21 @@
       </span>
     </header>
 
-    <form action="{{ route('paquetes.update', $paquete_encontrado->id) }}" class="contact" method="post">
+    <form action="{{ route('paquetes.store') }}" class="contact" method="post">
       @csrf
-      @method('PUT')
       <label for='nombre'>Nombre</label>
-      <input type='text' name='nombre' id='nombre' value="{{ $paquete_encontrado->nombre }}">
+      <input type='text' name='nombre' id='nombre'>
       <br>
       <label for='precio'>Precio</label>
-      <input type='text' name='precio' id='precio' value="{{ $paquete_encontrado->precio }}">
+      <input type='text' name='precio' id='precio'>
       <br>
       <label for='descripcion'>Descripción</label>
-      <input type='text' name='descripcion' id='descripcion' value="{{ $paquete_encontrado->descripcion }}">
+      <input type='text' name='descripcion' id='descripcion'>
       <br>
       <label for='estado'>Estado</label>
-      <input type='checkbox' name='estado' id='estado' value='1' {{ $paquete_encontrado->estado ? 'checked' : '' }}>
+      <input type='checkbox' name='estado' id='estado' value='1' {{ old('estado') ? 'checked' : '' }}>
       <input type='hidden' name='estado' value='0'>
       <br>
-      <input type="hidden" name="id" value="{{ $paquete_encontrado->id }}">
       <input type="submit" value="GUARDAR">
     </form>
 

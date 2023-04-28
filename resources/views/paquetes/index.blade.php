@@ -5,8 +5,6 @@
             <div class="interior">
                 <nav class="navegacion">
                     <ul>
-                    </ul>
-                    </ul>
                         <li><a href="{{ route('usuarios.index') }}">Ver usuarios</a></li>
                         <li><a href="{{ route('usuarios.create') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('servicios.index') }}">Ver servicios</a></li>
@@ -52,13 +50,15 @@
                                     <td>{{ $paquete->descripcion }}</td>
                                     <td>{{ $paquete->estado }}</td>
                                     <td>
-                                        <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-red">
-                                                <i class="fa fa-trash"></i> Eliminar
-                                            </button>
-                                        </form>
+                                        @if($paquete->estado == 0)
+                                            <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-red">
+                                                    <i class="fa fa-trash"></i> Eliminar
+                                                </button>
+                                            </form>
+                                        @endif
                                         <button type="button" class="btn-green">
                                             <a href="{{ route('paquetes.edit', $paquete->id) }}">
                                                 <i class="fa fa-pencil"></i> Editar
@@ -71,7 +71,6 @@
 
 
         </table>
-
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
