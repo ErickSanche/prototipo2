@@ -28,9 +28,6 @@ Route::get('registrar', [SistemaController::class, 'registrar'])->name('registra
 Route::post('registrar', [SistemaController::class, 'registrar2'])->name('registrar2');
 Route::post('validar', [SistemaController::class, 'validar'])->name('validar');
 Route::post('validar2', [SistemaController::class, 'validar2'])->name('validar2');
-
-
-
 Route::get('salir', [SistemaController::class, 'salir'])->name('salida');
 
 
@@ -46,15 +43,6 @@ Route::get('usuario',[SistemaController::class, 'index'])->name('usuario.paquete
 Route::get('review',[UsuarioController::class, 'review'])->name('usuario.review');
 Route::get('registro',[UsuarioController::class, 'registro'])->name('usuario.registro');
 Route::get('añadir',[UsuarioController::class, 'añadir'])->name('usuario.añadir');
-
-
-Route::get('agregarusuario',[GerenteController::class, 'agregarusuario'])->name('gerente.agregarusuario');
-Route::get('agregarservicios',[GerenteController::class, 'agregarservicios'])->name('gerente.agregarservicios');
-Route::get('verusuario',[GerenteController::class, 'verusuario'])->name('gerente.verusuario');
-Route::get('verservicios',[GerenteController::class, 'verservicios'])->name('gerente.verservicios');
-
-Route::get('abonar',[EmpleadoController::class, 'abonar'])->name('empleado.abonar');
-Route::get('empleado',[EmpleadoController::class, 'eventos'])->name('empleado.eventos');
 
 Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 
