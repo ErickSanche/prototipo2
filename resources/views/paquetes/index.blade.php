@@ -7,8 +7,8 @@
                     <ul>
                         <li><a href="{{ route('usuarios.index') }}">Ver usuarios</a></li>
                         <li><a href="{{ route('usuarios.create') }}">Agregar usuario</a></li>
-                        <li><a href="">Ver servicios</a></li>
-                        <li><a href="">Agregar servicios</a></li>
+                        <li><a href="{{ route('servicios.index') }}">Ver servicios</a></li>
+                        <li><a href="{{ route('servicios.create') }}">Agregar servicios</a></li>
                         <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>
                 </nav>
@@ -37,6 +37,7 @@
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Descripción</th>
+                            <th>Servicios</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -47,6 +48,7 @@
                                     <td>{{ $paquete->id }}</td>
                                     <td>{{ $paquete->nombre }}</td>
                                     <td>{{ $paquete->precio }}</td>
+                                    <td>{{ $paquete->servicios }}</td>
                                     <td>{{ $paquete->descripcion }}</td>
                                     <td>{{ $paquete->estado }}</td>
                                     <td>

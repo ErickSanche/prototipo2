@@ -2,53 +2,110 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Servicio;
+use Illuminate\Http\Request;
 
 class ServicioController extends Controller
 {
-    // Listado de servicios
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $servicios = Servicio::all();
         return view('servicios.index', compact('servicios'));
     }
 
-    // Formulario de creación de servicios
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('servicios.create');
     }
 
-    // Almacenamiento de un nuevo servicio
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $servicio = new Servicio($request->all());
-        $servicio->save();
-        return redirect()->route('servicios.index');
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric|min:0'
+        ]);
+
+        Servicio::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio
+        ]);
+
+        return redirect()->route('paquetes.index')->with('success', 'Servicio agregado exitosamente.');
     }
 
-    // Formulario de edición de servicios
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Servicio  $servicio
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Servicio $servicio)
     {
-        $servicio = Servicio::findOrFail($id);
+        return view('servicios.show', compact('servicio'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Servicio  $servicio
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Servicio $servicio)
+    {
         return view('servicios.edit', compact('servicio'));
     }
 
-    // Actualización de los datos de un servicio
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Servicio  $servicio
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Servicio $servicio)
     {
-        $servicio = Servicio::findOrFail($id);
-        $servicio->fill($request->all());
-        $servicio->save();
-        return redirect()->route('servicios.index');
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|numeric|min:0'
+        ]);
+
+        $servicio->update([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio
+        ]);
+
+        return redirect()->route('servicios.index')->with('success', 'Servicio actualizado exitosamente.');
     }
 
-    // Eliminación de un servicio
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Servicio  $servicio
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Servicio $servicio)
     {
-        $servicio = Servicio::findOrFail($id);
         $servicio->delete();
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('success', 'Servicio eliminado exitosamente.');
     }
 }

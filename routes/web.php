@@ -5,6 +5,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GerenteController;
 use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +42,7 @@ Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
 Route::resource('eventos', EventoController::class);
 
 //Urls para servicios
-Route::resource('servicios', EventoController::class);
+Route::resource('servicios', ServicioController::class);
 
+
+//Urls de se
