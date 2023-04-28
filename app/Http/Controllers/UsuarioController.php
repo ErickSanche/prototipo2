@@ -10,16 +10,12 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
     public function index(){
-        $usuarios = Usuario::al();
-        return view('usuarios.index', compact ('eventos'));
+        $usuarios = Usuario::all();
+        return view('usuarios.show', compact ('usuarios'));
     }
 
     public function create(){
         return view('usuario.create');
-    }
-
-    public function añadir(){
-        return view('usuario.añadir');
     }
 
     public function edit($id)
@@ -44,13 +40,6 @@ class UsuarioController extends Controller
     {
         $usuarios = Usuario::find($id);
         $usuarios->delete();
-
-        return redirect()->route('usuarios.index');
-    }
-
-    public function clear()
-    {
-        Usuario::truncate();
 
         return redirect()->route('usuarios.index');
     }

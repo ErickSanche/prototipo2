@@ -33,6 +33,7 @@
       <br>
       <label for='estado'>Estado</label>
       <input type='checkbox' name='estado' id='estado' value='1' {{ $paquete_encontrado->estado ? 'checked' : '' }}>
+      <input type='hidden' name='estado' value='0'>
       <br>
       <input type="hidden" name="id" value="{{ $paquete_encontrado->id }}">
       <input type="submit" value="GUARDAR">
