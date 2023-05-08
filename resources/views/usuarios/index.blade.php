@@ -25,28 +25,42 @@
     </header>
 
     <center>
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-              <tr>
+        <thead>
+            <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($paquetes as $paquete)
-              @if ($paquete->estado != '0')
-              <tr>
-                <td>{{ $paquete->id }}</td>
-                <td>{{ $paquete->nombre }}</td>
-                <td>{{ $paquete->precio }}</td>
-                <td>{{ $paquete->descripcion }}</td>
-              </tr>
-              @endif
-              @endforeach
-            </tbody>
-          </table>
+                <th>Nombre de Usuario</th>
+                <th>Cargo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($usuarios as $usuario)
+                <tr>
+                    <td>{{ $usuario->id }}</td>
+                    <td>{{ $usuario->nombre }}</td>
+                    <td>{{ $usuario->nombre_de_usuario }}</td>
+                    <td>{{ $usuario->cargo }}</td>
+                    <td>
+                        @if($usuario->estado == 0)
+                            <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-red">
+                                    <i class="fa fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        @endif
+                        <button type="button" class="btn-green">
+                            <a href="{{ route('usuarios.edit', $usuario->id) }}">
+                                <i class="fa fa-pencil"></i> Editar
+                            </a>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
 
     </center>
 

@@ -8,55 +8,51 @@
 	<div class="container">
 		<h1>Crear evento</h1>
 		<form method="POST" action="{{ route('eventos.store') }}">
-			@csrf
-			@if ($errors->any())
-			<div class="alert alert-danger">
-				@foreach ($errors->all() as $error)
-				<p>{{ $error }}</p>
-				@endforeach
-			</div>
-			@endif
-			<div class="form-group">
-				<label for="nombre">Nombre del evento:</label>
-				<input type="text" id="nombre" name="nombre" required class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="fecha">Fecha:</label>
-				<input type="date" id="fecha" name="fecha" required class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="hora_inicio">Hora de inicio:</label>
-				<input type="time" id="hora_inicio" name="hora_inicio" required class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="hora_fin">Hora de fin:</label>
-				<input type="time" id="hora_fin" name="hora_fin" required class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="numero_invitados">Número de invitados:</label>
-				<input type="number" id="numero_invitados" name="numero_invitados" required class="form-control">
-			</div>
-			<div class="form-group">
-				<label for="grupo">Grupo/Paquete:</label>
-				<select id="grupo" name="grupopaquete_id" class="form-control">
-					@foreach ($grupopaquetes as $gp)
-					@if ($gp->estado != 0)
-					<option value="{{ $gp->id }}">{{ $gp->nombre }}</option>
-					@endif
-					@endforeach
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="servicios">Servicios:</label>
-				@foreach ($servicios as $servicio)
-				<div class="form-check">
-					<input type="checkbox" class="form-check-input" id="{{ 'servicio_' . $servicio->id }}" name="servicios[]" value="{{ $servicio->id }}">
-					<label class="form-check-label" for="{{ 'servicio_' . $servicio->id }}">{{ $servicio->nombre }}</label>
-				</div>
-				@endforeach
-			</div>
-			<button type="submit" class="btn btn-primary">Crear evento</button>
-		</form>
+            @csrf
+            <div class="form-group">
+                <label for="nombre">Nombre del evento:</label>
+                <input type="text" name="nombre" class="form-control" id="nombre">
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" name="fecha" class="form-control" id="fecha">
+            </div>
+            <div class="form-group">
+                <label for="hora_inicio">Hora de inicio:</label>
+                <input type="time" name="hora_inicio" class="form-control" id="hora_inicio">
+            </div>
+            <div class="form-group">
+                <label for="hora_fin">Hora de fin:</label>
+                <input type="time" name="hora_fin" class="form-control" id="hora_fin">
+            </div>
+            <div class="form-group">
+                <label for="numero_invitados">Número de invitados:</label>
+                <input type="number" name="numero_invitados" class="form-control" id="numero_invitados">
+            </div>
+            <div class="form-group">
+                <label for="precio_total">Precio total:</label>
+                <input type="number" name="precio_total" class="form-control" id="precio_total">
+            </div>
+            <div class="form-group">
+                <label for="servicios">Servicios:</label>
+                <select name="servicios[]" class="form-control" id="servicios" multiple>
+                    @foreach ($servicios as $servicio)
+                    <option value="{{ $servicio->id }}">{{ $servicio->nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="grupopaquete_id">Grupo o paquete:</label>
+                <select name="grupopaquete_id" class="form-control" id="grupopaquete_id">
+                    <option value="">Seleccionar grupo o paquete</option>
+                    @foreach ($grupos_paquetes as $grupo_paquete)
+                    <option value="{{ $grupo_paquete->id }}">{{ $grupo_paquete->nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
 	</div>
 </body>
 </html>

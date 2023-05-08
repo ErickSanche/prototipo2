@@ -17,72 +17,62 @@ class EventoController extends Controller
 
         // Retorna la vista con los eventos
         return view('eventos.index', compact('eventos'));
+
+
     }
 
     public function create()
     {
         // Obtiene todos los paquetes con sus servicios relacionados cargados
-        $grupopaquetes = Paquete::with('servicios')->get();
+        $grupos_paquetes = Paquete::with('servicios')->get();
+        $servicios = Servicio::all();
 
         // Retorna la vista con los paquetes
-        return view('eventos.create', compact('grupopaquetes'));
+        return view('eventos.create', compact('grupos_paquetes', 'servicios'));
     }
+
 
     public function store(Request $request)
-    {
-        // Validar los datos del formulario
-        $validatedData = $request->validate([
-            'nombre' => 'required',
-            'fecha' => 'required|date_format:Y-m-d',
-            'hora_inicio' => 'required|date_format:H:i',
-            'hora_fin' => 'required|date_format:H:i',
-            'numero_invitados' => 'required|integer|min:1',
-            'grupopaquete_id' => 'required|exists:paquetes,id'
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'fecha' => 'required|date',
+        'hora_inicio' => 'required',
+        'hora_fin' => 'required',
+        'numero_invitados' => 'required|integer|min:1',
+        'grupopaquete_id' => 'required|exists:grupopaquetes,id', // Validación para asegurarse de que se seleccione un grupo de paquetes existente
+        'paquetes' => 'array',
+        'servicios' => 'array',
+    ]);
 
-        // Obtener el paquete seleccionado desde el formulario con sus servicios cargados
-        $paqueteSeleccionado = Paquete::with('servicios')->find($request->input('grupopaquete_id'));
+    $evento = Evento::create([
+        'nombre' => $request->nombre,
+        'fecha' => $request->fecha,
+        'hora_inicio' => $request->hora_inicio,
+        'hora_fin' => $request->hora_fin,
+        'numero_invitados' => $request->numero_invitados,
+        'precio_total' => 0, // precio inicial en cero
+        'grupopaquete_id' => $request->grupopaquete_id, // Guardar el id del grupo de paquetes seleccionado por el usuario
+    ]);
 
-        // Calcular el precio total del evento
-        $precioTotal = $paqueteSeleccionado->precio_base;
-
-        foreach ($paqueteSeleccionado->servicios as $servicio) {
-            $precioTotal += $servicio->precio;
-        }
-
-        $precioTotal *= $request->input('numero_invitados');
-
-        // Crear un nuevo evento con los datos del formulario y el precio calculado
-        $evento = new Evento([
-            'nombre' => $validatedData['nombre'],
-            'fecha' => $validatedData['fecha'],
-            'hora_inicio' => $validatedData['hora_inicio'],
-            'hora_fin' => $validatedData['hora_fin'],
-            'numero_invitados' => $validatedData['numero_invitados'],
-            'precio_total' => $precioTotal
-        ]);
-
-        // Asignar el paquete al evento
-        $evento->grupopaquete()->associate($paqueteSeleccionado);
-
-        // Guardar el evento
-        $evento->save();
-
-        // Redirigir al usuario a la página de detalles del evento recién creado
-        return redirect()->route('eventos.show', ['id' => $evento->id]);
+    if ($request->has('paquetes')) {
+        $evento->paquetes()->attach($request->paquetes);
     }
 
-    public function edit($id)
-    {
-        // Obtener el evento a editar con su paquete relacionado cargado
-        $evento = Evento::with('grupopaquete')->find($id);
-
-        // Obtener todos los paquetes con sus servicios relacionados cargados
-        $grupopaquetes = Paquete::with('servicios')->get();
-
-        // Retorna la vista con el evento y los paquetes
-        return view('eventos.edit', compact('evento', 'grupopaquetes'));
+    if ($request->has('servicios')) {
+        $evento->servicios()->attach($request->servicios);
     }
+
+    // calcular el precio total
+    $precioTotal = $evento->paquetes->sum('precio') + $evento->servicios->sum('precio');
+    $evento->update(['precio_total' => $precioTotal]);
+
+    return redirect()->route('eventos.index', $evento);
+}
+
+
+
+
     public function update(Request $request, $id)
     {
         $evento = Evento::find($id);

@@ -27,7 +27,7 @@
 
         <div class="wrapper">
 
-            <form action="{{ route('registrar') }}" method="post" class="form">
+            <form action="usuario.store" method="post" class="form">
 
                 @csrf
 
