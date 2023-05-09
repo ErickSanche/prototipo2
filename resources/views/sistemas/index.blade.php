@@ -1,53 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <title>Webleb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
-
 <body>
-    <header>
-        <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
-            <div class="interior">
-                <nav class="navegacion">
-                    <ul>
-                        <li><a class="navbar-brand" href="#">BIENVENIDO</a></li>
-                        <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-    </header>
+	<div class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 text-center align-self-center py-5">
+					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+						<h6 class="mb-0 pb-3"><span> </span></h6>
+			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+			          	<label for="reg-log"></label>
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Log In</h4>
 
-    <center>
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($paquetes as $paquete)
-              @if ($paquete->estado != '0')
-              <tr>
-                <td>{{ $paquete->id }}</td>
-                <td>{{ $paquete->nombre }}</td>
-                <td>{{ $paquete->precio }}</td>
-                <td>{{ $paquete->descripcion }}</td>
-              </tr>
-              @endif
-              @endforeach
-            </tbody>
-          </table>
+                                            <form action="{{ route('validar') }}" method="post">
+												@csrf
+												<div class="cabeceraS">
+													<div class="titulo">
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="usuario" type="text" placeholder="Usuario">
+														<i class="input-icon uil uil-at"></i>
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="password" type="password" placeholder="Contraseña">
+														<i class="input-icon uil uil-lock-alt"></i>
+													</div>
+													<div class="items">
+														<input class="boton btn mt-4" type="submit" value="Validar">
+													</div>
+												</div>
+											</form>
 
-    </center>
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+				      					</div>
+			      					</div>
+			      				</div>
+								<div class="card-back">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-3 pb-3">ADMINISTRADOR</h4>
+											<form action="{{ route('validar2') }}" method="post">
+												@csrf
+												<div class="cabeceraS">
+													<div class="titulo">
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="usuario" type="text" placeholder="Usuario">
+														<i class="input-icon uil uil-at"></i>
+													</div>
+													<div class="items form-group">
+														<input class="cajas form-style" name="password" type="password" placeholder="Contraseña">
+														<i class="input-icon uil uil-lock-alt"></i>
+													</div>
+													<div class="items">
+														<input class="boton btn mt-4" type="submit" value="Validar">
+													</div>
+												</div>
+											</form>
+				      					</div>
+			      					</div>
+			      				</div>
+			      			</div>
+			      		</div>
+			      	</div>
+		      	</div>
+	      	</div>
+	    </div>
+	</div>
 </body>
 </html>

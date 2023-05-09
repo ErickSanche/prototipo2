@@ -18,9 +18,8 @@ class Servicio extends Model
         return $this->belongsToMany(Evento::class)->withTimestamps();
     }
 
-    public function grupopaquetes()
+    public function paquetes()
     {
         return $this->belongsToMany(Paquete::class, 'paquete_servicio');
     }
-
 }

@@ -35,7 +35,7 @@ class Evento extends Model
 
         // Sumar el precio de los servicios elegidos, si los hay
         if ($this->servicios()->exists()) {
-            $precioTotal += $this->servicios->sum('precio');
+            $precioTotal += $this->servicios()->sum('precio');
         }
 
         $this->precio_total = $precioTotal;

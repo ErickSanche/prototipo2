@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label for="grupopaquete_id">Grupo o paquete:</label>
                 <select name="grupopaquete_id" class="form-control" id="grupopaquete_id">
-                    <option value="">Seleccionar grupo o paquete</option>
+                    <option value="">Paquete</option>
                     @foreach ($grupos_paquetes as $grupo_paquete)
                     <option value="{{ $grupo_paquete->id }}">{{ $grupo_paquete->nombre }}</option>
                     @endforeach
@@ -52,7 +52,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
-
 	</div>
 </body>
 </html>

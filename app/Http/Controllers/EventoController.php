@@ -13,7 +13,7 @@ class EventoController extends Controller
     public function index()
     {
         // Obtiene todos los eventos con sus relaciones cargadas
-        $eventos = Evento::with('grupopaquete')->get();
+        $eventos = Evento::all();
 
         // Retorna la vista con los eventos
         return view('eventos.index', compact('eventos'));
@@ -24,51 +24,46 @@ class EventoController extends Controller
     public function create()
     {
         // Obtiene todos los paquetes con sus servicios relacionados cargados
-        $grupos_paquetes = Paquete::with('servicios')->get();
+        $grupos_paquetes = Paquete::all();
         $servicios = Servicio::all();
 
         // Retorna la vista con los paquetes
         return view('eventos.create', compact('grupos_paquetes', 'servicios'));
     }
 
-
     public function store(Request $request)
-{
-    $request->validate([
-        'nombre' => 'required|string|max:255',
-        'fecha' => 'required|date',
-        'hora_inicio' => 'required',
-        'hora_fin' => 'required',
-        'numero_invitados' => 'required|integer|min:1',
-        'grupopaquete_id' => 'required|exists:grupopaquetes,id', // Validación para asegurarse de que se seleccione un grupo de paquetes existente
-        'paquetes' => 'array',
-        'servicios' => 'array',
-    ]);
+    {
+        // Validar los campos del formulario si es necesario
+        $request->validate([
+            'nombre' => 'required',
+            'fecha' => 'required|date',
+            'hora_inicio' => 'required',
+            'hora_fin' => 'required',
+            'numero_invitados' => 'required|integer',
+            'precio_total' => 'required|numeric',
+            'servicios' => 'required|array',
+            'grupopaquete_id' => 'required',
+        ]);
 
-    $evento = Evento::create([
-        'nombre' => $request->nombre,
-        'fecha' => $request->fecha,
-        'hora_inicio' => $request->hora_inicio,
-        'hora_fin' => $request->hora_fin,
-        'numero_invitados' => $request->numero_invitados,
-        'precio_total' => 0, // precio inicial en cero
-        'grupopaquete_id' => $request->grupopaquete_id, // Guardar el id del grupo de paquetes seleccionado por el usuario
-    ]);
+        // Crear una nueva instancia de Evento y asignar los valores del formulario
+        $evento = new Evento();
+        $evento->nombre = $request->nombre;
+        $evento->fecha = $request->fecha;
+        $evento->hora_inicio = $request->hora_inicio;
+        $evento->hora_fin = $request->hora_fin;
+        $evento->numero_invitados = $request->numero_invitados;
+        $evento->precio_total = $request->precio_total;
+        $evento->grupopaquete_id = $request->grupopaquete_id;
 
-    if ($request->has('paquetes')) {
-        $evento->paquetes()->attach($request->paquetes);
+        // Guardar el evento en la base de datos
+        $evento->save();
+
+        // Guardar los servicios asociados al evento
+        $evento->servicios()->sync($request->servicios);
+
+        // Redireccionar o realizar alguna acción adicional
+        return redirect()->route('eventos.index')->with('success', 'El evento se ha creado correctamente.');
     }
-
-    if ($request->has('servicios')) {
-        $evento->servicios()->attach($request->servicios);
-    }
-
-    // calcular el precio total
-    $precioTotal = $evento->paquetes->sum('precio') + $evento->servicios->sum('precio');
-    $evento->update(['precio_total' => $precioTotal]);
-
-    return redirect()->route('eventos.index', $evento);
-}
 
 
 

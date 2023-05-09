@@ -11,9 +11,9 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
     public function index(){
-        $usuarios = Usuario::all();
+        $paquetes = Paquete::all();
 
-        return view('usuarios.index', compact ('usuarios'));
+        return view('usuarios.index', compact ('paquetes'));
     }
 
     public function create(){
