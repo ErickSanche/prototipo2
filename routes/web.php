@@ -1,14 +1,11 @@
 <?php
 
-use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EventoController;
-use App\Http\Controllers\GerenteController;
-use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ClienteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -25,22 +22,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-//Urls  para paquetes
+// URLs para paquetes
 Route::resource('paquetes', PaqueteController::class);
-Route::get('/', [PaqueteController::class, 'welcome'])->name('welcome');
+Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
-//Urls  para evento
+// URLs para eventos
 Route::resource('eventos', EventoController::class);
 
-//Urls para servicios
+// URLs para servicios
 Route::resource('servicios', ServicioController::class);
 
+// URLs para clientes
+Route::resource('clientes', ClienteController::class);
 
-//Urls de se el registro
+Auth::routes();
 
-Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register');
-Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,8 +5,8 @@
             <div class="interior">
                 <nav class="navegacion">
                     <ul>
-                        <li><a href="{{ route('usuarios.index') }}">Ver usuarios</a></li>
-                        <li><a href="{{ route('usuarios.create') }}">Agregar usuario</a></li>
+                        <li><a href="{}">Ver usuarios</a></li>
+                        <li><a href="{}">Agregar usuario</a></li>
                         <li><a href="{{ route('servicios.index') }}">Ver servicios</a></li>
                         <li><a href="{{ route('servicios.create') }}">Agregar servicios</a></li>
                     </ul>

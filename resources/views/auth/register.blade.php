@@ -1,59 +1,108 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registro</title>
-</head>
-<body>
-    <h1>Registro</h1>
+@extends('layouts.app')
 
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Register') }}</div>
 
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
 
-        <div>
-            <label for="name">Nombre completo:</label>
-            <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus>
-        </div>
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
-        <div>
-            <label for="username">Nombre de usuario:</label>
-            <input type="text" name="username" id="username" value="{{ old('username') }}" required>
-        </div>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-        <div>
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" required>
-        </div>
+                        <div class="row mb-3">
+                            <label for="usuario" class="col-md-4 col-form-label text-md-end">{{ __('Usuario') }}</label>
 
-        <div>
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" required>
-        </div>
+                            <div class="col-md-6">
+                                <input id="usuario" type="text" class="form-control @error('usuario') is-invalid @enderror" name="usuario" value="{{ old('usuario') }}" required autocomplete="usuario">
 
-        <div>
-            <label for="password_confirmation">Confirmar contraseña:</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" required>
-        </div>
+                                @error('usuario')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-        <div>
-            <label for="user_type">Tipo de usuario:</label>
-            <select name="user_type" id="user_type" required>
-                <option value="usuario">Usuario</option>
-                <option value="admin">Administrador</option>
-            </select>
-        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-        <button type="submit">Registrarse</button>
-    </form>
-</body>
-</html>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="tipo-usuario" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de Usuario') }}</label>
+
+                                    <div class="col-md-6">
+                                        <select id="tipo-usuario" class="form-control @error('tipo_usuario') is-invalid @enderror" name="tipo_usuario" required>
+                                            <option value="usuario" {{ old('tipo_usuario') == 'usuario' ? 'selected' : '' }}>Usuario</option>
+                                            <option value="administrador" {{ old('tipo_usuario') == 'administrador' ? 'selected' : '' }}>Administrador</option>
+                                        </select>
+
+                                        @error('tipo_usuario')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Register') }}
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                @endsection
