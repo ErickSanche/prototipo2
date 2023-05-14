@@ -25,14 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Urls de sistema controller
 
-Route::resource('sistema', SistemaController::class);
-Route::get('salir', [SistemaController::class, 'salir'])->name('salida');
-
-
-//Urls para usuarios
-Route::resource('usuarios', UsuarioController::class);
 
 //Urls  para paquetes
 Route::resource('paquetes', PaqueteController::class);
@@ -45,4 +38,9 @@ Route::resource('eventos', EventoController::class);
 Route::resource('servicios', ServicioController::class);
 
 
-//Urls de se
+//Urls de se el registro
+
+Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register');
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');

@@ -9,7 +9,6 @@
                         <li><a href="{{ route('usuarios.create') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('servicios.index') }}">Ver servicios</a></li>
                         <li><a href="{{ route('servicios.create') }}">Agregar servicios</a></li>
-                        <li><a href="{{ route('salida') }}">Cerrar Sesion</a>
                     </ul>
                 </nav>
             </div>
