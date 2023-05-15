@@ -4,7 +4,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +34,3 @@ Route::resource('servicios', ServicioController::class);
 
 // URLs para clientes
 Route::resource('clientes', ClienteController::class);
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
