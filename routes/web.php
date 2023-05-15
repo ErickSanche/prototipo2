@@ -4,7 +4,9 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
-
+use App\Http\Controllers\RegistroController;
+use App\Models\Paquete;
+use App\Models\Registro;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $paquetes = Paquete::all();
+    return view('welcome', compact('paquetes'));
 });
 
 // URLs para paquetes
@@ -32,4 +35,14 @@ Route::resource('eventos', EventoController::class);
 // URLs para servicios
 Route::resource('servicios', ServicioController::class);
 
-// URLs para clientes
+
+Route::resource('clientes', ClienteController::class);
+
+
+// URLs para registros
+
+Route::get('login', [RegistroController::class, 'entrada'])->name("login");
+Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');
+Route::post('registrar', [RegistroController::class, 'registrar2'])->name('registrar2');
+Route::post('validar', [RegistroController::class, 'validar'])->name('validar')->middleware("web");
+Route::get('ver-usuarios', [RegistroController::class, 'verUsuarios'])->name('ver-usuarios');

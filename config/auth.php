@@ -40,7 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'webe' => [
+            'driver' => 'session',
+            'provider' => 'registros',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -62,8 +67,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Usuario::class,
+            'model' => App\Models\User::class,
         ],
+        'registros' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Registro::class,
+        ],
+
+
 
         // 'users' => [
         //     'driver' => 'database',

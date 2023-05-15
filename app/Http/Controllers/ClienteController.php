@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paquete;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -13,6 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        // Lógica para mostrar la vista de index de clientes
+        $paquetes = Paquete::all();
+
+        return view('clientes.index', compact('paquetes'));
     }
 }
