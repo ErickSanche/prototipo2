@@ -33,4 +33,3 @@ Route::resource('eventos', EventoController::class);
 Route::resource('servicios', ServicioController::class);
 
 // URLs para clientes
-Route::resource('clientes', ClienteController::class);
