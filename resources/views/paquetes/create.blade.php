@@ -32,7 +32,6 @@
       <br>
       <label for='estado'>Estado</label>
       <input type='checkbox' name='estado' id='estado' value='1' {{ old('estado') ? 'checked' : '' }}>
-      <input type='hidden' name='estado' value='0'>
       <br>
       <input type="submit" value="GUARDAR">
     </form>

@@ -44,6 +44,7 @@ class EventoController extends Controller
             'grupopaquete_id' => 'required',
         ]);
 
+
         // Obtener el precio del paquete seleccionado
         $paquete = Paquete::find($request->grupopaquete_id);
         $precioPaquete = $paquete->precio;
@@ -55,18 +56,22 @@ class EventoController extends Controller
         // Calcular el precio total sumando el precio del paquete y los servicios
         $precioTotal = $precioPaquete + $precioServicios;
 
-        // Crear una nueva instancia de Evento y asignar los valores del formulario
-        $evento = new Evento();
-        $evento->nombre = $request->nombre;
-        $evento->fecha = $request->fecha;
-        $evento->hora_inicio = $request->hora_inicio;
-        $evento->hora_fin = $request->hora_fin;
-        $evento->numero_invitados = $request->numero_invitados;
-        $evento->precio_total = $precioTotal;
-        $evento->grupopaquete_id = $request->grupopaquete_id;
 
-        // Guardar el evento en la base de datos
-        $evento->save();
+        // Crear una nueva instancia de Evento y asignar los valores del formulario
+            $evento = new Evento();
+            $evento->nombre = $request->nombre;
+            $evento->fecha = $request->fecha;
+            $evento->hora_inicio = $request->hora_inicio;
+            $evento->hora_fin = $request->hora_fin;
+            $evento->numero_invitados = $request->numero_invitados;
+            $evento->precio_total = $precioTotal;
+            $evento->grupopaquete_id = $request->grupopaquete_id;
+
+            // Establecer el estado como inactivo (0) si no se ha marcado el checkbox
+            $evento->estado = $request->estado ?? 0;
+
+            // Guardar el evento en la base de datos
+            $evento->save();
 
         // Guardar los servicios asociados al evento
         $evento->servicios()->sync($request->servicios);
