@@ -6,6 +6,7 @@ use App\Models\Evento;
 use App\Models\Paquete;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
@@ -56,9 +57,14 @@ class EventoController extends Controller
         // Calcular el precio total sumando el precio del paquete y los servicios
         $precioTotal = $precioPaquete + $precioServicios;
 
+        $archivo = $request->file('imagen');
+        $nombreArchivo = $archivo->getClientOriginalName();
+
+        $r = Storage::disk('privado')->putFileAs('',$archivo,$nombreArchivo);
 
         // Crear una nueva instancia de Evento y asignar los valores del formulario
             $evento = new Evento();
+            $evento->fill($request->all());
             $evento->nombre = $request->nombre;
             $evento->fecha = $request->fecha;
             $evento->hora_inicio = $request->hora_inicio;
@@ -69,6 +75,8 @@ class EventoController extends Controller
 
             // Establecer el estado como inactivo (0) si no se ha marcado el checkbox
             $evento->estado = $request->estado ?? 0;
+
+            $evento->imagen=$r;
 
             // Guardar el evento en la base de datos
             $evento->save();

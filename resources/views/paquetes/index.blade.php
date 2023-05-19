@@ -37,6 +37,7 @@
                             <th>Precio</th>
                             <th>Descripción</th>
                             <th>Estado</th>
+                            <th>Imagen</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                                 <td>{{ $paquete->precio }}</td>
                                 <td>{{ $paquete->descripcion }}</td>
                                 <td>{{ $paquete->estado }}</td>
+                                <td><img src="{{asset("app/public/$paquete->imagen")}}" alt=""></td>
                                 <td>
                                     @if($paquete->estado == 0)
                                         <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">

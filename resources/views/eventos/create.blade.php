@@ -9,7 +9,7 @@
     <div class="container">
         <h1>Create Event</h1>
 
-        <form method="POST" action="{{ route('eventos.store') }}">
+        <form method="POST" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -55,6 +55,9 @@
                     @endforeach
                 </select>
             </div>
+
+            <label for='imagen'>Imagen</label>
+            <input type='file' name='imagen' id='imagen'>
 
             <button type="submit" class="btn btn-primary">Crear Evento</button>
         </form>

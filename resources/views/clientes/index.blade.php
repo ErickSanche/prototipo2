@@ -23,24 +23,35 @@
 <body>
     <div class="container">
         <h1>Welcome</h1>
-        <table class="table table-striped">
+        <table id="example" class="table table-striped" style="width:100%">
+
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Descripción</th>
+                    <th>Imagen</th>
                 </tr>
             </thead>
+
+
             <tbody>
                 @foreach ($paquetes as $paquete)
-                <tr>
-                    <td>{{ $paquete->id }}</td>
-                    <td>{{ $paquete->name }}</td>
-                    <td>{{ $paquete->description }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $paquete->id }}</td>
+                        <td>{{ $paquete->nombre }}</td>
+                        <td>{{ $paquete->precio }}</td>
+                        <td>{{ $paquete->descripcion }}</td>
+                        <td><img src="{{asset("app/public/$paquete->imagen")}}" alt=""></td>
+
+                    </tr>
                 @endforeach
             </tbody>
-        </table>
+
+
+
+</table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

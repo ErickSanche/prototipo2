@@ -38,10 +38,6 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
-        ],
-        'webe' => [
-            'driver' => 'session',
             'provider' => 'registros',
         ],
     ],
@@ -65,10 +61,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+
         'registros' => [
             'driver' => 'eloquent',
             'model' => App\Models\Registro::class,

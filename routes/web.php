@@ -6,7 +6,6 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\RegistroController;
 use App\Models\Paquete;
-use App\Models\Registro;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,23 +25,24 @@ Route::get('/', function () {
 });
 
 // URLs para paquetes
-Route::resource('paquetes', PaqueteController::class);
+Route::resource('paquetes', PaqueteController::class)->middleware('can:viewAny,App\Models\Paquete');
 Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
 // URLs para eventos
-Route::resource('eventos', EventoController::class);
+Route::resource('eventos', EventoController::class)->middleware('can:viewAny,App\Models\Evento');
+
 
 // URLs para servicios
-Route::resource('servicios', ServicioController::class);
+Route::resource('servicios', ServicioController::class)->middleware('can:viewAny,App\Models\Servicio');
 
 
-Route::resource('clientes', ClienteController::class);
+Route::resource('clientes', ClienteController::class)->middleware('can:viewAny,App\Models\Cliente');
 
 
 // URLs para registros
 
 Route::get('login', [RegistroController::class, 'entrada'])->name("login");
-Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');
+Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar')->middleware('auth');
 Route::post('registrar', [RegistroController::class, 'registrar2'])->name('registrar2');
-Route::post('validar', [RegistroController::class, 'validar'])->name('validar')->middleware("web");
-Route::get('ver-usuarios', [RegistroController::class, 'verUsuarios'])->name('ver-usuarios');
+Route::post('validar', [RegistroController::class, 'validar'])->name('validar');
+Route::get('ver-usuarios', [RegistroController::class, 'verUsuarios'])->name('ver-usuarios')->middleware('auth');

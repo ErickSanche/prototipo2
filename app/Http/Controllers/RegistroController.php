@@ -37,18 +37,16 @@ class RegistroController extends Controller
         if (!Hash::check($password, $password_bd)) {
             return redirect()->back()->withErrors(['password' => 'Contraseña incorrecta']);
         }
-
+        Auth::login($encontrado);
         // Verificar el tipo de usuario
         if ($encontrado->tipo === 'cliente') {
             // Autenticar al usuario cliente
-            Auth::guard('webe')->login($encontrado);
-            $_SESSION['AuthGuard'] = 'webe';
+
 
             return redirect()->route('clientes.index');
         } elseif ($encontrado->tipo === 'administrador') {
             // Autenticar al usuario administrador
-            Auth::guard('webe')->login($encontrado);
-            $_SESSION['AuthGuard'] = 'webe';
+
 
             return redirect()->route('paquetes.index');
         } else {

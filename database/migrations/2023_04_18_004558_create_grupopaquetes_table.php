@@ -19,6 +19,7 @@ class CreateGrupopaquetesTable extends Migration
             $table->decimal('precio', 8, 2);
             $table->text('descripcion');
             $table->boolean('estado')->default(false);
+            $table->string('imagen')->nullable()->default(null);
             $table->timestamps();
         });
     }

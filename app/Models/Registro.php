@@ -9,8 +9,8 @@ use Illuminate\Notifications\Notifiable;
 class Registro extends Authenticatable
 {
     use HasFactory, Notifiable;
-
-    protected $guarded = [];
+    protected $fillable=['nombre','nombre_de_usuario','clave'];
+    //protected $guarded = [];
 
     // Resto de tu código del modelo...
 }

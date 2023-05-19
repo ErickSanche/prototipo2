@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paquete;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PaqueteController extends Controller
 {
@@ -46,10 +47,17 @@ class PaqueteController extends Controller
         $request->validate([
             'nombre' => 'required',
             'precio' => 'required',
-            'descripcion' => 'required'
+            'descripcion' => 'required',
         ]);
 
+        $archivo = $request->file('imagen');
+        $nombreArchivo = 'PaquetesDis';
+
+        $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
+
         $paquete = new Paquete();
+        $paquete->fill($request->all());
+        $paquete->imagen=$r;
         $paquete->nombre = $request->input('nombre');
         $paquete->precio = $request->input('precio');
         $paquete->descripcion = $request->input('descripcion');
