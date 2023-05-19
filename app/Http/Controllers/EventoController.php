@@ -74,7 +74,7 @@ class EventoController extends Controller
             $evento->grupopaquete_id = $request->grupopaquete_id;
 
             // Establecer el estado como inactivo (0) si no se ha marcado el checkbox
-            $evento->estado = $request->estado ?? 0;
+            //$evento->estado = $request->estado ?? 0;
 
             $evento->imagen=$r;
 
