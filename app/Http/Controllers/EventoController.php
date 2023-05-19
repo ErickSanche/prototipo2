@@ -58,13 +58,15 @@ class EventoController extends Controller
         $precioTotal = $precioPaquete + $precioServicios;
 
         $archivo = $request->file('imagen');
-        $nombreArchivo = $archivo->getClientOriginalName();
+        $nombreArchivo = 'Evento';
 
-        $r = Storage::disk('privado')->putFileAs('',$archivo,$nombreArchivo);
+        $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
+
 
         // Crear una nueva instancia de Evento y asignar los valores del formulario
             $evento = new Evento();
             $evento->fill($request->all());
+            $evento->imagen=$r;
             $evento->nombre = $request->nombre;
             $evento->fecha = $request->fecha;
             $evento->hora_inicio = $request->hora_inicio;
@@ -76,7 +78,7 @@ class EventoController extends Controller
             // Establecer el estado como inactivo (0) si no se ha marcado el checkbox
             //$evento->estado = $request->estado ?? 0;
 
-            $evento->imagen=$r;
+
 
             // Guardar el evento en la base de datos
             $evento->save();
@@ -87,6 +89,8 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento se ha creado correctamente.');
     }
+
+
 
     public function edit($id)
 {

@@ -32,6 +32,7 @@
                                 <th>Hora de inicio</th>
                                 <th>Hora de fin</th>
                                 <th>Número de invitados</th>
+                                <th>Imagen</th>
                                 <th>Servicios</th>
                                 <th>Precio Total</th>
                                 <th>Grupo/Paquete</th>
@@ -47,6 +48,8 @@
                                 <td>{{ $evento->hora_inicio }}</td>
                                 <td>{{ $evento->hora_fin }}</td>
                                 <td>{{ $evento->numero_invitados }}</td>
+                                <td><img src="{{asset("app/public/$evento->imagen")}}" alt=""></td>
+
                                 <td>
                                     @foreach ($evento->servicios as $servicio)
                                         {{ $servicio->nombre }}<br>
