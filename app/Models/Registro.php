@@ -14,7 +14,7 @@ class Registro extends Authenticatable
 
     // Definir la relación con los eventos
     public function eventos()
-    {
-        return $this->hasMany(Evento::class);
-    }
+{
+    return $this->hasMany(Evento::class, 'registro_id');
+}
 }

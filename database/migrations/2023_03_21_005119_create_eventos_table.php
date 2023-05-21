@@ -10,21 +10,22 @@ class CreateEventosTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
-    public function up()
-    {
-        Schema::create('eventos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->date('fecha');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
-            $table->unsignedInteger('numero_invitados')->nullable(false);
-            $table->foreignId('grupopaquete_id')->constrained('grupopaquetes')->onDelete('cascade');
-            $table->string('imagen')->nullable()->default(null);
-            $table->timestamps();
-        });
-    }
+     */public function up()
+{
+    Schema::create('eventos', function (Blueprint $table) {
+        $table->id();
+        $table->string('nombre');
+        $table->date('fecha');
+        $table->time('hora_inicio');
+        $table->time('hora_fin');
+        $table->unsignedInteger('numero_invitados')->nullable(false);
+        $table->foreignId('grupopaquete_id')->constrained('grupopaquetes')->onDelete('cascade');
+        $table->string('imagen')->nullable()->default(null);
+        $table->foreignId('registro_id')->constrained('registros')->onDelete('cascade');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
