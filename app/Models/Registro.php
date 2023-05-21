@@ -9,8 +9,12 @@ use Illuminate\Notifications\Notifiable;
 class Registro extends Authenticatable
 {
     use HasFactory, Notifiable;
-    protected $fillable=['nombre','nombre_de_usuario','clave'];
-    //protected $guarded = [];
 
-    // Resto de tu código del modelo...
+    protected $fillable = ['nombre', 'nombre_de_usuario', 'clave'];
+
+    // Definir la relación con los eventos
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
 }

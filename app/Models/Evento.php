@@ -1,4 +1,5 @@
 <?php
+// Evento.php
 
 namespace App\Models;
 
@@ -21,6 +22,12 @@ class Evento extends Model
     public function servicios()
     {
         return $this->belongsToMany(Servicio::class, 'evento_servicio');
+    }
+
+    // Definir la relación con el usuario propietario del evento
+    public function usuario()
+    {
+        return $this->belongsTo(Registro::class);
     }
 
     // Calcular el precio total del evento
