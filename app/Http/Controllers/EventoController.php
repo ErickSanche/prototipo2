@@ -164,6 +164,10 @@ public function destroy($id)
     // Desvincular los servicios asociados al evento
     $evento->servicios()->detach();
 
+
+    //eliminar la imagen
+    $r = Storage::disk('publico')->delete($evento->imagen);
+
     // Eliminar el evento de la base de datos
     $evento->delete();
 

@@ -131,6 +131,7 @@ class PaqueteController extends Controller
             return redirect(route('paquetes.index'))->with('error', 'No se puede borrar el paquete porque su estado es activo.');
         }
 
+        $r = Storage::disk('publico')->delete($paquete_encontrado->imagen);
         $paquete_encontrado->delete();
         return redirect(route('paquetes.index'));
     }
