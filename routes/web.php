@@ -42,7 +42,7 @@ Route::resource('clientes', ClienteController::class)->middleware('can:viewAny,A
 // URLs para registros
 
 Route::get('login', [RegistroController::class, 'entrada'])->name("login");
-Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar')->middleware('auth');
+Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');//->middleware('auth');
 Route::post('registrar', [RegistroController::class, 'registrar2'])->name('registrar2');
 Route::post('validar', [RegistroController::class, 'validar'])->name('validar');
 Route::get('ver-usuarios', [RegistroController::class, 'verUsuarios'])->name('ver-usuarios')->middleware('auth');
