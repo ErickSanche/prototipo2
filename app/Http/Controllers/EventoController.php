@@ -58,7 +58,7 @@ class EventoController extends Controller
         $precioTotal = $precioPaquete + $precioServicios;
 
         $archivo = $request->file('imagen');
-        $nombreArchivo = 'Evento';
+        $nombreArchivo =  $archivo->getClientOriginalName();
 
         $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
 

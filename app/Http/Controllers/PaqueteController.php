@@ -51,7 +51,7 @@ class PaqueteController extends Controller
         ]);
 
         $archivo = $request->file('imagen');
-        $nombreArchivo = 'PaquetesDis';
+        $nombreArchivo = $archivo->getClientOriginalName();
 
         $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
 
