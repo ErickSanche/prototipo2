@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use App\Models\Paquete;
+use App\Models\Registro;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
-
     public function index()
     {
         // Obtener los eventos del usuario actual con sus relaciones cargadas
-        $eventos = Auth::user()->eventos;
+        $eventos = auth()->user()->eventos;
 
         // Retorna la vista con los eventos
         return view('eventos.index', compact('eventos'));
@@ -25,13 +24,9 @@ class EventoController extends Controller
     {
         $grupos_paquetes = Paquete::all();
         $servicios = Servicio::all();
-        $eventos = Auth::user()->eventos;
 
-        $registroId = auth()->user()->registro_id;
-
-        return view('eventos.create', compact('grupos_paquetes', 'servicios', 'eventos', 'registroId'));
+        return view('eventos.create', compact('grupos_paquetes', 'servicios'));
     }
-
 
     public function store(Request $request)
     {
@@ -44,7 +39,6 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
-            'registro_id' => 'required',
         ]);
 
         // Obtener el precio del paquete seleccionado
@@ -59,14 +53,12 @@ class EventoController extends Controller
         $precioTotal = $precioPaquete + $precioServicios;
 
         $archivo = $request->file('imagen');
-        $nombreArchivo =  $archivo->getClientOriginalName();
+        $nombreArchivo = $archivo->getClientOriginalName();
 
         $r = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
 
         // Crear una nueva instancia de Evento y asignar los valores del formulario
         $evento = new Evento();
-        $evento->fill($request->all());
-        $evento->imagen = $r;
         $evento->nombre = $request->nombre;
         $evento->fecha = $request->fecha;
         $evento->hora_inicio = $request->hora_inicio;
@@ -74,12 +66,10 @@ class EventoController extends Controller
         $evento->numero_invitados = $request->numero_invitados;
         $evento->precio_total = $precioTotal;
         $evento->grupopaquete_id = $request->grupopaquete_id;
+        $evento->imagen = $r;
 
-        // Obtener el registro_id del usuario logueado
-        $registroId = auth()->user()->registro_id;
-
-        // Asignar el registro_id al evento
-        $evento->registro_id = $registroId;
+        // Obtener el registro_id del usuario autenticado
+        $evento->registro_id = auth()->user()->id;
 
         // Guardar el evento en la base de datos
         $evento->save();
@@ -90,6 +80,8 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento se ha creado correctamente.');
     }
+
+    // Resto de métodos...
 
 
 
