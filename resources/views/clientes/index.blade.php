@@ -24,22 +24,25 @@
   <div class="container">
     <h1>Welcome</h1>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      @foreach ($paquetes as $paquete)
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="{{ asset("app/public/$paquete->imagen") }}" alt="{{ $paquete->nombre }}">
-          <div class="card-body">
-            <p class="card-text">{{ $paquete->nombre }}</p>
-            <p class="card-text">{{ $paquete->descripcion }}</p>
-            <p class="card-text">{{ $paquete->precio }}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-              </div>
-            </div>
+    @foreach ($paquetes as $paquete)
+  @if ($paquete->estado == 1)
+  <div class="col">
+    <div class="card shadow-sm">
+      <img src="{{ asset("app/public/$paquete->imagen") }}" alt="{{ $paquete->nombre }}">
+      <div class="card-body">
+        <p class="card-text">{{ $paquete->nombre }}</p>
+        <p class="card-text">{{ $paquete->descripcion }}</p>
+        <p class="card-text">{{ $paquete->precio }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
           </div>
         </div>
       </div>
-      @endforeach
+    </div>
+  </div>
+  @endif
+@endforeach
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
