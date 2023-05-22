@@ -23,6 +23,7 @@ class CreateEventosTable extends Migration
         $table->string('imagen')->nullable()->default(null);
         $table->foreignId('registro_id')->constrained('registros')->onDelete('cascade');
         $table->timestamps();
+        //se creo nueva llave foranea
     });
 }
 
