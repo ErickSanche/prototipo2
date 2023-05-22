@@ -6,6 +6,7 @@ use App\Models\Evento;
 use App\Models\Paquete;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
@@ -13,24 +14,24 @@ class EventoController extends Controller
 
     public function index()
     {
-        // Obtiene todos los eventos con sus relaciones cargadas
-        $eventos = Evento::all();
+        // Obtener los eventos del usuario actual con sus relaciones cargadas
+        $eventos = Auth::user()->eventos;
 
         // Retorna la vista con los eventos
         return view('eventos.index', compact('eventos'));
-
-
     }
 
     public function create()
     {
-        // Obtiene todos los paquetes con sus servicios relacionados cargados
         $grupos_paquetes = Paquete::all();
         $servicios = Servicio::all();
+        $eventos = Auth::user()->eventos;
 
-        // Retorna la vista con los paquetes
-        return view('eventos.create', compact('grupos_paquetes', 'servicios'));
+        $registroId = auth()->user()->registro_id;
+
+        return view('eventos.create', compact('grupos_paquetes', 'servicios', 'eventos', 'registroId'));
     }
+
 
     public function store(Request $request)
     {
@@ -43,8 +44,8 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
+            'registro_id' => 'required',
         ]);
-
 
         // Obtener el precio del paquete seleccionado
         $paquete = Paquete::find($request->grupopaquete_id);
@@ -58,30 +59,30 @@ class EventoController extends Controller
         $precioTotal = $precioPaquete + $precioServicios;
 
         $archivo = $request->file('imagen');
-        $nombreArchivo = 'Evento';
+        $nombreArchivo =  $archivo->getClientOriginalName();
 
-        $r = Storage::disk('publico')->putFileAs('',$archivo,$nombreArchivo);
-
+        $r = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
 
         // Crear una nueva instancia de Evento y asignar los valores del formulario
-            $evento = new Evento();
-            $evento->fill($request->all());
-            $evento->imagen=$r;
-            $evento->nombre = $request->nombre;
-            $evento->fecha = $request->fecha;
-            $evento->hora_inicio = $request->hora_inicio;
-            $evento->hora_fin = $request->hora_fin;
-            $evento->numero_invitados = $request->numero_invitados;
-            $evento->precio_total = $precioTotal;
-            $evento->grupopaquete_id = $request->grupopaquete_id;
+        $evento = new Evento();
+        $evento->fill($request->all());
+        $evento->imagen = $r;
+        $evento->nombre = $request->nombre;
+        $evento->fecha = $request->fecha;
+        $evento->hora_inicio = $request->hora_inicio;
+        $evento->hora_fin = $request->hora_fin;
+        $evento->numero_invitados = $request->numero_invitados;
+        $evento->precio_total = $precioTotal;
+        $evento->grupopaquete_id = $request->grupopaquete_id;
 
-            // Establecer el estado como inactivo (0) si no se ha marcado el checkbox
-            //$evento->estado = $request->estado ?? 0;
+        // Obtener el registro_id del usuario logueado
+        $registroId = auth()->user()->registro_id;
 
+        // Asignar el registro_id al evento
+        $evento->registro_id = $registroId;
 
-
-            // Guardar el evento en la base de datos
-            $evento->save();
+        // Guardar el evento en la base de datos
+        $evento->save();
 
         // Guardar los servicios asociados al evento
         $evento->servicios()->sync($request->servicios);
@@ -89,6 +90,7 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento se ha creado correctamente.');
     }
+
 
 
 
@@ -163,6 +165,10 @@ public function destroy($id)
 
     // Desvincular los servicios asociados al evento
     $evento->servicios()->detach();
+
+
+    //eliminar la imagen
+    $r = Storage::disk('publico')->delete($evento->imagen);
 
     // Eliminar el evento de la base de datos
     $evento->delete();
