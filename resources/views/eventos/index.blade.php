@@ -48,7 +48,7 @@
                                 <td>{{ $evento->hora_inicio }}</td>
                                 <td>{{ $evento->hora_fin }}</td>
                                 <td>{{ $evento->numero_invitados }}</td>
-                                <td><img src="{{asset("app/public/$evento->imagen")}}" alt=""></td>
+                                <td><img src="{{asset("app/public/$evento->imagen")}}" width= 250; height=150; alt=""></td>
 
                                 <td>
                                     @foreach ($evento->servicios as $servicio)

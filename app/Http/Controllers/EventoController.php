@@ -167,6 +167,7 @@ public function destroy($id)
     // Eliminar el evento de la base de datos
     $evento->delete();
 
+    $r = Storage::disk('publico')->unlink($evento->imagen);
     // Redireccionar o realizar alguna acción adicional
     return redirect()->route('eventos.index')->with('success', 'El evento ha sido eliminado correctamente.');
 }

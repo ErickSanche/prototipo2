@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <header>
+<header>
         <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
             <div class="interior">
                 <nav class="navegacion">
@@ -51,7 +51,7 @@
                                 <td>{{ $paquete->precio }}</td>
                                 <td>{{ $paquete->descripcion }}</td>
                                 <td>{{ $paquete->estado }}</td>
-                                <td><img src="{{asset("app/public/$paquete->imagen")}}" alt=""></td>
+                                <td><img src="{{asset("app/public/$paquete->imagen")}}" width= 250; height=150;  alt=""></td>
                                 <td>
                                     @if($paquete->estado == 0)
                                         <form action="{{ route('paquetes.destroy', $paquete->id) }}" method="POST">
