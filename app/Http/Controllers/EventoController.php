@@ -159,6 +159,7 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento se ha actualizado correctamente.');
     }
+
     public function destroy($id)
     {
         // Buscar el evento por su ID
