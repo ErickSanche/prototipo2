@@ -60,6 +60,7 @@ class EventoController extends Controller
         // Calcular el precio total sumando el precio del paquete y los servicios
         $precioTotal = $precioPaquete + $precioServicios;
 
+        //guardar imagen
         $archivos = $request->file('imagen');
         $urls = [];
 
