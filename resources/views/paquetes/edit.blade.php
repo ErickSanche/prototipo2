@@ -19,7 +19,7 @@
       </span>
     </header>
 
-    <form action="{{ route('paquetes.update', $paquete_encontrado->id) }}" class="contact" method="post">
+    <form action="{{ route('paquetes.update', $paquete_encontrado->id) }}" class="contact" method="post" enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <label for='nombre'>Nombre</label>
@@ -34,6 +34,9 @@
       <label for='estado'>Estado</label>
       <input type='hidden' name='estado' value='0'>
       <input type='checkbox' name='estado' id='estado' value='1' {{ $paquete_encontrado->estado ? 'checked' : '' }}>
+      <br>
+      <label for='imagen'>Imagen</label>
+      <input type='file' name='imagen' id='imagen'>
       <br>
       <input type="hidden" name="id" value="{{ $paquete_encontrado->id }}">
       <input type="submit" value="GUARDAR">

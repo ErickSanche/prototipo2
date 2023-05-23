@@ -52,10 +52,18 @@ class EventoController extends Controller
         // Calcular el precio total sumando el precio del paquete y los servicios
         $precioTotal = $precioPaquete + $precioServicios;
 
-        $archivo = $request->file('imagen');
-        $nombreArchivo = $archivo->getClientOriginalName();
+        $archivos = $request->file('imagen');
+        $urls = [];
 
-        $r = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
+        if ($archivos) {
+            foreach ($archivos as $archivo) {
+                $nombreArchivo = $archivo->getClientOriginalName();
+                $r = Storage::disk('publico')->putFileAs('fotos', $archivo, $nombreArchivo);
+                $urls[] = $r;
+            }
+        }
+
+        $imagenesCadena = implode(',', $urls);
 
         // Crear una nueva instancia de Evento y asignar los valores del formulario
         $evento = new Evento();
@@ -66,7 +74,8 @@ class EventoController extends Controller
         $evento->numero_invitados = $request->numero_invitados;
         $evento->precio_total = $precioTotal;
         $evento->grupopaquete_id = $request->grupopaquete_id;
-        $evento->imagen = $r;
+        $evento->imagen = $imagenesCadena;
+
 
         // Obtener el registro_id del usuario autenticado
         $evento->registro_id = auth()->user()->id;
@@ -135,6 +144,7 @@ public function update(Request $request, $id)
     $evento->precio_total = $precioTotal;
     $evento->grupopaquete_id = $request->grupopaquete_id;
 
+
     // Guardar los cambios en la base de datos
     $evento->save();
 
@@ -165,7 +175,7 @@ public function destroy($id)
     // Eliminar el evento de la base de datos
     $evento->delete();
 
-    $r = Storage::disk('publico')->unlink($evento->imagen);
+    $r = Storage::disk('publico')->delete($evento->imagen);
     // Redireccionar o realizar alguna acción adicional
     return redirect()->route('eventos.index')->with('success', 'El evento ha sido eliminado correctamente.');
 }

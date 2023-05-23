@@ -112,6 +112,22 @@ class PaqueteController extends Controller
     $paquete_encontrado->precio = $request->input('precio');
     $paquete_encontrado->descripcion = $request->input('descripcion');
     $paquete_encontrado->estado = $request->input('estado'); // asignar valor del campo estado
+
+    // Actualizar la imagen
+    if ($request->hasFile('imagen')) {
+        $archivo = $request->file('imagen');
+        $nombreArchivo = $archivo->getClientOriginalName();
+
+        $rutaNuevaImagen = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
+
+        // Eliminar la imagen existente
+        Storage::disk('publico')->delete($paquete_encontrado->imagen);
+
+        // Actualizar la ruta de la imagen en el modelo Paquete
+        $paquete_encontrado->imagen = $rutaNuevaImagen;
+    }
+
+
     $paquete_encontrado->save();
     return redirect(route('paquetes.index'));
 }

@@ -48,8 +48,13 @@
                                 <td>{{ $evento->hora_inicio }}</td>
                                 <td>{{ $evento->hora_fin }}</td>
                                 <td>{{ $evento->numero_invitados }}</td>
-                                <td><img src="{{asset("app/public/$evento->imagen")}}" width= 250; height=150; alt=""></td>
-
+                                <td>
+                                    @if ($evento->imagen)
+                                        @foreach (explode(',', $evento->imagen) as $imagen)
+                                            <img src="{{ asset("app/public/$imagen") }}" width="250" height="150" alt="">
+                                        @endforeach
+                                    @endif
+                                </td>
                                 <td>
                                     @foreach ($evento->servicios as $servicio)
                                         {{ $servicio->nombre }}<br>

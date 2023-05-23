@@ -56,8 +56,10 @@
                 </select>
             </div>
 
-            <label for='imagen'>Imagen</label>
-            <input type='file' name='imagen' id='imagen'>
+            <div class="form-group">
+                <label for="imagenes">Imágen</label>
+                <input type="file" name="imagen[]" id="imagen" multiple required>
+            </div>
 
             <button type="submit" class="btn btn-primary">Crear Evento</button>
         </form>
