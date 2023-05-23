@@ -8,7 +8,7 @@
     <div class="container">
         <h1>Editar evento</h1>
 
-        <form method="POST" action="{{ route('eventos.update', $evento->id) }}">
+        <form method="POST" action="{{ route('eventos.update', $evento->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -55,6 +55,21 @@
                     @endforeach
                 </select>
             </div>
+
+            @if(auth()->user()->tipo === 'administrador')
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select class="form-control" id="estado" name="estado">
+                    <option value="No Confirmado" {{ $evento->estado === 'No Confirmado' ? 'selected' : '' }}>No Confirmado</option>
+                    <option value="Validando" {{ $evento->estado === 'Validando' ? 'selected' : '' }}>Validando</option>
+                    <option value="Validado" {{ $evento->estado === 'Validado' ? 'selected' : '' }}>Validado</option>
+                    <option value="Rechazado" {{ $evento->estado === 'Rechazado' ? 'selected' : '' }}>Rechazado</option>
+                </select>
+            </div>
+            @else
+            <input type="hidden" name="estado" value="Validando">
+            @endif
+
             <div class="form-group">
                 <label for='imagen'>Imagen</label>
                 <input type='file' name='imagen' id='imagen'>
@@ -63,7 +78,5 @@
             <button type="submit" class="btn btn-primary">Actualizar Evento</button>
         </form>
     </div>
-
 </body>
 </html>
-
