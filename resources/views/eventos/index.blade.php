@@ -32,7 +32,7 @@
                                 <th>Hora de inicio</th>
                                 <th>Hora de fin</th>
                                 <th>Número de invitados</th>
-                                <th>Imagen</th>
+                                <th>Imagenes</th>
                                 <th>Servicios</th>
                                 <th>Precio Total</th>
                                 <th>Grupo/Paquete</th>
