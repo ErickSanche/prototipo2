@@ -9,7 +9,7 @@ class Evento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'fecha', 'hora_inicio', 'hora_fin', 'numero_invitados', 'precio_total'];
+    protected $fillable = ['nombre', 'fecha', 'hora_inicio', 'hora_fin', 'numero_invitados', 'precio_total', 'estado'];
 
     // Definir la relación con paquetes
     public function paquetes()
@@ -46,5 +46,19 @@ class Evento extends Model
     public function registro()
     {
         return $this->belongsTo(Registro::class, 'registro_id');
+    }
+
+    // Validar el evento (cambiar estado a 'validado')
+    public function validar()
+    {
+        $this->estado = 'validado';
+        $this->save();
+    }
+
+    // Rechazar el evento (cambiar estado a 'rechazado')
+    public function rechazar()
+    {
+        $this->estado = 'rechazado';
+        $this->save();
     }
 }

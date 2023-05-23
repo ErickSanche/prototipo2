@@ -9,6 +9,8 @@
                         <li><a href="{{ route('registrar') }}">Agregar usuario</a></li>
                         <li><a href="{{ route('servicios.index') }}">Ver servicios</a></li>
                         <li><a href="{{ route('servicios.create') }}">Agregar servicios</a></li>
+                        <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
+                        <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
                     </ul>
                 </nav>
             </div>
