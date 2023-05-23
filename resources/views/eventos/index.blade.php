@@ -36,6 +36,7 @@
                                 <th>Servicios</th>
                                 <th>Precio Total</th>
                                 <th>Grupo/Paquete</th>
+                                <th>Estado</th>
                                 <th>Acciones</th> <!-- Nueva columna para las acciones -->
                             </tr>
                         </thead>
@@ -48,13 +49,15 @@
                                 <td>{{ $evento->hora_inicio }}</td>
                                 <td>{{ $evento->hora_fin }}</td>
                                 <td>{{ $evento->numero_invitados }}</td>
-                                   <td>
+                                <td>
                                     @if ($evento->imagen)
                                         @foreach (explode(',', $evento->imagen) as $imagen)
                                             <img src="{{ asset("app/public/$imagen") }}" width="250" height="150" alt="">
                                         @endforeach
                                     @endif
                                 </td>
+
+
                                 <td>
                                     @foreach ($evento->servicios as $servicio)
                                         {{ $servicio->nombre }}<br>
@@ -62,8 +65,9 @@
                                 </td>
                                 <td>{{ $evento->precio_total }}</td>
                                 <td>{{ $evento->grupopaquete_id}}</td>
-      <td>{{ $evento->estado }}</td>
-         <!-- Enlace para editar el evento -->
+                                <td>{{ $evento->estado }}</td>
+                                <td>
+                                    <!-- Enlace para editar el evento -->
                                     <a href="{{ route('eventos.edit', $evento->id) }}">Editar</a>
 
                                     <!-- Formulario para eliminar el evento -->
