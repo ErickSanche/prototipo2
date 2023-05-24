@@ -2,17 +2,27 @@
 <html>
 <head>
 	<title>Crear evento</title>
+    <link rel="stylesheet" href="{{ asset('css/s2.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha512-+y/hcN0I7wsNfW1QH0b3qnaF0gB/KxTyK1QXto3OkPUgZi6ky1hL/nRjAvEYdBbgU5ECVRU5r6U5Xafy1ld6aw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<!-- create.blade.php -->
-    <div class="container">
-        <h1>Create Event</h1>
-
+<div class="signup-container">
+  <div class="left-container">
+    <h1>
+      <i class="fas fa-paw"></i>
+      Create Evento
+    </h1>
+    <div class="puppy">
+      <img src=https://ingenieriademenu.com/wp-content/uploads/2021/06/Como-ser-un-buen-organizador-de-eventos.jpg">
+    </div>
+  </div>
+  <div class="right-container">
+    <header>
+      <div class="set">
         <form method="POST" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
             @csrf
 
-            <div class="form-group">
+            <div class="pets-name">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>
             </div>
