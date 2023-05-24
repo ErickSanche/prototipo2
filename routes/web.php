@@ -29,7 +29,8 @@ Route::resource('paquetes', PaqueteController::class)->middleware('can:viewAny,A
 Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
 // URLs para eventos
-Route::resource('eventos', EventoController::class)->middleware('can:viewAny,App\Models\Evento');
+Route::resource('eventos', EventoController::class)->middleware('auth');
+
 
 
 // URLs para servicios
