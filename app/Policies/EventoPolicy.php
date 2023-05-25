@@ -55,7 +55,17 @@ class EventoPolicy
      */
     public function update(Registro $registro, Evento $evento)
     {
+         // Verificar si el usuario es un administrador
+    if ($registro->tipo === 'administrador') {
         return true;
+    }
+
+    // Verificar si el usuario es un cliente y el estado no es "validando"
+    if ($registro->tipo === 'cliente' && $evento->estado === 'no confirmado') {
+        return true;
+    }
+    return false;
+
     }
 
     public function updateEstado(Registro $registro, Evento $evento)

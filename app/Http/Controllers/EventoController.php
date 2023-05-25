@@ -7,6 +7,7 @@ use App\Models\Paquete;
 use App\Models\Registro;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
@@ -108,6 +109,12 @@ class EventoController extends Controller
         $grupos_paquetes = Paquete::all();
         $servicios = Servicio::all();
 
+         // Verificar si el estado del evento es "validando" y si el usuario es un cliente
+        if ($evento->estado === 'validando' && auth()->user()->tipo === 'cliente') {
+            // Redirigir a una página de error o mostrar un mensaje de error
+            return redirect()->back()->with('error', 'No tienes permiso para editar este evento.');
+        }
+
         // Retorna la vista de edición con el evento y los paquetes
         return view('eventos.edit', compact('evento', 'grupos_paquetes', 'servicios'));
     }
@@ -128,6 +135,8 @@ class EventoController extends Controller
 
         // Obtener el evento por su ID
         $evento = Evento::find($id);
+
+
 
         // Obtener el precio del paquete seleccionado
         $paquete = Paquete::find($request->grupopaquete_id);
@@ -171,6 +180,11 @@ class EventoController extends Controller
     {
         // Buscar el evento por su ID
         $evento = Evento::find($id);
+
+        // Verificar si el estado del evento es "validando"
+        if ($evento->estado === 'validando') {
+            return redirect()->route('eventos.index')->with('error', 'No se puede eliminar el evento en estado "validando".');
+        }
 
         // Desvincular los servicios asociados al evento
         $evento->servicios()->detach();

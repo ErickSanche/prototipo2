@@ -68,14 +68,20 @@
                                 <td>{{ $evento->estado }}</td>
                                 <td>
                                     <!-- Enlace para editar el evento -->
-                                    <a href="{{ route('eventos.edit', $evento->id) }}">Editar</a>
+
+                                    @can('update', $evento)
+                                            <a href="{{ route('eventos.edit', $evento->id) }}">Editar</a>
+                                    @endcan
+
 
                                     <!-- Formulario para eliminar el evento -->
                                     <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         @can('delete', $evento)
-                                            <button type="submit">Eliminar</button>
+                                            @if ($evento->estado !== 'validando')
+                                                <button type="submit">Eliminar</button>
+                                            @endif
                                         @endcan
                                     </form>
                                 </td>
