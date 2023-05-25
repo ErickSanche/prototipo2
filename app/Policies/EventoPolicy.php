@@ -31,7 +31,7 @@ class EventoPolicy
      */
     public function view(Registro $registro, Evento $evento)
     {
-        //
+        return true;
     }
 
     /**
@@ -55,8 +55,7 @@ class EventoPolicy
      */
     public function update(Registro $registro, Evento $evento)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        return true;
     }
 
     /**
@@ -68,8 +67,11 @@ class EventoPolicy
      */
     public function delete(Registro $registro, Evento $evento)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        if ($registro->tipo === 'cliente') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

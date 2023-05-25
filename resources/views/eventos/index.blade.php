@@ -74,7 +74,9 @@
                                     <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit">Eliminar</button>
+                                        @can('delete', $evento)
+                                            <button type="submit">Eliminar</button>
+                                        @endcan
                                     </form>
                                 </td>
                             </tr>
