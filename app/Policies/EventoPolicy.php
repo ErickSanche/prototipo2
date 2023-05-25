@@ -58,6 +58,17 @@ class EventoPolicy
         return true;
     }
 
+    public function updateEstado(Registro $registro, Evento $evento)
+    {
+        if ($registro->tipo === 'administrador') {
+            // Permitir que el administrador actualice el estado
+            return true;
+        }
+
+        // Resto de la lógica para otros usuarios con permisos diferentes a los administradores
+        return false;
+    }
+
     /**
      * Determine whether the user can delete the model.
      *

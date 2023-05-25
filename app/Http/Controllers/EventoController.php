@@ -123,7 +123,7 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
-            'estado' => 'required|in:validado,rechazado,no confirmado,validando',
+
         ]);
 
         // Obtener el evento por su ID
@@ -148,7 +148,14 @@ class EventoController extends Controller
         $evento->numero_invitados = $request->numero_invitados;
         $evento->precio_total = $precioTotal;
         $evento->grupopaquete_id = $request->grupopaquete_id;
-        $evento->estado = $request->estado;
+        // Verificar si el usuario actual es un cliente
+        if ($request->user()->tipo === 'cliente') {
+            // Restringir la actualización del estado para los clientes
+            $evento->estado = $evento->getOriginal('estado');
+        } else {
+            // Permitir que el administrador actualice el estado
+            $evento->estado = $request->estado;
+        }
 
         // Guardar los cambios en la base de datos
         $evento->save();
