@@ -84,7 +84,7 @@ class EventoController extends Controller
         $evento->precio_total = $precioTotal;
         $evento->grupopaquete_id = $request->grupopaquete_id;
         $evento->imagen = $imagenesCadena;
-        $evento->estado = 'no confirmado'; // Estado inicial
+        $evento->estado = 'No confirmado'; // Estado inicial
 
         // Obtener el registro_id del usuario autenticado
         $evento->registro_id = auth()->user()->id;
