@@ -20,28 +20,31 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('usuarios.actualizar', $usuario->id) }}" method="POST">
+        <form action="{{ route('registros.update', $usuario->id) }}" method="POST">
             @csrf
-            <div class="mb-3">
-                <label for="completo" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="completo" name="completo" value="{{ $usuario->nombre }}">
-            </div>
-            <div class="mb-3">
-                <label for="usuario" class="form-label">Nombre de Usuario</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" value="{{ $usuario->nombre_de_usuario }}">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="mb-3">
-                <label for="tipo" class="form-label">Tipo de Usuario</label>
-                <select class="form-select" id="tipo" name="tipo">
-                    <option value="cliente" {{ $usuario->tipo == 'cliente' ? 'selected' : '' }}>Cliente</option>
-                    <option value="administrador" {{ $usuario->tipo == 'administrador' ? 'selected' : '' }}>Administrador</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            @method('PUT')
+
+            <!-- Campo 'completo' -->
+            <label for="completo">Nombre completo:</label>
+            <input type="text" name="completo" value="{{ $usuario->nombre }}" required>
+
+            <!-- Campo 'usuario' -->
+            <label for="usuario">Nombre de usuario:</label>
+            <input type="text" name="usuario" value="{{ $usuario->nombre_de_usuario }}" required>
+
+            <!-- Campo 'password' -->
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password">
+            <span>(Deja en blanco para mantener la contraseña actual)</span>
+
+            <!-- Campo 'tipo' -->
+            <label for="tipo">Tipo:</label>
+            <select name="tipo" required>
+                <option value="cliente" {{ $usuario->tipo === 'cliente' ? 'selected' : '' }}>Cliente</option>
+                <option value="administrador" {{ $usuario->tipo === 'administrador' ? 'selected' : '' }}>Administrador</option>
+            </select>
+
+            <button type="submit">Guardar cambios</button>
         </form>
     </div>
 

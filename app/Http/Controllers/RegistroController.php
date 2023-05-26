@@ -102,7 +102,7 @@ class RegistroController extends Controller
     public function edit($id)
     {
         $usuario = Registro::findOrFail($id);
-        return view('registros.editar', compact('usuario'));
+        return view('registros.edit', compact('usuario'));
     }
 
     public function update(Request $solicitud, $id)
@@ -111,27 +111,31 @@ class RegistroController extends Controller
             $validatedData = $solicitud->validate([
                 'completo' => 'required',
                 'usuario' => 'required',
-                'password' => 'required',
                 'tipo' => 'required',
             ]);
 
             $nombre = $solicitud->input('completo');
             $usuario = $solicitud->input('usuario');
-            $password = $solicitud->input('password');
             $tipo = $solicitud->input('tipo');
 
-            $usuario = Registro::findOrFail($id);
-            $usuario->nombre = $nombre;
-            $usuario->nombre_de_usuario = $usuario;
-            $usuario->clave = Hash::make($password);
-            $usuario->tipo = $tipo;
-            $usuario->save();
+            $registro = Registro::findOrFail($id);
+            $registro->nombre = $nombre;
+            $registro->nombre_de_usuario = $usuario;
+            $registro->tipo = $tipo;
+
+            $password = $solicitud->input('password');
+            if (!empty($password)) {
+                $registro->clave = Hash::make($password);
+            }
+
+            $registro->save();
 
             return redirect()->route('ver-usuarios')->with('success', 'Usuario actualizado exitosamente');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Error al actualizar el usuario']);
         }
     }
+
 
     public function destroy($id)
     {

@@ -193,17 +193,37 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento ha sido eliminado correctamente.');
     }
-    public function abonar($id, Request $request)
+    public function vistaAbonar($id)
     {
-        $evento = Evento::findOrFail($id);
-        $monto = $request->input('monto');
+        // Buscar el evento por su ID
+        $evento = Evento::find($id);
 
-        $nuevoPrecioTotal = $evento->precio_total - $monto;
-        $evento->precio_total = $nuevoPrecioTotal;
+        // Pasar el evento a la vista
+        return view('eventos.vistaAbonar', compact('evento'));
+    }
+
+    public function abonar(Request $request, $id)
+    {
+        // Buscar el evento por su ID
+        $evento = Evento::find($id);
+
+        // Obtener la cantidad abonada del formulario
+        $abonoRealizado = $request->input('abono');
+
+        // Realizar la lógica de abonar (restar la cantidad abonada a la cantidad actual)
+        // Puedes implementar la lógica específica según tus requerimientos
+
+        // Actualizar la cantidad total del evento con el abono realizado
+        $evento->precio_total -= $abonoRealizado;
+
+        // Guardar los cambios en la base de datos
         $evento->save();
 
-        // Otras acciones relacionadas con el abono del evento...
-
-        return redirect()->back()->with('success', 'Abono realizado correctamente.');
+        // Redireccionar o realizar alguna acción adicional
+        return redirect()->route('eventos.index')->with('success', 'Se ha realizado el abono correctamente.');
     }
+
+
+
+
 }

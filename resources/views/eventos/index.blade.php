@@ -92,7 +92,7 @@
                         </form>
                         @endif
                         @endcan
-                        <a href="{{ route('eventos.abonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
+                        <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
                     </td>
                 </tr>
                 @endforeach
