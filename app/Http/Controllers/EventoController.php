@@ -110,10 +110,10 @@ class EventoController extends Controller
         $servicios = Servicio::all();
 
          // Verificar si el estado del evento es "validando" y si el usuario es un cliente
-        if ($evento->estado === 'validando' && auth()->user()->tipo === 'cliente') {
-            // Redirigir a una página de error o mostrar un mensaje de error
-            return redirect()->back()->with('error', 'No tienes permiso para editar este evento.');
-        }
+    if ($evento->estado === 'validando' && auth()->user()->tipo === 'cliente') {
+        // Redirigir a una página de error o mostrar un mensaje de error
+        return redirect()->back()->with('error', 'No tienes permiso para editar este evento.');
+    }
 
         // Retorna la vista de edición con el evento y los paquetes
         return view('eventos.edit', compact('evento', 'grupos_paquetes', 'servicios'));
@@ -157,14 +157,7 @@ class EventoController extends Controller
         $evento->numero_invitados = $request->numero_invitados;
         $evento->precio_total = $precioTotal;
         $evento->grupopaquete_id = $request->grupopaquete_id;
-        // Verificar si el usuario actual es un cliente
-        if ($request->user()->tipo === 'cliente') {
-            // Restringir la actualización del estado para los clientes
-            $evento->estado = $evento->getOriginal('estado');
-        } else {
-            // Permitir que el administrador actualice el estado
-            $evento->estado = $request->estado;
-        }
+        $evento->estado = $request->estado;
 
         // Guardar los cambios en la base de datos
         $evento->save();

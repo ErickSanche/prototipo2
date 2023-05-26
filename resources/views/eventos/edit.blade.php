@@ -46,7 +46,7 @@
                     @endforeach
                 </select>
             </div>
-            @can('updateEstado', $evento)
+
                 <div class="form-group">
                     <label for="estado">Estado:</label>
                     <select class="form-control" id="estado" name="estado" required>
@@ -54,7 +54,7 @@
                         <option value="validando" @if ($evento->estado == 'validando') selected @endif>Confirmar</option>
                     </select>
                 </div>
-            @endcan
+
             <button type="submit" class="btn btn-primary">Guardar cambios</button>
         </form>
     </div>
