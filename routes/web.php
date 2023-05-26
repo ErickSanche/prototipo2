@@ -4,6 +4,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RegistroController;
 use App\Models\Paquete;
 use Illuminate\Support\Facades\Route;
@@ -28,8 +29,12 @@ Route::get('/', function () {
 Route::resource('paquetes', PaqueteController::class)->middleware('can:viewAny,App\Models\Paquete');
 Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
+
+
 // URLs para eventos
 Route::resource('eventos', EventoController::class)->middleware('auth');
+Route::get('eventos/{id}/vistaAbonar', [EventoController::class ,'vistaAbonar'])->name('eventos.vistaAbonar');
+Route::post('eventos/abonar/{id}', [EventoController::class ,'abonar'])->name('eventos.abonar');
 
 
 
@@ -41,6 +46,9 @@ Route::resource('clientes', ClienteController::class)->middleware('can:viewAny,A
 
 
 // URLs para registros
+
+
+Route::resource('registros', RegistroController::class);
 
 Route::get('login', [RegistroController::class, 'entrada'])->name("login");
 Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');//->middleware('auth');

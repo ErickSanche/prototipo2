@@ -99,4 +99,54 @@ class RegistroController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        $usuario = Registro::findOrFail($id);
+        return view('registros.edit', compact('usuario'));
+    }
+
+    public function update(Request $solicitud, $id)
+    {
+        try {
+            $validatedData = $solicitud->validate([
+                'completo' => 'required',
+                'usuario' => 'required',
+                'tipo' => 'required',
+            ]);
+
+            $nombre = $solicitud->input('completo');
+            $usuario = $solicitud->input('usuario');
+            $tipo = $solicitud->input('tipo');
+
+            $registro = Registro::findOrFail($id);
+            $registro->nombre = $nombre;
+            $registro->nombre_de_usuario = $usuario;
+            $registro->tipo = $tipo;
+
+            $password = $solicitud->input('password');
+            if (!empty($password)) {
+                $registro->clave = Hash::make($password);
+            }
+
+            $registro->save();
+
+            return redirect()->route('ver-usuarios')->with('success', 'Usuario actualizado exitosamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al actualizar el usuario']);
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+            $usuario = Registro::findOrFail($id);
+            $usuario->delete();
+
+            return redirect()->route('ver-usuarios')->with('success', 'Usuario eliminado exitosamente');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al eliminar el usuario']);
+        }
+    }
 }
+

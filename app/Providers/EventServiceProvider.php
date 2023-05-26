@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Registro;
+use App\Models\Evento;
+use App\Observers\ObserverRegistro;
+use App\Observers\ObserverEvento;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,7 +31,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Registro::observe(ObserverRegistro::class);
+        Evento::observe(ObserverEvento::class);
+
     }
 
     /**

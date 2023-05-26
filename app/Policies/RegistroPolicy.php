@@ -2,11 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Evento;
 use App\Models\Registro;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class EventoPolicy
+class RegistroPolicy
 {
     use HandlesAuthorization;
 
@@ -16,22 +15,20 @@ class EventoPolicy
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(Registro $registro)
+    public function viewAny($user)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        return $user->tipo === 'administrador';
     }
-
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\Registro  $registro
-     * @param  \App\Models\Evento  $evento
+     * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(Registro $registro, Evento $evento)
+    public function view(Registro $registro)
     {
-        return true;
+        //
     }
 
     /**
@@ -42,57 +39,41 @@ class EventoPolicy
      */
     public function create(Registro $registro)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\Registro  $registro
-     * @param  \App\Models\Evento  $evento
+     * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Registro $registro, Evento $evento)
+    public function update(Registro $registro, Registro $registro)
     {
-         // Verificar si el usuario es un administrador
-    if ($registro->tipo === 'administrador') {
-        return true;
+        //
     }
-
-    // Verificar si el usuario es un cliente y el estado no es "validando"
-    if ($registro->tipo === 'cliente' && $evento->estado === 'no confirmado') {
-        return true;
-    }
-    return false;
-
-    }
-
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\Registro  $registro
-     * @param  \App\Models\Evento  $evento
+     * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Registro $registro, Evento $evento)
+    public function delete(Registro $registro, Registro $registro)
     {
-        if ($registro->tipo === 'cliente') {
-            return true;
-        } else {
-            return false;
-        }
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\Registro  $registro
-     * @param  \App\Models\Evento  $evento
+     * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(Registro $registro, Evento $evento)
+    public function restore(Registro $registro)
     {
         //
     }
@@ -101,10 +82,10 @@ class EventoPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\Registro  $registro
-     * @param  \App\Models\Evento  $evento
+     * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(Registro $registro, Evento $evento)
+    public function forceDelete(Registro $registro)
     {
         //
     }
