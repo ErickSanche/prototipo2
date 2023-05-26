@@ -42,6 +42,9 @@ Route::resource('clientes', ClienteController::class)->middleware('can:viewAny,A
 
 // URLs para registros
 
+
+Route::resource('registros', RegistroController::class)->middleware('can:viewAny,App\Models\Registro');
+
 Route::get('login', [RegistroController::class, 'entrada'])->name("login");
 Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');//->middleware('auth');
 Route::post('registrar', [RegistroController::class, 'registrar2'])->name('registrar2');
