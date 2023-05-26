@@ -193,4 +193,17 @@ class EventoController extends Controller
         // Redireccionar o realizar alguna acción adicional
         return redirect()->route('eventos.index')->with('success', 'El evento ha sido eliminado correctamente.');
     }
+    public function abonar($id, Request $request)
+    {
+        $evento = Evento::findOrFail($id);
+        $monto = $request->input('monto');
+
+        $nuevoPrecioTotal = $evento->precio_total - $monto;
+        $evento->precio_total = $nuevoPrecioTotal;
+        $evento->save();
+
+        // Otras acciones relacionadas con el abono del evento...
+
+        return redirect()->back()->with('success', 'Abono realizado correctamente.');
+    }
 }

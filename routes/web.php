@@ -4,6 +4,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\RegistroController;
 use App\Models\Paquete;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,7 @@ Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
 // URLs para eventos
 Route::resource('eventos', EventoController::class)->middleware('auth');
-
-
+Route::get('eventos/{evento}/abonar', [EventoController::class, 'abonar'])->name('eventos.abonar');
 
 // URLs para servicios
 Route::resource('servicios', ServicioController::class)->middleware('can:viewAny,App\Models\Servicio');

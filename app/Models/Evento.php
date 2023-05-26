@@ -61,4 +61,5 @@ class Evento extends Model
         $this->estado = 'rechazado';
         $this->save();
     }
+
 }
