@@ -35,6 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('clientes', [ClientePolicy::class, 'viewAny']);
         Gate::define('registros', [ClientePolicy::class, 'viewAny']);
 
+
 }
 
 }

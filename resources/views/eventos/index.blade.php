@@ -85,7 +85,7 @@
                         @endcan
 
                         @can('delete', $evento)
-                        @if ($evento->estado !== 'validando')
+                        @if ($evento->estado !== 'Validando')
                         <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -93,7 +93,13 @@
                         </form>
                         @endif
                         @endcan
+                        @if (auth()->user()->tipo === 'administrador')
                         <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
+                        @endif
+
+
+
+
                     </td>
                 </tr>
                 @endforeach

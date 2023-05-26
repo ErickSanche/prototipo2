@@ -110,7 +110,7 @@ class EventoController extends Controller
         $servicios = Servicio::all();
 
          // Verificar si el estado del evento es "validando" y si el usuario es un cliente
-    if ($evento->estado === 'validando' && auth()->user()->tipo === 'cliente') {
+    if ($evento->estado === 'Validando' && auth()->user()->tipo === 'cliente') {
         // Redirigir a una página de error o mostrar un mensaje de error
         return redirect()->back()->with('error', 'No tienes permiso para editar este evento.');
     }
@@ -130,7 +130,7 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
-            'estado' => 'required|in:agendado,rechazado,no confirmado,validando',
+            'estado' => 'required|in:Agendado,Rechazado,No confirmado,Validando',
 
         ]);
 
@@ -176,7 +176,7 @@ class EventoController extends Controller
         $evento = Evento::find($id);
 
         // Verificar si el estado del evento es "validando"
-        if ($evento->estado === 'validando' || $evento->estado === 'agendado') {
+        if ($evento->estado === 'Validando' || $evento->estado === 'Agendado') {
             return redirect()->route('eventos.index')->with('error', 'No se puede eliminar el evento en estado "validando" o "agendado".');
         }
 
