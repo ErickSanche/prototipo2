@@ -130,6 +130,7 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
+            'estado' => 'required|in:validado,rechazado,no confirmado,validando',
 
         ]);
 
