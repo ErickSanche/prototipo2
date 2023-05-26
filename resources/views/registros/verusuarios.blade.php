@@ -46,7 +46,9 @@
                         <form action="{{ route('registros.destroy', $usuario->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            @can('delete',$usuario)
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            @endcan
                         </form>
                     </td>
                 </tr>

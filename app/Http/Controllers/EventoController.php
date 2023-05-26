@@ -130,7 +130,7 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
-            'estado' => 'required|in:validado,rechazado,no confirmado,validando',
+            'estado' => 'required|in:agendado,rechazado,no confirmado,validando',
 
         ]);
 
@@ -176,8 +176,8 @@ class EventoController extends Controller
         $evento = Evento::find($id);
 
         // Verificar si el estado del evento es "validando"
-        if ($evento->estado === 'validando') {
-            return redirect()->route('eventos.index')->with('error', 'No se puede eliminar el evento en estado "validando".');
+        if ($evento->estado === 'validando' || $evento->estado === 'agendado') {
+            return redirect()->route('eventos.index')->with('error', 'No se puede eliminar el evento en estado "validando" o "agendado".');
         }
 
         // Desvincular los servicios asociados al evento

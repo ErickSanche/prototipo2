@@ -33,6 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('eventos', [EventoPolicy::class, 'viewAny']);
         Gate::define('servicios', [ServicioPolicy::class, 'viewAny']);
         Gate::define('clientes', [ClientePolicy::class, 'viewAny']);
+        Gate::define('registros', [ClientePolicy::class, 'viewAny']);
 
 }
 

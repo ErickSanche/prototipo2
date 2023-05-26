@@ -50,8 +50,14 @@
                 <div class="form-group">
                     <label for="estado">Estado:</label>
                     <select class="form-control" id="estado" name="estado" required>
+                        @if (auth()->user()->tipo === 'cliente')
                         <option value="no confirmado" @if ($evento->estado == 'no confirmado') selected @endif>No confirmar</option>
                         <option value="validando" @if ($evento->estado == 'validando') selected @endif>Confirmar</option>
+                        @elseif (auth()->user()->tipo === 'administrador')
+                        <option value="rechazado" @if ($evento->estado == 'rechazado') selected @endif>Rechazar</option>
+                        <option value="agendado" @if ($evento->estado == 'agendado') selected @endif>Aceptar</option>
+                        @endif
+
                     </select>
                 </div>
 

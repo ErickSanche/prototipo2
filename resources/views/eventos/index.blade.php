@@ -83,6 +83,7 @@
                         @can('update', $evento)
                         <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-primary">Editar</a>
                         @endcan
+
                         @can('delete', $evento)
                         @if ($evento->estado !== 'validando')
                         <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">

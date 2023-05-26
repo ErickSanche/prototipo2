@@ -15,9 +15,10 @@ class RegistroPolicy
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny($user)
+    public function viewAny($registro)
     {
-        return $user->tipo === 'administrador';
+        if ($registro->tipo === 'administrador') return true;
+        else  return false;
     }
     /**
      * Determine whether the user can view the model.
@@ -37,9 +38,10 @@ class RegistroPolicy
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(Registro $registro)
+    public function create(Registro $registro, Registro $usuario)
     {
-        //
+        if ($registro->tipo === 'administrador') return true;
+        else  return false;
     }
 
     /**
@@ -49,9 +51,10 @@ class RegistroPolicy
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Registro $registro, Registro $registro)
+    public function update(Registro $registro, Registro $usuario)
     {
-        //
+        if ($registro->tipo === 'administrador') return true;
+        else  return false;
     }
 
     /**
@@ -61,9 +64,27 @@ class RegistroPolicy
      * @param  \App\Models\Registro  $registro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Registro $registro, Registro $registro)
+    public function delete(Registro $registro, Registro $usuario)
     {
-        //
+        if ($registro->tipo === 'administrador') {
+            return true; // Permitir que los administradores eliminen clientes sin restricciones.
+        }
+
+        if ($usuario->tipo === 'cliente') {
+            $eventosValidandose = $usuario->eventos()->where('estado', 'validando')->exists();
+            if ($eventosValidandose) {
+                return false; // No se puede eliminar el cliente si tiene eventos en estado "validando".
+            }
+        }
+
+        return true; // Permitir eliminar el usuario en otros casos.
+    }
+
+
+    public function verUsuarios($registro)
+    {
+        if ($registro->tipo === 'administrador') return true;
+        else  return false;
     }
 
     /**

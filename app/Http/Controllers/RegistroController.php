@@ -141,6 +141,16 @@ class RegistroController extends Controller
     {
         try {
             $usuario = Registro::findOrFail($id);
+            $this->authorize('delete', $usuario); // Verificar la autorización para eliminar al usuario
+
+            if ($usuario->tipo === 'cliente') {
+                // Verificar si el usuario tiene eventos en estado "validándose" o "confirmado"
+                $eventosValidandose = $usuario->eventos()->whereIn('estado', ['validando', 'confirmado'])->count();
+                if ($eventosValidandose > 0) {
+                    return redirect()->route('ver-usuarios')->withErrors(['error' => 'No se puede eliminar el usuario debido a que tiene eventos en estado "validándose" o "confirmado"']);
+                }
+            }
+
             $usuario->delete();
 
             return redirect()->route('ver-usuarios')->with('success', 'Usuario eliminado exitosamente');
@@ -148,5 +158,6 @@ class RegistroController extends Controller
             return redirect()->back()->withErrors(['error' => 'Error al eliminar el usuario']);
         }
     }
+
 }
 

@@ -55,15 +55,19 @@ class EventoPolicy
      */
     public function update(Registro $registro, Evento $evento)
     {
-         // Verificar si el usuario es un administrador
-    if ($registro->tipo === 'administrador') {
-        return true;
-    }
+        if ($registro->tipo === 'cliente') {
+            // Verificar si el estado del evento permite la edición
+            if ($evento->estado === 'No confirmado' || $evento->estado === 'rechazado') {
+                return true; // Permitir la edición del evento
+            }
+        }
 
-    // Verificar si el usuario es un cliente y el estado no es "validando"
-    if ($registro->tipo === 'cliente' && $evento->estado === 'no confirmado') {
-        return true;
-    }
+         // Verificar si el usuario es un administrador
+        if ($registro->tipo === 'administrador') {
+            return true;
+        }
+
+
     return false;
 
     }
@@ -79,10 +83,13 @@ class EventoPolicy
     public function delete(Registro $registro, Evento $evento)
     {
         if ($registro->tipo === 'cliente') {
-            return true;
-        } else {
-            return false;
+            // Verificar si el estado del evento es diferente de "validando" y "agendado"
+            if ($evento->estado !== 'validando' && $evento->estado !== 'agendado') {
+                return true; // Permitir que el cliente elimine el evento
+            }
         }
+
+        return false; // No permitir la eliminación en otros casos
     }
 
     /**
