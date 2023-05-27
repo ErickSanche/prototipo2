@@ -12,7 +12,7 @@
 	<title>Crear evento</title>
     <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
     <link rel="stylesheet" href="{{ asset('css/s2.css') }}">
-    
+
 </head>
 <style>
 		.column {

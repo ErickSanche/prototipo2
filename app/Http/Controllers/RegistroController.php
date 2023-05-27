@@ -49,6 +49,9 @@ class RegistroController extends Controller
 
 
             return redirect()->route('paquetes.index');
+        } elseif ($encontrado->tipo === 'empleado') {
+            // Autenticar al usuario empleado
+            return redirect()->route('clientes.index');
         } else {
             return redirect()->back()->withErrors(['usuario' => 'Usuario no válido']);
         }

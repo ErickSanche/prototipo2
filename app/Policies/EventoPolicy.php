@@ -42,8 +42,17 @@ class EventoPolicy
      */
     public function create(Registro $registro)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        if ($registro->tipo === 'cliente') {
+            return true;
+        }
+
+        if ($registro->tipo === 'administrador') {
+            return true;
+        }
+
+
+    return false;
+
     }
 
     /**
@@ -67,16 +76,30 @@ class EventoPolicy
             return true;
         }
 
+        if ($registro->tipo === 'empleado') {
+            return true;
+        }
+
 
     return false;
 
     }
 
-
-    public function VistaAbonar(Registro $registro, Evento $evento)
+    public function vistaAbonar(Registro $registro, Evento $evento)
     {
         // Verificar si el usuario es un administrador
-        if ($registro->tipo === 'administrador') {
+        if ($registro->tipo === 'administrador'|| $registro->tipo === 'empleado') {
+            return true; // Permitir ver la vista de abonar
+        }
+
+        return false; // No permitir ver la vista de abonar para otros usuarios
+    }
+
+
+    public function abonar(Registro $registro, Evento $evento)
+    {
+        // Verificar si el usuario es un administrador
+        if ($registro->tipo === 'administrador'|| $registro->tipo === 'empleado') {
             return true; // Permitir realizar el abono
         }
 

@@ -47,13 +47,18 @@
                 </select>
             </div>
 
+            <div class="field">
+                <label for="imagenes">Imágen</label>
+                <input type="file" name="imagen[]" id="imagen" multiple>
+            </div>
+
                 <div class="form-group">
                     <label for="estado">Estado:</label>
                     <select class="form-control" id="estado" name="estado" required>
                         @if (auth()->user()->tipo === 'cliente')
                         <option value="No confirmado" @if ($evento->estado == 'No confirmado') selected @endif>No confirmar</option>
                         <option value="Validando" @if ($evento->estado == 'Validando') selected @endif>Confirmar</option>
-                        @elseif (auth()->user()->tipo === 'administrador')
+                        @elseif (auth()->user()->tipo === 'administrador'||auth()->user()->tipo === 'empleado')
                         <option value="Rechazado" @if ($evento->estado == 'Rechazado') selected @endif>Rechazar</option>
                         <option value="Agendado" @if ($evento->estado == 'Agendado') selected @endif>Aceptar</option>
                         @endif

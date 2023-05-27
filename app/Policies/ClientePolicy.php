@@ -18,8 +18,16 @@ class ClientePolicy
      */
     public function viewAny(Registro $registro)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+        if ($registro->tipo === 'cliente') {
+            return true;
+        }
+
+        if ($registro->tipo === 'empleado') {
+            return true;
+        }
+
+        return false;
+
     }
 
     /**
@@ -31,8 +39,7 @@ class ClientePolicy
      */
     public function view(Registro $registro, Cliente $cliente)
     {
-        if ($registro->tipo === 'cliente') return true;
-        else  return false;
+
     }
 
     /**
@@ -43,8 +50,7 @@ class ClientePolicy
      */
     public function create(Registro $registro)
     {
-        if ($registro->tipo === 'administrador') return true;
-        else  return false;
+
     }
 
     /**
@@ -56,8 +62,7 @@ class ClientePolicy
      */
     public function update(Registro $registro, Cliente $cliente)
     {
-        if ($registro->tipo === 'administrador') return true;
-        else  return false;
+
     }
 
     /**
@@ -69,8 +74,7 @@ class ClientePolicy
      */
     public function delete(Registro $registro, Cliente $cliente)
     {
-        if ($registro->tipo === 'administrador') return true;
-        else  return false;
+
     }
 
     /**

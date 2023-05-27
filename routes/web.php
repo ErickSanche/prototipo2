@@ -33,7 +33,7 @@ Route::get('/welcome', [PaqueteController::class, 'welcome'])->name('welcome');
 
 // URLs para eventos
 Route::resource('eventos', EventoController::class)->middleware('auth');
-Route::get('eventos/{id}/vistaAbonar', [EventoController::class ,'vistaAbonar'])->name('eventos.vistaAbonar')->middleware('can:VistaAbona,App\Models\Evento');
+Route::get('eventos/{id}/vistaAbonar', [EventoController::class ,'vistaAbonar'])->name('eventos.vistaAbonar');
 Route::post('eventos/abonar/{id}', [EventoController::class ,'abonar'])->name('eventos.abonar');
 
 

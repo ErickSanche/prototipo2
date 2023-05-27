@@ -15,7 +15,7 @@ class EventoController extends Controller
     public function index()
     {
         // Verificar si el usuario es administrador
-        if (auth()->user()->tipo === 'administrador') {
+        if (auth()->user()->tipo === 'administrador'|| auth()->user()->tipo === 'empleado') {
             // Obtener todos los eventos con sus relaciones cargadas
             $eventos = Evento::all();
         } else {
@@ -32,7 +32,10 @@ class EventoController extends Controller
     public function create()
     {
         $grupos_paquetes = Paquete::all();
+
         $servicios = Servicio::all();
+
+        $this->authorize('create', Evento::class);
 
         return view('eventos.create', compact('grupos_paquetes', 'servicios'));
     }
@@ -160,6 +163,33 @@ class EventoController extends Controller
         $evento->grupopaquete_id = $request->grupopaquete_id;
         $evento->estado = $request->estado;
 
+        // Guardar las nuevas imágenes si se seleccionaron y no existen previamente
+        $archivos = $request->file('imagen');
+        $urls = [];
+
+        if ($archivos) {
+            foreach ($archivos as $archivo) {
+                $nombreArchivo = $archivo->getClientOriginalName();
+                $r = Storage::disk('publico')->putFileAs('fotos', $archivo, $nombreArchivo);
+
+                // Verificar si la imagen ya existe en la lista de imágenes actuales
+                if (!in_array($r, explode(',', $evento->imagen))) {
+                    $urls[] = $r;
+                }
+            }
+        }
+
+        // Verificar si hay nuevas imágenes antes de realizar la concatenación
+        if (!empty($urls)) {
+            // Concatenar las nuevas imágenes con las imágenes existentes
+            $imagenesActuales = explode(',', $evento->imagen);
+            $nuevasImagenes = implode(',', $urls);
+            $imagenesCadena = implode(',', array_merge($imagenesActuales, $urls));
+
+            // Actualizar la propiedad 'imagen' del evento con las nuevas imágenes
+            $evento->imagen = $imagenesCadena;
+        }
+
         // Guardar los cambios en la base de datos
         $evento->save();
 
@@ -198,6 +228,8 @@ class EventoController extends Controller
         // Buscar el evento por su ID
         $evento = Evento::find($id);
 
+        $this->authorize('vistaAbonar', $evento);
+
         // Pasar el evento a la vista
         return view('eventos.vistaAbonar', compact('evento'));
     }
@@ -206,6 +238,8 @@ class EventoController extends Controller
     {
         // Buscar el evento por su ID
         $evento = Evento::find($id);
+
+        $this->authorize('abonar', $evento);
 
         // Obtener la cantidad abonada del formulario
         $abonoRealizado = $request->input('abono');

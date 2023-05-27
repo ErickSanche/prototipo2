@@ -93,7 +93,7 @@
                         </form>
                         @endif
                         @endcan
-                        @if (auth()->user()->tipo === 'administrador')
+                        @if (auth()->user()->tipo === 'administrador'|| auth()->user()->tipo === 'empleado')
                         <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
                         @endif
 

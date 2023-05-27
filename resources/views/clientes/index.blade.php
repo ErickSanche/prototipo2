@@ -16,7 +16,11 @@
       <nav class="navegacion">
         <ul>
           <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
+
+          @if (auth()->check() && auth()->user()->tipo === 'cliente')
           <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
+          @endif
+
         </ul>
       </nav>
     </div>

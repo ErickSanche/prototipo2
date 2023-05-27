@@ -70,6 +70,7 @@
     <select class="form-control @error('tipo') is-invalid @enderror" name="tipo" id="tipo" required>
       <option value="cliente">Cliente</option>
       <option value="administrador">Administrador</option>
+      <option value="empleado">Empleado</option>
     </select>
     @error('tipo')
       <div class="invalid-feedback">{{ $message }}</div>

@@ -42,6 +42,7 @@
             <select name="tipo" required>
                 <option value="cliente" {{ $usuario->tipo === 'cliente' ? 'selected' : '' }}>Cliente</option>
                 <option value="administrador" {{ $usuario->tipo === 'administrador' ? 'selected' : '' }}>Administrador</option>
+                <option value="empleado" {{ $usuario->tipo === 'empleado' ? 'selected' : '' }}>Empleado</option>
             </select>
 
             <button type="submit">Guardar cambios</button>
