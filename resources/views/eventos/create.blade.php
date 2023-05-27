@@ -11,29 +11,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600,700,800&display=swap" rel="stylesheet">
 	<title>Crear evento</title>
     <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
     <link rel="stylesheet" href="{{ asset('css/s2.css') }}">
 
 </head>
-<style>
-		.column {
-			width: 50%;
-			float: left;
-			box-sizing: border-box;
-			padding: 0 10px;
-		}
 
-		.clearfix::after {
-			content: "";
-			display: table;
-			clear: both;
-		}
-
-		@media (max-width: 600px) {
-			.column {
-				width: 100%;
-			}
-		}
-	</style>
 
 <body>
 
@@ -48,7 +30,8 @@
     </div>
   </header>
 
-	<main>
+  <center>
+  <main>
 		<h1>Create Evento</h1>
         <div class="clearfix">
 			<div class="column">
@@ -105,12 +88,16 @@
 					<input type="file" name="imagen[]" id="imagen" multiple required>
 				</div>
 
-				<button type="submit" class="btn btn-primary">Crear Evento</button>
+				<button type="submit" class="btn">Crear Evento</button>
 			</form>
 		</div>
         </div>
         </div>
 	</main>
+
+</center>
+
+	
 </body>
 
 </html>

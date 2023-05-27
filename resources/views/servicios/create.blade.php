@@ -8,9 +8,22 @@
   <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
   <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
  
   <body>
+  <header>
+    <div class="interior">
+      <nav class="navegacion">
+        <ul>
+          <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
+          <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
 
 <section class="form_wrap">
 
@@ -45,5 +58,5 @@
         <input type="number" name="precio" id="precio" step="0.01" required>
     </div>
 
-    <button id="btnSend" type="submit">Agregar servicio</button>
+    <button id="btnSend" class="btn" type="submit">Agregar servicio</button>
 </form>
