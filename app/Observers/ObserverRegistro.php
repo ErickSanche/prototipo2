@@ -19,7 +19,7 @@ class ObserverRegistro
     {
         //
         $aviso = new Bitacora;
-        $aviso->que = "se agrego un nuevo usuario";
+        $aviso->que = "se agrego al usuario: ".$registro->nombre;
         $aviso->quien = Auth::user()-> nombre;
         $aviso->save();
     }
@@ -32,7 +32,10 @@ class ObserverRegistro
      */
     public function updated(Registro $registro)
     {
-        //
+        $aviso = new Bitacora;
+        $aviso->que = "se actualiso el usuario: ".$registro->nombre;
+        $aviso->quien = Auth::user()-> nombre;
+        $aviso->save();
     }
 
     /**
@@ -43,7 +46,10 @@ class ObserverRegistro
      */
     public function deleted(Registro $registro)
     {
-        //
+        $aviso = new Bitacora;
+        $aviso->que = "se elimino el usuario: ".$registro->nombre;
+        $aviso->quien = Auth::user()-> nombre;
+        $aviso->save();
     }
 
     /**
