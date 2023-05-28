@@ -57,51 +57,97 @@
             </thead>
             <tbody>
                 @foreach ($eventos as $evento)
-                <tr>
-                    <td>{{ $evento->id }}</td>
-                    <td>{{ $evento->nombre }}</td>
-                    <td>{{ $evento->fecha }}</td>
-                    <td>{{ $evento->hora_inicio }}</td>
-                    <td>{{ $evento->hora_fin }}</td>
-                    <td>{{ $evento->numero_invitados }}</td>
-                    <td>
-                        @if ($evento->imagen)
-                        @foreach (explode(',', $evento->imagen) as $imagen)
-                        <img src="{{ asset("app/public/$imagen") }}" width="250" height="150" alt="">
-                        @endforeach
-                        @endif
-                    </td>
-                    <td>
-                        @foreach ($evento->servicios as $servicio)
-                        {{ $servicio->nombre }}<br>
-                        @endforeach
-                    </td>
-                    <td>{{ $evento->precio_total }}</td>
-                    <td>{{ $evento->grupopaquete_id }}</td>
-                    <td>{{ $evento->estado }}</td>
-                    <td>
-                        @can('update', $evento)
-                        <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-primary">Editar</a>
-                        @endcan
+                    @if (auth()->user()->tipo === 'empleado' && $evento->estado === 'Agendado')
+                        <tr>
+                            <td>{{ $evento->id }}</td>
+                            <td>{{ $evento->nombre }}</td>
+                            <td>{{ $evento->fecha }}</td>
+                            <td>{{ $evento->hora_inicio }}</td>
+                            <td>{{ $evento->hora_fin }}</td>
+                            <td>{{ $evento->numero_invitados }}</td>
+                            <td>
+                                @if ($evento->imagen)
+                                    @foreach (explode(',', $evento->imagen) as $imagen)
+                                        <img src="{{ asset("app/public/$imagen") }}" width="250" height="150" alt="">
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($evento->servicios as $servicio)
+                                    {{ $servicio->nombre }}<br>
+                                @endforeach
+                            </td>
+                            <td>{{ $evento->precio_total }}</td>
+                            <td>{{ $evento->grupopaquete_id }}</td>
+                            <td>{{ $evento->estado }}</td>
+                            <td>
+                                @can('update', $evento)
+                                    <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-primary">Editar</a>
+                                @endcan
 
-                        @can('delete', $evento)
-                        @if ($evento->estado !== 'Validando')
-                        <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-                        @endif
-                        @endcan
-                        @if (auth()->user()->tipo === 'administrador'|| auth()->user()->tipo === 'empleado')
-                        <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
-                        @endif
+                                @can('delete', $evento)
+                                    @if ($evento->estado !== 'Validando')
+                                        <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    @endif
+                                @endcan
 
-                        <a href="{{ route('eventos.vistaCargosExtras', $evento->id) }}" class="btn btn-primary">Sumar Extra</a>
+                                @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
+                                    <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
+                                @endif
 
+                                <a href="{{ route('eventos.vistaCargosExtras', $evento->id) }}" class="btn btn-primary">Sumar Extra</a>
+                            </td>
+                        </tr>
+                    @elseif (auth()->user()->tipo !== 'empleado')
+                        <tr>
+                            <td>{{ $evento->id }}</td>
+                            <td>{{ $evento->nombre }}</td>
+                            <td>{{ $evento->fecha }}</td>
+                            <td>{{ $evento->hora_inicio }}</td>
+                            <td>{{ $evento->hora_fin }}</td>
+                            <td>{{ $evento->numero_invitados }}</td>
+                            <td>
+                                @if ($evento->imagen)
+                                    @foreach (explode(',', $evento->imagen) as $imagen)
+                                        <img src="{{ asset("app/public/$imagen") }}" width="250" height="150" alt="">
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($evento->servicios as $servicio)
+                                    {{ $servicio->nombre }}<br>
+                                @endforeach
+                            </td>
+                            <td>{{ $evento->precio_total }}</td>
+                            <td>{{ $evento->grupopaquete_id }}</td>
+                            <td>{{ $evento->estado }}</td>
+                            <td>
+                                @can('update', $evento)
+                                    <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-primary">Editar</a>
+                                @endcan
 
-                    </td>
-                </tr>
+                                @can('delete', $evento)
+                                    @if ($evento->estado !== 'Validando')
+                                        <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    @endif
+                                @endcan
+
+                                @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
+                                    <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
+                                @endif
+
+                                <a href="{{ route('eventos.vistaCargosExtras', $evento->id) }}" class="btn btn-primary">Sumar Extra</a>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
