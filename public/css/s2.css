@@ -1,64 +1,64 @@
 /* Secciones principales */
 main {
 	padding: 3.5rem 0;
-	background-color: rgb(255, 255, 255);
-  }
-  
-  /* Encabezado */
-  h1 {
+	background-color: #fff;
+}
+
+/* Encabezado */
+h1 {
 	font-size: 2rem;
 	font-weight: bold;
 	text-align: center;
 	color: #707070;
 	text-transform: uppercase;
-  }
-  
-  /* Formulario */
-  form {
+}
+
+/* Formulario */
+form {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
 	max-width: 800px;
 	margin: 2.8rem auto;
-  }
-  
-  .field {
+}
+
+.field {
 	display: flex;
 	flex-direction: column;
 	width: 14rem;
 	margin: 0.5rem 0;
-  }
-  
-  .field label {
+}
+
+.field label {
 	font-size: 0.9rem;
 	margin-bottom: 0.2rem;
 	color: #696969;
-  }
-  
-  .field input,
-  .field select {
+}
+
+.field input,
+.field select {
 	font-size: 1.1rem;
 	height: 2.2rem;
 	padding: 0.5rem;
 	border: 2px solid #696969;
 	border-radius: 5px;
-  }
-  
-  .textBox {
+}
+
+.textBox {
 	display: flex;
 	flex-direction: column;
 	width: 25rem;
 	margin: 0.75rem 0;
-  }
-  
-  .textBox label {
+}
+
+.textBox label {
 	font-size: 0.9rem;
 	margin-bottom: 0.2rem;
 	color: #696969;
-  }
-  
-  textarea {
+}
+
+textarea {
 	font-size: 1.1rem;
 	width: 100%;
 	height: 5rem;
@@ -66,47 +66,46 @@ main {
 	padding: 0.5rem;
 	border: 2px solid #696969;
 	border-radius: 5px;
-  }
-  
-  .gustos {
+}
+
+.gustos {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	width: 20rem;
 	margin: 0.75rem 0;
-  }
-  
-  .gustos label {
+}
+
+.gustos label {
 	font-size: 0.9rem;
 	margin-bottom: 0.2rem;
 	color: #696969;
-  }
-  
-  .gustos div {
+}
+
+.gustos div {
 	display: flex;
 	align-items: center;
 	width: 100%;
 	padding-left: 0.5rem;
-  }
-  
-  .gustos div input {
+}
+
+.gustos div input {
 	width: 1rem;
 	height: 1rem;
-  }
-  
-  .submit {
+}
+
+.submit {
 	display: flex;
 	justify-content: center;
 	width: 100%;
 	margin-top: 1.75rem;
-  }
-  
-  .submit button {
+}
+
+.submit button {
 	font-size: 1.1rem;
 	padding: 1rem 1.5rem;
 	cursor: pointer;
 	border: 2px solid #696969;
 	border-radius: 4px;
 	background-color: #e0ffff;
-  }
-  
+}

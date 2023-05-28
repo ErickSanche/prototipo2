@@ -19,7 +19,6 @@ class CreateEventosTable extends Migration
         $table->time('hora_inicio');
         $table->time('hora_fin');
         $table->unsignedInteger('numero_invitados')->nullable(false);
-        $table->string('estado')->default('No confirmado');
         $table->foreignId('grupopaquete_id')->constrained('grupopaquetes')->onDelete('cascade');
         $table->string('imagen')->nullable()->default(null);
         $table->string('estado')->default('No confirmado');

@@ -33,9 +33,7 @@
   <center>
   <main>
 		<h1>Create Evento</h1>
-        <div class="clearfix">
-			<div class="column">
-  		<div class="field">
+
 			<form method="POST" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
 				@csrf
 
