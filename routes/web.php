@@ -36,6 +36,9 @@ Route::resource('eventos', EventoController::class)->middleware('auth');
 Route::get('eventos/{id}/vistaAbonar', [EventoController::class ,'vistaAbonar'])->name('eventos.vistaAbonar');
 Route::post('eventos/abonar/{id}', [EventoController::class ,'abonar'])->name('eventos.abonar');
 
+Route::get('eventos/{id}/vistaCargosExtras', [EventoController::class,'vistaCargosExtras'])->name('eventos.vistaCargosExtras');
+Route::post('eventos/cargosExtras/{id}', [EventoController::class,'cargosExtras'])->name('eventos.cargosExtras');
+
 
 
 // URLs para servicios
@@ -51,7 +54,7 @@ Route::resource('clientes', ClienteController::class)->middleware('can:viewAny,A
 Route::resource('registros', RegistroController::class)->middleware('can:viewAny,App\Models\Registro');
 
 Route::get('login', [RegistroController::class, 'entrada'])->name("login");
-Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar')->middleware('can:viewAny,App\Models\Registro');;
+Route::get('registrar', [RegistroController::class, 'registrar'])->name('registrar');//->middleware('can:viewAny,App\Models\Registro');;
 Route::post('registrar', [RegistroController::class, 'registrar2'])->name('registrar2');
 Route::post('validar', [RegistroController::class, 'validar'])->name('validar');
 Route::get('ver-usuarios', [RegistroController::class, 'verUsuarios'])->name('ver-usuarios')->middleware('can:verUsuarios,App\Models\Registro');
