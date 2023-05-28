@@ -260,4 +260,37 @@ class EventoController extends Controller
 
 
 
+public function vistaCargosExtras($id)
+    {
+        // Buscar el evento por su ID
+        $evento = Evento::find($id);
+
+        // Pasar el evento a la vista
+        return view('eventos.vistaCargosExtras', compact('evento'));
+    }
+
+    public function cargosExtras(Request $request, $id)
+    {
+        // Buscar el evento por su ID
+        $evento = Evento::find($id);
+
+
+        // Obtener la cantidad abonada del formulario
+        $cargoRealizado = $request->input('cargo');
+
+        // Realizar la lógica de abonar (restar la cantidad abonada a la cantidad actual)
+        // Puedes implementar la lógica específica según tus requerimientos
+
+        // Actualizar la cantidad total del evento con el abono realizado
+        $evento->precio_total += $cargoRealizado;
+
+        // Guardar los cambios en la base de datos
+        $evento->save();
+
+        // Redireccionar o realizar alguna acción adicional
+        return redirect()->route('eventos.index')->with('success', 'Se ha realizado el cargo extra correctamente.');
+    }
+
+
+
 }
