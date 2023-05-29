@@ -57,7 +57,7 @@
 					<input type="time" name="hora_fin" id="hora_fin" class="form-control" required>
 				</div>
 
-				<div class="textBox">
+				<div class="textBox" class="field">
 					<label for="numero_invitados">Número de invitados:</label>
 					<input type="number" name="numero_invitados" id="numero_invitados" class="form-control" required>
 				</div>

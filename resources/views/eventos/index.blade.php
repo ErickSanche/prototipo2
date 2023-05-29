@@ -53,19 +53,19 @@
 
       <div class="content">
         <ul class="list">
-          <li>{{ $evento->fecha }}</li>
-          <li>{{ $evento->hora_inicio }}</li>
-          <li>{{ $evento->hora_fin }}</li>
-          <li>{{ $evento->numero_invitados }}</li>
+          <li>Fecha: {{ $evento->fecha }}</li>
+          <li>Hora de inicio: {{ $evento->hora_inicio }}</li>
+          <li>Hora de Fin: {{ $evento->hora_fin }}</li>
+          <li>Invitados: {{ $evento->numero_invitados }}</li>
           <li>
             @foreach ($evento->servicios as $servicio)
             {{ $servicio->nombre }}<br>
             @endforeach
           </li>
-          <li>{{ $evento->precio_total }}</li>
-          <li>{{ $evento->grupopaquete_id }}</li>
-          <li>{{ $evento->estado }}</li>
-          <li>
+          <li>Precio: {{ $evento->precio_total }}</li>
+          <li>Paquete: {{ $evento->grupopaquete_id }}</li>
+          <li>Estado: {{ $evento->estado }}</li>
+          <p>
             @can('update', $evento)
             <a href="{{ route('eventos.edit', $evento->id) }}" class="btn btn-primary">Editar</a>
             @endcan
@@ -83,7 +83,7 @@
             @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
             <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
             @endif
-          </li>
+</p>
         </ul>
       </div>
     </div>

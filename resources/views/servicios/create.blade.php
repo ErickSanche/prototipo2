@@ -44,13 +44,13 @@
     @csrf
 
     <div class="user_info">
-        <label for="nombre">Nombre del servicio</label>
-        <input type="text" name="nombre" id="nombre" required>
-    </div>
+  <label for="nombre">Nombre del servicio</label>
+  <input type="text" name="nombre" id="nombre" required pattern="[^0-9]+">
+</div>
 
     <div>
         <label for="descripcion">Descripción del servicio</label>
-        <textarea name="descripcion" id="descripcion" required></textarea>
+        <textarea type="text" name="descripcion" id="descripcion" equired pattern="[^0-9]+"></textarea>
     </div>
 
     <div>
