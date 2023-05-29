@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tarjeta.css') }}">
   <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
 </head>
 <body>
@@ -31,18 +32,22 @@
     @foreach ($paquetes as $paquete)
   @if ($paquete->estado == 1)
   <div class="col">
-    <div class="card shadow-sm">
-      <img src="{{ asset("app/public/$paquete->imagen") }}" alt="{{ $paquete->nombre }}">
-      <div class="card-body">
-        <p class="card-text">{{ $paquete->nombre }}</p>
-        <p class="card-text">{{ $paquete->descripcion }}</p>
-        <p class="card-text">{{ $paquete->precio }}</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
+    <article class="card">
+        <img
+          class="card__background"
+          src="{{ asset("app/public/$paquete->imagen") }}"
+          alt="{{ $paquete->nombre }}"
+          width="1920"
+          height="2193"
+        />
+        <div class="card__content | flow">
+          <div class="card__content--container | flow">
+            <h2 class="card__title">{{ $paquete->nombre }}</h2>
+            <p class="card__description">{{ $paquete->descripcion }}</p>
+            <p class="card__description">$ {{ $paquete->precio }}</p>
           </div>
         </div>
-      </div>
-    </div>
+      </article>
   </div>
   @endif
 @endforeach
