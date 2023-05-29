@@ -24,7 +24,6 @@
       <nav class="navegacion">
         <ul>
           <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
-          <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
         </ul>
       </nav>
     </div>

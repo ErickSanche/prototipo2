@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\EventEmail;
+use App\Listeners\ListenerEmail;
 use App\Models\Registro;
 use App\Models\Evento;
 use App\Observers\ObserverRegistro;
@@ -19,8 +21,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        EventEmail::class => [
+            ListenerEmail::class,
         ],
     ];
 
