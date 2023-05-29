@@ -28,8 +28,7 @@ p {
 
 /* GLOBAL STYLES */
 body {
-  display: grid;
-  place-items: center;
+  
   height: 100vh;
 }
 
