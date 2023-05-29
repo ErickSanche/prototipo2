@@ -111,6 +111,22 @@ class EventoPolicy
         return false; // No permitir realizar el abono en otros casos
     }
 
+    public function cargosExtras(Registro $registro, Evento $evento)
+    {
+
+        // Verificar si el usuario es un administrador o empleado
+        if ($registro->tipo === 'administrador' || $registro->tipo === 'empleado') {
+            return true; // Permitir realizar el abono
+        }
+
+        // Verificar si el estado del evento es "agendado"
+        if ($evento->estado === 'Agendado') {
+            return true; // Permitir realizar el abono
+        }
+
+        return false; // No permitir realizar el abono en otros casos
+
+    }
 
 
     /**

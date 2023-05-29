@@ -279,7 +279,7 @@ public function vistaCargosExtras($id)
         // Buscar el evento por su ID
         $evento = Evento::find($id);
 
-
+        $this->authorize('cargosExtras', $evento);
         // Obtener la cantidad abonada del formulario
         $cargoRealizado = $request->input('cargo');
 

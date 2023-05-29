@@ -114,46 +114,51 @@ class PaqueteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-{
-    $request->validate([
-        'nombre' => 'required',
-        'precio' => 'required',
-        'descripcion' => 'required',
-        'estado' => 'required|boolean' // agregar validación para el campo estado
-    ]);
+        public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'precio' => 'required',
+            'descripcion' => 'required',
+            'estado' => 'required|boolean' // agregar validación para el campo estado
+        ]);
 
-    $paquete_encontrado = Paquete::find($id);
-    $paquete_encontrado->nombre = $request->input('nombre');
-    $paquete_encontrado->precio = $request->input('precio');
-    $paquete_encontrado->descripcion = $request->input('descripcion');
-    $paquete_encontrado->estado = $request->input('estado'); // asignar valor del campo estado
+        $eventosAsociados = Paquete::find($id)->eventos()->exists();
+        if ($eventosAsociados) {
+            return redirect(route('paquetes.index'))->with('error', 'No se puede editar el paquete porque existen eventos registrados que lo utilizan.');
+        }
 
-    // Actualizar la imagen
-    if ($request->hasFile('imagen')) {
-        $archivo = $request->file('imagen');
-        $nombreArchivo = $archivo->getClientOriginalName();
+        $paquete_encontrado = Paquete::find($id);
+        $paquete_encontrado->nombre = $request->input('nombre');
+        $paquete_encontrado->precio = $request->input('precio');
+        $paquete_encontrado->descripcion = $request->input('descripcion');
+        $paquete_encontrado->estado = $request->input('estado'); // asignar valor del campo estado
 
-        $rutaNuevaImagen = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
+        // Actualizar la imagen
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $nombreArchivo = $archivo->getClientOriginalName();
 
-        // Eliminar la imagen existente
-        Storage::disk('publico')->delete($paquete_encontrado->imagen);
+            $rutaNuevaImagen = Storage::disk('publico')->putFileAs('', $archivo, $nombreArchivo);
 
-        // Actualizar la ruta de la imagen en el modelo Paquete
-        $paquete_encontrado->imagen = $rutaNuevaImagen;
+            // Eliminar la imagen existente
+            Storage::disk('publico')->delete($paquete_encontrado->imagen);
+
+            // Actualizar la ruta de la imagen en el modelo Paquete
+            $paquete_encontrado->imagen = $rutaNuevaImagen;
+        }
+
+
+        $paquete_encontrado->save();
+
+        if (request()->expectsJson()) {
+            return response()->json($paquete_encontrado);
+        } else {
+            return redirect(route('paquetes.index'));
+        }
+
+
     }
-
-
-    $paquete_encontrado->save();
-
-    if (request()->expectsJson()) {
-        return response()->json($paquete_encontrado);
-    } else {
-        return redirect(route('paquetes.index'));
-    }
-
-
-}
 
 
     /**
@@ -165,6 +170,7 @@ class PaqueteController extends Controller
     public function destroy($id)
     {
         $paquete_encontrado = Paquete::find($id);
+
 
         if($paquete_encontrado->estado == 1){
             return redirect(route('paquetes.index'))->with('error', 'No se puede borrar el paquete porque su estado es activo.');
