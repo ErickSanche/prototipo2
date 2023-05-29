@@ -12,34 +12,31 @@
   <link rel="stylesheet" href="{{ asset('css/estiloboton.css') }}">
   <link rel="stylesheet" href="{{ asset('css/card.css') }}">
   <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/slider.css') }}">
 </head>
 
 <body>
-  
-<header>
+
+  <header>
     <div class="interior">
       <nav class="navegacion">
         <ul>
-          <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
           <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <h1><span>Lista de eventos</span></h1>
 
-  <h1>Lista de eventos:</h1>
-
-  @foreach ($eventos as $evento)
-  <div class="card">
-    @if ($evento->imagen)
-    @foreach (explode(',', $evento->imagen) as $imagen)
-    <div class="card_landing">
-      <img src="{{ asset("app/public/$imagen") }}" width="100%" height="400" alt="">
-    </div>
-    @endforeach
-    @endif
-
+  <div class="img-gallery">
+    @foreach ($eventos as $evento)
+      @if ($evento->imagen)
+        @foreach (explode(',', $evento->imagen) as $imagen)
+          <img src="{{ asset("app/public/$imagen") }}" onclick="openFulImg(this.src)" width="30" height="70%" alt="">
+        @endforeach
+      @endif
+  
     <div class="card_info">
       <div class="head">
         <p class="title">Datos del evento</p>
@@ -51,7 +48,6 @@
         </div>
       </div>
 
-      <div class="content">
         <ul class="list">
           <li>Fecha: {{ $evento->fecha }}</li>
           <li>Hora de inicio: {{ $evento->hora_inicio }}</li>
@@ -83,10 +79,13 @@
             @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
             <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
             @endif
-</p>
+  </p>
         </ul>
       </div>
     </div>
+  </div>
+
+  </div>
   </div>
   @endforeach
 
@@ -100,6 +99,8 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="{{ asset('js/slider.js') }}"></script>
 </body>
 
 </html>
