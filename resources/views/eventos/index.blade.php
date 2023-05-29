@@ -82,14 +82,15 @@
 </a>
               @endif
             @endcan
-
+            @if ($evento->estado === 'Agendado')
             @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
               <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
             @endif
 
             @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
-            <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Gastos</a>
+              <a href="{{ route('eventos.vistaCargosExtras', $evento->id) }}" class="btn btn-primary">Gastos</a>
             @endif
+          @endif
 
           </p>
         </ul>
