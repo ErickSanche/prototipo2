@@ -15,7 +15,10 @@ class ClienteController extends Controller
     public function index()
     {
         $paquetes = Paquete::all();
+        if(request()->expectsJson()){
 
-        return view('clientes.index', compact('paquetes'));
+            return response()->json($paquetes);
+        }else
+            return view('clientes.index', compact('paquetes'));
     }
 }

@@ -12,13 +12,29 @@ class RegistroController extends Controller
 {
     public function entrada()
     {
-        return view('registros.entrada');
+        if(request()->expectsJson()){
+
+            return response()->json();
+
+        }else{
+            return view('registros.entrada');
+        }
+
     }
 
     public function verUsuarios()
     {
         $usuarios = Registro::all();
-        return view('registros.verusuarios', compact('usuarios'));
+        if(request()->expectsJson()){
+
+            return response()->json($usuarios);
+        }else{
+
+            return view('registros.verusuarios', compact('usuarios'));
+        }
+
+
+
     }
 
     public function validar(Request $solicitud)
@@ -43,7 +59,13 @@ class RegistroController extends Controller
             // Autenticar al usuario cliente
 
 
-            return redirect()->route('clientes.index');
+            if(request()->expectsJson()){
+
+                return response()->json();
+
+            }else
+
+             return redirect()->route('clientes.index');
         } elseif ($encontrado->tipo === 'administrador') {
             // Autenticar al usuario administrador
 
@@ -70,7 +92,13 @@ class RegistroController extends Controller
 
     public function registrar()
     {
-        return view('registros.registrar');
+
+        if(request()->expectsJson()){
+
+            return response()->json();
+
+        }else
+            return view('registros.registrar');
     }
 
     public function registrar2(Request $solicitud)
@@ -95,10 +123,18 @@ class RegistroController extends Controller
             $nuevo->tipo = $tipo;
             $nuevo->save();
 
-            return redirect("registrar")->with('success', 'Usuario guardado exitosamente');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'El usuario ya está registrado']);
-        }
+            if ($solicitud->expectsJson()) {
+                return response()->json($nuevo);
+            } else {
+                return redirect("registrar")->with('success', 'Usuario guardado exitosamente');
+            }
+       } catch (\Exception $e) {
+            if ($solicitud->expectsJson()) {
+                return response()->json(['error' => 'El usuario ya está registrado'], 500);
+            } else {
+                return redirect()->back()->withErrors(['error' => 'El usuario ya está registrado']);
+            }
+       }
     }
 
 
