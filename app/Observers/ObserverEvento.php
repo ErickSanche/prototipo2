@@ -18,7 +18,7 @@ class ObserverEvento
     {
         $aviso = new Bitacora;
         $aviso->que = "se agregó un nuevo Evento: " . $evento->nombre;
-        $aviso->quien = Auth::user()->nombre;
+        $aviso->quien = Auth::user() ? Auth::user()->nombre : "Creado por seeder";
         $aviso->save();
     }
 
