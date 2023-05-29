@@ -123,10 +123,7 @@ class PaqueteController extends Controller
             'estado' => 'required|boolean' // agregar validación para el campo estado
         ]);
 
-        $eventosAsociados = Paquete::find($id)->eventos()->exists();
-        if ($eventosAsociados) {
-            return redirect(route('paquetes.index'))->with('error', 'No se puede editar el paquete porque existen eventos registrados que lo utilizan.');
-        }
+
 
         $paquete_encontrado = Paquete::find($id);
         $paquete_encontrado->nombre = $request->input('nombre');
