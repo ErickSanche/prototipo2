@@ -80,6 +80,21 @@ class EventoPolicy
             return true;
         }
 
+        // Verificar si el evento está completo
+        if ($evento->estado === 'Completo') {
+        // Obtener la hora actual y la hora de finalización del evento
+        $horaActual = new DateTime();
+        $horaFinalizacion = new DateTime($evento->hora_finalizacion);
+
+        // Calcular la diferencia de tiempo en horas
+        $diferenciaHoras = $horaActual->diff($horaFinalizacion)->h;
+
+        // Permitir la edición si han pasado menos de 4 horas desde la finalización
+        if ($diferenciaHoras <= 4) {
+            return true;
+        }
+    }
+
 
     return false;
 
@@ -99,7 +114,7 @@ class EventoPolicy
     public function abonar(Registro $registro, Evento $evento)
     {
         // Verificar si el usuario es un administrador
-        if ($registro->tipo === 'administrador'|| $registro->tipo === 'empleado') {
+        if ($registro->tipo === 'administrador') {
             return true; // Permitir realizar el abono
         }
 
@@ -111,6 +126,22 @@ class EventoPolicy
         return false; // No permitir realizar el abono en otros casos
     }
 
+    public function cargosExtras(Registro $registro, Evento $evento)
+    {
+
+        // Verificar si el usuario es un administrador o empleado
+        if ($registro->tipo === 'administrador' || $registro->tipo === 'empleado') {
+            return true; // Permitir realizar el abono
+        }
+
+        // Verificar si el estado del evento es "agendado"
+        if ($evento->estado === 'Agendado') {
+            return true; // Permitir realizar el abono
+        }
+
+        return false; // No permitir realizar el abono en otros casos
+
+    }
 
 
     /**
@@ -123,6 +154,12 @@ class EventoPolicy
     public function delete(Registro $registro, Evento $evento)
     {
         if ($registro->tipo === 'cliente') {
+            // Verificar si el estado del evento es diferente de "validando" y "agendado"
+            if ($evento->estado !== 'Validando' && $evento->estado !== 'Agendado') {
+                return true; // Permitir que el cliente elimine el evento
+            }
+        }
+        if ($registro->tipo === 'administrador') {
             // Verificar si el estado del evento es diferente de "validando" y "agendado"
             if ($evento->estado !== 'Validando' && $evento->estado !== 'Agendado') {
                 return true; // Permitir que el cliente elimine el evento

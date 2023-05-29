@@ -85,9 +85,11 @@
                         @if (auth()->user()->tipo === 'cliente')
                         <option value="No confirmado" @if ($evento->estado == 'No confirmado') selected @endif>No confirmar</option>
                         <option value="Validando" @if ($evento->estado == 'Validando') selected @endif>Confirmar</option>
-                        @elseif (auth()->user()->tipo === 'administrador'||auth()->user()->tipo === 'empleado')
+                        @elseif (auth()->user()->tipo === 'administrador')
                         <option value="Rechazado" @if ($evento->estado == 'Rechazado') selected @endif>Rechazar</option>
                         <option value="Agendado" @if ($evento->estado == 'Agendado') selected @endif>Aceptar</option>
+                        @elseif (auth()->user()->tipo === 'empleado')
+                        <option value="Completado" @if ($evento->estado == 'Completado') selected @endif>Completado</option>
                         @endif
 
                     </select>

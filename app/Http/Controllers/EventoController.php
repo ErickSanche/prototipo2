@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EventEmail;
 use App\Models\Evento;
 use App\Models\Paquete;
 use App\Models\Registro;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
@@ -99,6 +101,7 @@ class EventoController extends Controller
         $evento->registro_id = auth()->user()->id;
 
         // Guardar el evento en la base de datos
+        Event::dispatch(new EventEmail($evento->nombre));
         $evento->save();
 
         // Guardar los servicios asociados al evento
@@ -138,7 +141,7 @@ class EventoController extends Controller
             'numero_invitados' => 'required|integer',
             'servicios' => 'required|array',
             'grupopaquete_id' => 'required',
-            'estado' => 'required|in:Agendado,Rechazado,No confirmado,Validando',
+            'estado' => 'required|in:Agendado,Rechazado,No confirmado,Validando,Completado',
 
         ]);
 
@@ -279,7 +282,7 @@ public function vistaCargosExtras($id)
         // Buscar el evento por su ID
         $evento = Evento::find($id);
 
-
+        $this->authorize('cargosExtras', $evento);
         // Obtener la cantidad abonada del formulario
         $cargoRealizado = $request->input('cargo');
 
