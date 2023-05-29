@@ -20,7 +20,7 @@ class ObserverRegistro
         //
         $aviso = new Bitacora;
         $aviso->que = "se agrego al usuario: ".$registro->nombre;
-        $aviso->quien = Auth::user()-> nombre;
+        $aviso->quien = Auth::user() ? Auth::user()->nombre : "Creado por seeder";
         $aviso->save();
     }
 
