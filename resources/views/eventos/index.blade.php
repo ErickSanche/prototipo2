@@ -87,7 +87,9 @@
               <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
             @endif
 
+            @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
             <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Gastos</a>
+            @endif
 
           </p>
         </ul>
