@@ -14,7 +14,23 @@
   <link rel="stylesheet" href="{{ asset('css/barra.css') }}">
 </head>
 
+
 <body>
+  
+<header>
+    <div class="interior">
+      <nav class="navegacion">
+        <ul>
+          <li><a href="{{ route('eventos.index') }}">Ver Eventos</a></li>
+
+          @if (auth()->check() && auth()->user()->tipo === 'cliente')
+          <li><a href="{{ route('eventos.create') }}">Agregar Evento</a></li>
+          @endif
+
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <h1>Lista de eventos:</h1>
 
