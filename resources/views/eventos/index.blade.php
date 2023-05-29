@@ -37,7 +37,7 @@
           <div class="slider">
             @foreach (explode(',', $evento->imagen) as $imagen)
               <div>
-                <img src="{{ asset("app/public/$imagen") }}" onclick="openFulImg(this.src)" alt="">
+                <img src="{{ asset("app/public/$imagen") }}" width="30" height="50%"  onclick="openFulImg(this.src)" alt="">
               </div>
             @endforeach
           </div>
@@ -73,17 +73,22 @@
 
             @can('delete', $evento)
               @if ($evento->estado !== 'Validando')
+                <a>
                 <form method="POST" action="{{ route('eventos.destroy', $evento->id) }}" class="d-inline">
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
+</a>
               @endif
             @endcan
 
             @if (auth()->user()->tipo === 'administrador' || auth()->user()->tipo === 'empleado')
               <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Abonar</a>
             @endif
+
+            <a href="{{ route('eventos.vistaAbonar', $evento->id) }}" class="btn btn-primary">Gastos</a>
+
           </p>
         </ul>
       </div>
