@@ -23,8 +23,13 @@ class EventoController extends Controller
             $eventos = auth()->user()->eventos;
         }
 
-        // Retorna la vista con los eventos
-        return view('eventos.index', compact('eventos'));
+        if(request()->expectsJson()){
+            return response()->json($eventos);
+        }else{
+            // Retorna la vista con los eventos
+            return view('eventos.index', compact('eventos'));
+        }
+
     }
 
 

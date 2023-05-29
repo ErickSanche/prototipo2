@@ -17,13 +17,24 @@ class PaqueteController extends Controller
     {
         $paquetes = Paquete::all();
 
-        return view('paquetes.index', compact('paquetes'));
+        if(request()->expectsJson()){
+
+            return response()->json($paquetes);
+
+        }else
+            return view('paquetes.index', compact('paquetes'));
     }
 
     public function welcome()
     {
         $paquetes = Paquete::all();
-        return view('welcome', compact('paquetes'));
+
+        if(request()->expectsJson()){
+
+            return response()->json($paquetes);
+
+        }else
+            return view('welcome', compact('paquetes'));
     }
 
     /**
@@ -63,7 +74,12 @@ class PaqueteController extends Controller
         $paquete->descripcion = $request->input('descripcion');
         $paquete->estado = $request->has('estado') ? 1 : 0; // new boolean variable with default value 0
         $paquete->save();
-        return redirect(route('paquetes.index'));
+
+        if (request()->expectsJson()) {
+            return response()->json($paquete);
+        } else {
+            return redirect(route('paquetes.index'));
+        }
     }
 
 
@@ -129,7 +145,14 @@ class PaqueteController extends Controller
 
 
     $paquete_encontrado->save();
-    return redirect(route('paquetes.index'));
+
+    if (request()->expectsJson()) {
+        return response()->json($paquete_encontrado);
+    } else {
+        return redirect(route('paquetes.index'));
+    }
+
+
 }
 
 
@@ -149,7 +172,12 @@ class PaqueteController extends Controller
 
         $r = Storage::disk('publico')->delete($paquete_encontrado->imagen);
         $paquete_encontrado->delete();
-        return redirect(route('paquetes.index'));
+
+        if (request()->expectsJson()) {
+            return response()->json(['message' => 'Paquete borrado correctamente.']);
+        } else {
+            return redirect(route('paquetes.index'));
+        }
     }
 
 }
