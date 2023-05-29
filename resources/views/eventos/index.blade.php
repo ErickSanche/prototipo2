@@ -37,7 +37,7 @@
           <div class="slider">
             @foreach (explode(',', $evento->imagen) as $imagen)
               <div>
-                <img src="{{ asset("app/public/$imagen") }}" width="30" height="50%"  onclick="openFulImg(this.src)" alt="">
+                <img src="{{ asset("app/public/$imagen") }}" width="30" height="50%"  onclick="openFulImg(this.src)">
               </div>
             @endforeach
           </div>
